@@ -1,19 +1,373 @@
-<!-- ★ここから全部貼り替え -->
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Bob's Farm Diary</title>
+<style>
+:root {
+  --bg:#f7f4ec; --card:#fffdf8; --ink:#253026; --muted:#6f766f;
+  --green:#47734d; --green2:#e4efe2; --line:#e2ddcf;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background:linear-gradient(180deg,#eef6eb 0,#f7f4ec 260px); color:var(--ink); line-height:1.75;
+}
+header {
+  max-width:1100px; margin:0 auto; padding:56px 22px 28px;
+}
+.hero {
+  background:rgba(255,253,248,.82); border:1px solid var(--line); border-radius:28px;
+  padding:34px; box-shadow:0 18px 50px rgba(42,54,38,.08); position:relative;
+}
+.lang-toggle { text-decoration:none; display:inline-block; position:absolute; right:24px; top:24px; border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:9px 16px; cursor:pointer; font-weight:700; }
+h1 { margin:0; font-size:clamp(34px,6vw,64px); letter-spacing:.06em; padding-right:120px; }
+.lead { max-width:760px; color:var(--muted); font-size:18px; margin:12px 0 0; }
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px; }
+.stat { background:#fff; border:1px solid var(--line); border-radius:18px; padding:16px; }
+.stat strong { display:block; font-size:26px; color:var(--green); }
+main { max-width:1100px; margin:0 auto; padding:0 22px 70px; }
+.toolbar { position:sticky; top:0; z-index:5; backdrop-filter:blur(10px); background:rgba(247,244,236,.82); padding:12px 0; }
+.filters { display:flex; gap:10px; flex-wrap:wrap; }
+.filter { border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:9px 14px; cursor:pointer; font-size:14px; }
+.filter.active { background:var(--green); color:#fff; border-color:var(--green); }
+.timeline { display:grid; gap:22px; margin-top:20px; }
+.entry {
+  background:var(--card); border:1px solid var(--line); border-radius:24px; padding:24px;
+  box-shadow:0 12px 30px rgba(42,54,38,.06);
+}
+.entry-meta { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; flex-wrap:wrap; margin-bottom:10px; }
+time { color:var(--green); font-weight:700; }
+.tags { display:flex; gap:8px; flex-wrap:wrap; }
+.tags span { background:var(--green2); color:#37603b; border-radius:999px; padding:4px 10px; font-size:13px; }
+.entry p { margin:10px 0 0; font-size:17px; white-space:pre-wrap; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; margin-top:18px; }
+.gallery a { display:block; overflow:hidden; border-radius:16px; background:#eee; aspect-ratio:4/3; border:1px solid var(--line); }
+.gallery img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .25s ease; }
+.gallery a:hover img { transform:scale(1.04); }
+footer { text-align:center; color:var(--muted); padding:24px; border-top:1px solid var(--line); }
+@media (max-width:720px) {
+  .hero { padding:24px; }
+  .lang-toggle { position:static; margin-bottom:16px; }
+  h1 { padding-right:0; }
+  .stats { grid-template-columns:1fr; }
+  .entry { padding:18px; border-radius:18px; }
+}
+
+.view-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.view-tab { border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:9px 16px; cursor:pointer; font-weight:700; }
+.view-tab.active { background:var(--green); color:#fff; border-color:var(--green); }
+.story-text { display:none; border-left:4px solid var(--green); padding-left:16px; color:#334336; }
+body.story-mode .diary-text { display:none; }
+body.story-mode .story-text { display:block; }
+body.story-mode .gallery { margin-top:18px; }
+</style>
+</head>
+<body>
+<header>
+<section class="hero">
+<a class="lang-toggle" href="index.html" id="langToggle">日本語</a>
+<h1>Bob's Farm Diary</h1>
+<p class="lead">A small web diary made from Excel notes and photos of farm work, arranged in chronological order.</p>
+<div class="stats">
+<div class="stat"><strong>18</strong>Entries</div>
+<div class="stat"><strong>26</strong>Photos</div>
+<div class="stat"><strong>Mar 9, 2026 –<br/>Apr 24, 2026</strong>Period</div>
+</div>
+</section>
+</header>
+<main>
+<div class="toolbar">
+<div class="filters">
+<button class="filter active" data-tag="all">All</button>
+<button class="filter" data-tag="Sowing">Sowing <small>6</small></button><button class="filter" data-tag="Sprouting">Sprouting <small>5</small></button><button class="filter" data-tag="Hairy vetch">Hairy vetch <small>3</small></button><button class="filter" data-tag="Oats">Oats <small>3</small></button><button class="filter" data-tag="Edamame">Edamame <small>3</small></button><button class="filter" data-tag="Barley">Barley <small>3</small></button><button class="filter" data-tag="Transplanting">Transplanting <small>3</small></button><button class="filter" data-tag="Well digging">Well digging <small>3</small></button><button class="filter" data-tag="Eggplant">Eggplant <small>3</small></button><button class="filter" data-tag="Asparagus">Asparagus <small>2</small></button><button class="filter" data-tag="Leaf lettuce">Leaf lettuce <small>1</small></button><button class="filter" data-tag="Nagaimo yam">Nagaimo yam <small>1</small></button><button class="filter" data-tag="Planting">Planting <small>1</small></button><button class="filter" data-tag="Tractor">Tractor <small>1</small></button>
+</div>
+<div class="view-tabs"><button class="view-tab active" data-view="diary" type="button">Diary</button><button class="view-tab" data-view="story" type="button">Story</button></div></div>
+<section class="timeline">
+<article class="entry" data-tags="Well digging Hairy vetch Oats Barley Edamame">
+<div class="entry-meta">
+<time>April 24, 2026 (Fri)</time>
+<div class="tags"><span>Well digging</span><span>Hairy vetch</span><span>Oats</span><span>Barley</span><span>Edamame</span></div>
+</div>
+<p class="diary-text">The hairy vetch, oats, and barley planted as green manure are growing well. They are doing surprisingly well even without added fertilizer. The asparagus transplanted from Grandma’s garden has also sent up several shoots. I will postpone harvesting and let the roots grow stronger. Nagaimo yam, edamame, eggplant, and baby leaf greens are now planted. Except for the nagaimo, everything has appeared above the ground. On the third day of well digging, I added one more joint and reached about 3.5 meters smoothly. The clay soil has become even denser. Because the joints are now longer and the clay is stickier, the auger can only bring up about one turn of clay at a time. I would like to dig about one meter after reaching the sand-and-gravel layer, but will I actually get there? Around 3.5 meters, the clay started turning whitish. It may be the end of the clay layer. What comes next is something to look forward to.</p><p class="story-text">The field was quiet this morning, yet everything was moving.
+
+The hairy vetch, oats, and barley—once just scattered seeds—were now rising with quiet confidence. No fertilizer, no special treatment. Just time, soil, and patience. Sometimes, that is enough.
+
+Nearby, the asparagus from Grandma’s garden had begun to speak in its own way: small shoots, reaching upward. You chose not to harvest them yet. Some growth is meant to be protected, not consumed.
+
+And then, the well.
+
+At about 3.5 meters, the clay grew heavier and more stubborn. Each turn of the auger brought up less soil, but the color began to change. Whitish clay appeared, perhaps a boundary, perhaps a sign.
+
+You are searching for water. But maybe you are also searching for the place where resistance ends.
+
+You do not know what comes next.
+
+Still, you keep digging.</p>
+<div class="gallery"><a href="assets/image20.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image20.jpg"/></a><a href="assets/image21.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image21.jpg"/></a><a href="assets/image22.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image22.jpg"/></a><a href="assets/image23.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image23.jpg"/></a><a href="assets/image24.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image24.jpg"/></a><a href="assets/image25.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image25.jpg"/></a><a href="assets/image26.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image26.jpg"/></a></div>
+</article>
+<article class="entry" data-tags="Well digging Eggplant">
+<div class="entry-meta">
+<time>April 23, 2026 (Thu)</time>
+<div class="tags"><span>Well digging</span><span>Eggplant</span></div>
+</div>
+<p class="diary-text">Started work a little after 6 a.m. The first task was making protective shields for the eggplants. Grandma had already made some, but I reworked them in my own way. This is now my third version. The second task was the long-awaited second round of well digging. The auger arrived, so I tried it right away. It dug smoothly, and at about 2.5 meters I could see the water surface. Because it rained yesterday, the water level may be higher than usual, but for now it looks good. It may be time to move on to the stage where a suiko-style bailer is needed.</p><p class="story-text">The day began early, just after six.
+
+There were eggplants to protect and a well to deepen. The field asked for both care and courage: care for the small seedlings standing in the wind, and courage to keep digging into the unknown.
+
+When the auger finally reached water at around 2.5 meters, it was more than a technical result. It was a small promise from the ground.
+
+The rain may have raised the water level, but still, the sight of water changes everything.
+
+A field becomes more than soil when it begins to answer back.</p>
+<div class="gallery"><a href="assets/image14.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image14.jpg"/></a><a href="assets/image15.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image15.jpg"/></a><a href="assets/image16.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image16.jpg"/></a><a href="assets/image17.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image17.jpg"/></a><a href="assets/image18.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image18.jpg"/></a><a href="assets/image19.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image19.jpg"/></a></div>
+</article>
+<article class="entry" data-tags="Eggplant">
+<div class="entry-meta">
+<time>April 22, 2026 (Wed)</time>
+<div class="tags"><span>Eggplant</span></div>
+</div>
+<p class="diary-text">It seems yesterday’s strong wind blew away the small plastic tunnel over the eggplants. Grandma made a new one using fertilizer bags.</p><p class="story-text">The wind had its own opinion yesterday.
+
+The small shelter over the eggplants was blown away, reminding you that farming is never a one-way conversation. You plan, nature replies, and then you adjust.
+
+Grandma’s quick repair with fertilizer bags was practical, humble, and somehow beautiful.
+
+In farming, wisdom often appears not as theory, but as something tied, folded, reused, and made to work.</p>
+</article>
+<article class="entry" data-tags="Sprouting">
+<div class="entry-meta">
+<time>April 21, 2026 (Tue)</time>
+<div class="tags"><span>Sprouting</span></div>
+</div>
+<p class="diary-text">When I went to the field, it was raining, so I searched for treasures in the garage. It reminded me of my father. I went to Cainz to buy a sun hat for farm work, and impulsively bought three seedlings there. I also confirmed that the lettuce mix sown directly in the field had sprouted.</p><p class="story-text">Rain stopped the fieldwork, but it opened another door.
+
+The garage became a place of discovery, full of old tools and quiet memories of your father. Not all farming begins in the soil. Sometimes it begins in memory.
+
+A trip to buy a sun hat turned into three new seedlings, because new beginnings often arrive while we are doing something ordinary.
+
+And in the field, the lettuce had already sprouted.
+
+Even on a rainy day, life was moving.</p>
+<div class="gallery"><a href="assets/image7.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image7.jpg"/></a><a href="assets/image8.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image8.jpg"/></a><a href="assets/image9.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image9.jpg"/></a><a href="assets/image10.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image10.jpg"/></a><a href="assets/image11.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image11.jpg"/></a><a href="assets/image12.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image12.jpg"/></a><a href="assets/image13.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image13.jpg"/></a></div>
+</article>
+<article class="entry" data-tags="Tractor">
+<div class="entry-meta">
+<time>April 20, 2026 (Mon)</time>
+<div class="tags"><span>Tractor</span></div>
+</div>
+<p class="diary-text">Improved the small plastic greenhouse. Replacement rotary tiller blades for the tractor arrived.</p><p class="story-text">A small greenhouse was improved, and new tractor blades arrived.
+
+It sounds simple, almost mechanical. But these small preparations are the hidden architecture of future growth.
+
+Before the harvest, there is maintenance. Before beauty, there is adjustment.
+
+The field rewards those who prepare quietly.</p>
+</article>
+<article class="entry" data-tags="Eggplant Transplanting">
+<div class="entry-meta">
+<time>April 19, 2026 (Sun)</time>
+<div class="tags"><span>Eggplant</span><span>Transplanting</span></div>
+</div>
+<p class="diary-text">Transplanted two long eggplant seedlings into the field. Used Rikidas after planting and installed a small plastic tunnel.</p><p class="story-text">Two long eggplant seedlings entered the field today.
+
+They were small, vulnerable, and full of possibility. You gave them support, nutrients, and a little shelter.
+
+That is what planting really is: not just putting roots into soil, but making a promise to return, to watch, and to care.</p>
+<div class="gallery"><a href="assets/image4.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image4.jpg"/></a><a href="assets/image5.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image5.jpg"/></a><a href="assets/image6.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image6.jpg"/></a></div>
+</article>
+<article class="entry" data-tags="Well digging">
+<div class="entry-meta">
+<time>April 17, 2026 (Fri)</time>
+<div class="tags"><span>Well digging</span></div>
+</div>
+<p class="diary-text">First day of well digging. Chose the location and started digging about one meter with a shovel. Already ordered an auger from Amazon. Bought a 2-meter VU100 PVC pipe. Based on nearby boring data, created two well construction ideas with GPT.</p><p class="story-text">The well began with a decision.
+
+A place was chosen. A shovel entered the ground. One meter of earth was opened by hand.
+
+It was not yet a well, only a beginning. But every deep project starts at the surface.
+
+With the auger ordered and the pipe ready, the idea had crossed the line from imagination into action.</p>
+<div class="gallery"><a href="assets/image2.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image2.jpg"/></a><a href="assets/image3.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image3.jpg"/></a></div>
+</article>
+<article class="entry" data-tags="Nagaimo yam Planting">
+<div class="entry-meta">
+<time>April 14, 2026 (Tue)</time>
+<div class="tags"><span>Nagaimo yam</span><span>Planting</span></div>
+</div>
+<p class="diary-text">Planted two Nagaimo yam “Nebaristar” seed pieces.</p><p class="story-text">Two pieces of Nagaimo were planted.
+
+They disappeared into the soil without drama, carrying their future underground. Some crops teach patience because their progress is hidden.
+
+You do not see the work happening below.
+
+But hidden growth is still growth.</p>
+</article>
+<article class="entry" data-tags="Edamame Sprouting">
+<div class="entry-meta">
+<time>April 11, 2026 (Sat)</time>
+<div class="tags"><span>Edamame</span><span>Sprouting</span></div>
+</div>
+<p class="diary-text">Edamame “Yugari Musume” sprouted.</p><p class="story-text">The edamame sprouted.
+
+A small event, perhaps, but also a clear answer. The seed accepted the soil. The season accepted the seed.
+
+There are days when farming gives you a simple message:
+
+Yes. It has begun.</p>
+<div class="gallery"><a href="assets/image1.jpg" target="_blank"><img alt="Farm diary photo" loading="lazy" src="assets/image1.jpg"/></a></div>
+</article>
+<article class="entry" data-tags="Leaf lettuce Sowing">
+<div class="entry-meta">
+<time>April 10, 2026 (Fri)</time>
+<div class="tags"><span>Leaf lettuce</span><span>Sowing</span></div>
+</div>
+<p class="diary-text">Sowed leaf lettuce.</p><p class="story-text">Leaf lettuce seeds were sown.
+
+Tiny seeds, almost weightless, were trusted to the soil. It is always a little mysterious that something so small can become something you later harvest, wash, and place on a table.
+
+Farming begins with this kind of trust.</p>
+</article>
+<article class="entry" data-tags="Barley Sprouting">
+<div class="entry-meta">
+<time>April 7, 2026 (Tue)</time>
+<div class="tags"><span>Barley</span><span>Sprouting</span></div>
+</div>
+<p class="diary-text">Barley sprouted.</p><p class="story-text">The barley sprouted.
+
+Another green signal from the field. Another sign that the soil is not empty, but alive with quiet responses.
+
+Each sprout is a small conversation between seed, weather, and time.</p>
+</article>
+<article class="entry" data-tags="Asparagus Transplanting">
+<div class="entry-meta">
+<time>April 6, 2026 (Mon)</time>
+<div class="tags"><span>Asparagus</span><span>Transplanting</span></div>
+</div>
+<p class="diary-text">Transplanted two additional asparagus plants.</p><p class="story-text">Two more asparagus plants were transplanted.
+
+The field is slowly becoming a collection of intentions: some for this season, some for later years. Asparagus is not a crop that rewards impatience.
+
+It asks you to think beyond today.</p>
+</article>
+<article class="entry" data-tags="Asparagus Transplanting">
+<div class="entry-meta">
+<time>April 3, 2026 (Fri)</time>
+<div class="tags"><span>Asparagus</span><span>Transplanting</span></div>
+</div>
+<p class="diary-text">Transplanted two asparagus plants.</p><p class="story-text">The first asparagus plants were moved into their new place.
+
+Transplanting is always an act of hope. A plant leaves one small world and enters another. For a while, it must adjust.
+
+So must the person who plants it.</p>
+</article>
+<article class="entry" data-tags="Oats Barley Sprouting Sowing">
+<div class="entry-meta">
+<time>April 1, 2026 (Wed)</time>
+<div class="tags"><span>Oats</span><span>Barley</span><span>Sprouting</span><span>Sowing</span></div>
+</div>
+<p class="diary-text">Oats sprouted. Sowed barley.</p><p class="story-text">The oats sprouted, and barley was sown.
+
+One crop emerged while another began its hidden work. Above ground and below ground, the field was holding two different times at once.
+
+That is the rhythm of spring: arrival and beginning, side by side.</p>
+</article>
+<article class="entry" data-tags="Edamame Sowing">
+<div class="entry-meta">
+<time>March 31, 2026 (Tue)</time>
+<div class="tags"><span>Edamame</span><span>Sowing</span></div>
+</div>
+<p class="diary-text">Sowed edamame.</p><p class="story-text">Edamame seeds were sown.
+
+At this moment, there was nothing to see except soil. But the act itself was meaningful.
+
+A seed is a small agreement with the future.</p>
+</article>
+<article class="entry" data-tags="Oats Sowing">
+<div class="entry-meta">
+<time>March 25, 2026 (Wed)</time>
+<div class="tags"><span>Oats</span><span>Sowing</span></div>
+</div>
+<p class="diary-text">Sowed oats.</p><p class="story-text">Oats were sown.
+
+Not every planting is glamorous. Some are for the soil itself, for structure, for green manure, for the unseen foundation.
+
+Good farming is not only about what we take from the field, but what we give back to it.</p>
+</article>
+<article class="entry" data-tags="Hairy vetch Sprouting Sowing">
+<div class="entry-meta">
+<time>March 24, 2026 (Tue)</time>
+<div class="tags"><span>Hairy vetch</span><span>Sprouting</span><span>Sowing</span></div>
+</div>
+<p class="diary-text">Hairy vetch sown earlier has sprouted.</p><p class="story-text">The hairy vetch sprouted.
+
+What had been invisible became visible. The field gave its first small proof that the work was not lost.
+
+There is a special joy in the first green line breaking through the brown surface.</p>
+</article>
+<article class="entry" data-tags="Hairy vetch Sowing">
+<div class="entry-meta">
+<time>March 9, 2026 (Mon)</time>
+<div class="tags"><span>Hairy vetch</span><span>Sowing</span></div>
+</div>
+<p class="diary-text">Sowed hairy vetch.</p><p class="story-text">Hairy vetch was sown.
+
+It was the first note in a new field diary. A small action, almost quiet enough to miss, but it marked the beginning of a relationship.
+
+The field had been waiting. Now the conversation had started.</p>
+</article>
+</section>
+</main>
+<footer>Generated from Hatake Diary.xlsx</footer>
 <script>
 const filterButtons = document.querySelectorAll('.filter');
 const entries = document.querySelectorAll('.entry');
 
-filterButtons.forEach(btn => btn.addEventListener('click', () => {
-  const tag = btn.dataset.tag;
-  filterButtons.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function getEntryTags(entry) {
+  return Array.from(entry.querySelectorAll('.tags span'))
+    .map(span => span.textContent.trim())
+    .filter(Boolean);
+}
+
+function applyFilter(tag) {
+  filterButtons.forEach(b => b.classList.toggle('active', b.dataset.tag === tag));
 
   entries.forEach(entry => {
-    const tags = entry.dataset.tags.split(" ");
+    const tags = getEntryTags(entry);
     entry.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
   });
+}
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => applyFilter(btn.dataset.tag));
+});
+
+// Make the keyword badges inside each diary entry clickable too.
+document.querySelectorAll('.tags span').forEach(span => {
+  span.style.cursor = 'pointer';
+  span.title = 'Filter by this keyword';
+  span.addEventListener('click', () => {
+    const tag = span.textContent.trim();
+    const matchingButton = Array.from(filterButtons).find(btn => btn.dataset.tag === tag);
+    if (matchingButton) {
+      applyFilter(tag);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+});
+
+const viewTabs = document.querySelectorAll('.view-tab');
+
+viewTabs.forEach(tab => tab.addEventListener('click', () => {
+  const view = tab.dataset.view;
+
+  viewTabs.forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+
+  document.body.classList.toggle('story-mode', view === 'story');
 }));
 </script>
-
-<!-- ★ここまで -->
+</body>
+</html>
