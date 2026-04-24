@@ -1,61 +1,69 @@
 <!doctype html>
-  <p class="diary-text">Sowed edamame.</p>
-  
-  <p class="story-text">A small but important day in the field.
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bob's Farm Diary</title>
+<style>
+:root { --green:#3f7d46; --soft:#eef6ec; --ink:#1f2b21; --muted:#677568; --line:#dbe8d8; --paper:#fffdf8; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:"Segoe UI", Arial, sans-serif; color:var(--ink); background:linear-gradient(180deg,#f5fbf3,#fffdf8 280px); line-height:1.75; }
+.container { max-width:1080px; margin:0 auto; padding:28px 18px 56px; }
+.hero { position:relative; padding:34px 28px; border:1px solid var(--line); border-radius:28px; background:rgba(255,255,255,.86); box-shadow:0 12px 36px rgba(49,92,53,.10); overflow:hidden; }
+.hero:after { content:""; position:absolute; right:-80px; top:-80px; width:240px; height:240px; background:var(--soft); border-radius:50%; z-index:0; }
+.hero>* { position:relative; z-index:1; }
+h1 { margin:0 0 8px; font-size:clamp(2.1rem,5vw,4rem); letter-spacing:.03em; color:#244e2b; }
+.subtitle { margin:0; color:var(--muted); max-width:720px; }
+.lang-toggle { position:absolute; right:22px; top:22px; text-decoration:none; display:inline-block; border:1px solid var(--green); color:var(--green); background:#fff; border-radius:999px; padding:8px 16px; font-weight:700; }
+.stats { display:flex; flex-wrap:wrap; gap:14px; margin-top:22px; }
+.stat { min-width:140px; padding:12px 16px; border-radius:18px; background:var(--soft); color:#365a39; }
+.stat strong { display:block; font-size:1.4rem; color:#1f4c27; }
+.toolbar { margin:24px 0 20px; padding:16px; border:1px solid var(--line); border-radius:22px; background:rgba(255,255,255,.75); }
+.filters, .view-tabs { display:flex; gap:10px; flex-wrap:wrap; }
+.view-tabs { margin-top:14px; }
+.filter, .view-tab { border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:8px 14px; cursor:pointer; font-weight:700; }
+.filter.active, .view-tab.active { background:var(--green); color:#fff; border-color:var(--green); }
+.entry { margin:18px 0; padding:24px; border:1px solid var(--line); border-radius:26px; background:#fff; box-shadow:0 8px 22px rgba(49,92,53,.07); }
+.entry-head { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap; }
+time { font-weight:800; color:#234f29; font-size:1.15rem; }
+.tags { display:flex; gap:8px; flex-wrap:wrap; }
+.tag { font-size:.86rem; color:#456848; background:var(--soft); border-radius:999px; padding:3px 10px; }
+.entry p { margin:14px 0 0; white-space:pre-line; }
+.memo { margin-top:16px; padding:14px 16px; border-left:4px solid #9abf8f; border-radius:14px; background:#f6fbf4; color:#314733; }
+.memo strong { color:#24502b; }
+.memo p { margin-top:6px; }
+.story-text { display:none; border-left:4px solid var(--green); padding-left:16px; color:#334336; }
+body.story-mode .diary-text, body.story-mode .memo { display:none; }
+body.story-mode .story-text { display:block; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin-top:18px; }
+figure { margin:0; border-radius:18px; overflow:hidden; background:#f4f4ef; border:1px solid #e3e8df; }
+img { display:block; width:100%; height:220px; object-fit:cover; }
+footer { margin-top:28px; color:var(--muted); text-align:center; font-size:.92rem; }
+@media (max-width:640px) { .hero { padding:28px 20px; } .lang-toggle { position:static; margin-bottom:16px; } .entry { padding:18px; } img { height:190px; } }
+</style>
+</head>
+<body>
+<div class="container">
+<header class="hero">
+<a class="lang-toggle" href="index.html">日本語</a>
+<h1>Bob's Farm Diary</h1>
+<p class="subtitle">A small web diary made from Excel notes and photos of farm work.</p>
+<div class="stats"><div class="stat"><strong>18</strong>Entries</div><div class="stat"><strong>26</strong>Photos</div><div class="stat"><strong>March 9, 2026 ? April 24, 2026</strong>Period</div></div>
+</header>
+<nav class="toolbar"><div class="filters"><button class="filter active" data-tag="all" type="button">All</button><button class="filter " data-tag="井戸掘り" type="button">Well digging</button><button class="filter " data-tag="播種" type="button">Sowing</button><button class="filter " data-tag="発芽" type="button">Sprouting</button><button class="filter " data-tag="移植" type="button">Transplanting</button><button class="filter " data-tag="植付" type="button">Planting</button><button class="filter " data-tag="ヘアリーベッチ" type="button">Hairy vetch</button><button class="filter " data-tag="エン麦" type="button">Oats</button><button class="filter " data-tag="大麦" type="button">Barley</button><button class="filter " data-tag="枝豆" type="button">Edamame</button><button class="filter " data-tag="アスパラガス" type="button">Asparagus</button><button class="filter " data-tag="茄子" type="button">Eggplant</button><button class="filter " data-tag="リーフレタス" type="button">Leaf lettuce</button><button class="filter " data-tag="長いも" type="button">Nagaimo yam</button><button class="filter " data-tag="トラクター" type="button">Tractor</button></div><div class="view-tabs"><button class="view-tab active" data-view="diary" type="button">Diary</button><button class="view-tab" data-view="story" type="button">Story</button></div></nav>
+<main><article class="entry" data-tags="井戸掘り 発芽 ヘアリーベッチ エン麦 大麦 枝豆 アスパラガス 茄子 リーフレタス 長いも">
+  <div class="entry-head"><time>April 24, 2026 (Fri)</time><div class="tags"><span class="tag">#Well digging</span><span class="tag">#Sprouting</span><span class="tag">#Hairy vetch</span><span class="tag">#Oats</span><span class="tag">#Barley</span><span class="tag">#Edamame</span><span class="tag">#Asparagus</span><span class="tag">#Eggplant</span><span class="tag">#Leaf lettuce</span><span class="tag">#Nagaimo yam</span></div></div>
+  <p class="diary-text">The hairy vetch, oats, and barley planted as green manure are growing well. It is wonderful to see them thriving even without added fertilizer. The asparagus transplanted from Grandma’s garden has also sent up several shoots. I will postpone harvesting and let the roots grow stronger. Nagaimo yam, edamame, eggplant, and baby leaf greens are now planted. Except for the nagaimo, everything has appeared above the ground. On the third day of well digging, I added one more joint and reached about 3.5 meters smoothly. The clay soil has become even denser. Because the joints are now longer and the clay is stickier, the auger can only bring up about one turn of clay at a time. I would like to dig about one meter after reaching the sand-and-gravel layer, but will I actually get there? Around 3.5 meters, the clay started turning whitish. It may be the end of the clay layer. What comes next is something to look forward to.</p>
+  <div class="memo"><strong>Reflection</strong><p>It has been about two months since I decided in March to manage the field properly as the person responsible for it. At first, the work was mostly clearing cut branches and dealing with weeds, but recently the green manure has grown rapidly, and the field has started to look like a real field. I am enjoying the unfamiliar experience of well digging, even while getting covered in mud. Doing something new is always hard, but now I feel that the experience itself is the seed of joy.</p></div>
+  <p class="story-text">The field was quiet this morning, yet everything was moving.
 
-Sowed edamame.
+The hairy vetch, oats, and barley?once just scattered seeds?were now rising with quiet confidence. No fertilizer, no special treatment. Just time, soil, and patience. Sometimes, that is enough.
 
-Not every day is dramatic. Some days simply add one quiet layer to the future.</p>
-  
-</article><article class="entry" data-tags="播種 エン麦">
-  <div class="entry-head"><time>March 25, 2026 (Wed)</time><div class="tags"><span class="tag">#Sowing</span><span class="tag">#Oats</span></div></div>
-  <p class="diary-text">Sowed oats.</p>
-  
-  <p class="story-text">A small but important day in the field.
+Nearby, the asparagus from Grandma’s garden had begun to speak in its own way: small shoots, reaching upward. You chose not to harvest them yet. Some growth is meant to be protected, not consumed.
 
-Sowed oats.
+And then, the well.
 
-Not every day is dramatic. Some days simply add one quiet layer to the future.</p>
-  
-</article><article class="entry" data-tags="播種 発芽 ヘアリーベッチ">
-  <div class="entry-head"><time>March 24, 2026 (Tue)</time><div class="tags"><span class="tag">#Sowing</span><span class="tag">#Sprouting</span><span class="tag">#Hairy vetch</span></div></div>
-  <p class="diary-text">The hairy vetch that had been sown has sprouted.</p>
-  
-  <p class="story-text">A small but important day in the field.
+At about 3.5 meters, the clay grew heavier and more stubborn. Each turn of the auger brought up less soil, but the color began to change. Whitish clay appeared, perhaps a boundary, perhaps a sign.
 
-The hairy vetch that had been sown has sprouted.
-
-Not every day is dramatic. Some days simply add one quiet layer to the future.</p>
-  
-</article><article class="entry" data-tags="播種 ヘアリーベッチ">
-  <div class="entry-head"><time>March 9, 2026 (Mon)</time><div class="tags"><span class="tag">#Sowing</span><span class="tag">#Hairy vetch</span></div></div>
-  <p class="diary-text">Sowed hairy vetch. I had decided to take responsibility for managing the field, but I was not sure where to begin, so I started by growing green manure that does not require harvesting.</p>
-  
-  <p class="story-text">A small but important day in the field.
-
-Sowed hairy vetch. I had decided to take responsibility for managing the field, but I was not sure where to begin, so I started by growing green manure that does not require harvesting.
-
-Not every day is dramatic. Some days simply add one quiet layer to the future.</p>
-  
-</article></main>
-<footer>Generated from Hatake Diary.xlsx</footer>
-</div>
-<script>
-const filterButtons = document.querySelectorAll('.filter');
-const entries = document.querySelectorAll('.entry');
-filterButtons.forEach(btn => btn.addEventListener('click', () => {
-  const tag = btn.dataset.tag;
-  filterButtons.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  entries.forEach(entry => { entry.style.display = (tag === 'all' || entry.dataset.tags.includes(tag)) ? '' : 'none'; });
-}));
-const viewTabs = document.querySelectorAll('.view-tab');
-viewTabs.forEach(tab => tab.addEventListener('click', () => {
-  const view = tab.dataset.view;
-  viewTabs.forEach(t => t.classList.remove('active'));
-  tab.classList.add('active');
-  document.body.classList.toggle('story-mode', view === 'story');
-}));
-</script>
-</body>
+It has been about two months since you decided to take responsibility for the field. What began as clearing branches and fighting weeds has slowly become something more: a field with life, rhythm, and direction.
 </html>
