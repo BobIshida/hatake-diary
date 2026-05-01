@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="utf-8"/>
@@ -11,43 +10,41 @@
   --green:#47734d; --green2:#e4efe2; --line:#e2ddcf;
 }
 * { box-sizing:border-box; }
-body {
-  margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
-  background:linear-gradient(180deg,#eef6eb 0,#f7f4ec 260px); color:var(--ink); line-height:1.75;
-}
-header {
-  max-width:1100px; margin:0 auto; padding:56px 22px 28px;
-}
-.hero {
-  background:rgba(255,253,248,.82); border:1px solid var(--line); border-radius:28px;
-  padding:34px; box-shadow:0 18px 50px rgba(42,54,38,.08); position:relative;
-}
+body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", Meiryo, "Segoe UI", Arial, sans-serif; background:linear-gradient(180deg,#eef6eb 0,#f7f4ec 260px); color:var(--ink); line-height:1.75; }
+html[lang="en"] body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+header { max-width:1100px; margin:0 auto; padding:56px 22px 28px; }
+.hero { background:rgba(255,253,248,.82); border:1px solid var(--line); border-radius:28px; padding:34px; box-shadow:0 18px 50px rgba(42,54,38,.08); position:relative; }
 .lang-toggle { text-decoration:none; display:inline-block; position:absolute; right:24px; top:24px; border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:9px 16px; cursor:pointer; font-weight:700; }
-h1 { margin:0; font-size:clamp(34px,6vw,64px); letter-spacing:.06em; padding-right:120px; }
+h1 { margin:0; font-size:clamp(34px,6vw,64px); letter-spacing:.04em; padding-right:120px; }
 .lead { max-width:760px; color:var(--muted); font-size:18px; margin:12px 0 0; }
 .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px; }
 .stat { background:#fff; border:1px solid var(--line); border-radius:18px; padding:16px; }
 .stat strong { display:block; font-size:26px; color:var(--green); }
 main { max-width:1100px; margin:0 auto; padding:0 22px 70px; }
-.toolbar { position:sticky; top:0; z-index:5; backdrop-filter:blur(10px); background:rgba(247,244,236,.82); padding:12px 0; }
+.toolbar { position:sticky; top:0; z-index:5; backdrop-filter:blur(10px); background:rgba(247,244,236,.86); padding:12px 0; }
 .filters { display:flex; gap:10px; flex-wrap:wrap; }
-.filter { border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:9px 14px; cursor:pointer; font-size:14px; }
-.filter.active { background:var(--green); color:#fff; border-color:var(--green); }
+.filter, .view-tab { border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:9px 14px; cursor:pointer; font-size:14px; font-weight:700; }
+.filter.active, .view-tab.active { background:var(--green); color:#fff; border-color:var(--green); }
 .timeline { display:grid; gap:22px; margin-top:20px; }
-.entry {
-  background:var(--card); border:1px solid var(--line); border-radius:24px; padding:24px;
-  box-shadow:0 12px 30px rgba(42,54,38,.06);
-}
+.entry { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:24px; box-shadow:0 12px 30px rgba(42,54,38,.06); }
 .entry-meta { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; flex-wrap:wrap; margin-bottom:10px; }
 time { color:var(--green); font-weight:700; }
 .tags { display:flex; gap:8px; flex-wrap:wrap; }
-.tags span { background:var(--green2); color:#37603b; border-radius:999px; padding:4px 10px; font-size:13px; }
+.tags span { background:var(--green2); color:#37603b; border-radius:999px; padding:4px 10px; font-size:13px; cursor:pointer; }
 .entry p { margin:10px 0 0; font-size:17px; white-space:pre-wrap; }
+.memo { margin-top:16px; padding:14px 16px; border-left:4px solid #9abf8f; border-radius:14px; background:#f6fbf4; color:#314733; }
+.memo strong { color:#24502b; }
+.memo p { margin-top:6px; }
 .gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:10px; margin-top:18px; }
 .gallery a { display:block; overflow:hidden; border-radius:16px; background:#eee; aspect-ratio:4/3; border:1px solid var(--line); }
 .gallery img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .25s ease; }
 .gallery a:hover img { transform:scale(1.04); }
 footer { text-align:center; color:var(--muted); padding:24px; border-top:1px solid var(--line); }
+.view-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.story-text { display:none; border-left:4px solid var(--green); padding-left:16px; color:#334336; }
+body.story-mode .diary-text, body.story-mode .memo { display:none; }
+body.story-mode .story-text { display:block; }
+body.story-mode .gallery { margin-top:18px; }
 @media (max-width:720px) {
   .hero { padding:24px; }
   .lang-toggle { position:static; margin-bottom:16px; }
@@ -55,14 +52,6 @@ footer { text-align:center; color:var(--muted); padding:24px; border-top:1px sol
   .stats { grid-template-columns:1fr; }
   .entry { padding:18px; border-radius:18px; }
 }
-
-.view-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-.view-tab { border:1px solid #cddbc9; background:#fff; color:#315c35; border-radius:999px; padding:9px 16px; cursor:pointer; font-weight:700; }
-.view-tab.active { background:var(--green); color:#fff; border-color:var(--green); }
-.story-text { display:none; border-left:4px solid var(--green); padding-left:16px; color:#334336; }
-body.story-mode .diary-text { display:none; }
-body.story-mode .story-text { display:block; }
-body.story-mode .gallery { margin-top:18px; }
 </style>
 </head>
 <body>
@@ -72,147 +61,188 @@ body.story-mode .gallery { margin-top:18px; }
 <h1>Bob's Farm Diary</h1>
 <p class="lead">Excelに記録された畑仕事のメモと写真を、日付順に読める小さなウェブ日記にしました。</p>
 <div class="stats">
-<div class="stat"><strong>18</strong>記録数</div>
+<div class="stat"><strong>25</strong>記録数</div>
 <div class="stat"><strong>26</strong>写真</div>
-<div class="stat"><strong>2026年3月9日（月）〜<br/>2026年4月24日（金）</strong>期間</div>
+<div class="stat"><strong>2026年3月9日（月）〜<br/>2026年5月1日（金）</strong>期間</div>
 </div>
 </section>
 </header>
 <main>
 <div class="toolbar">
 <div class="filters">
-<button class="filter active" data-tag="all">すべて</button>
-<button class="filter" data-tag="播種">播種 <small>6</small></button><button class="filter" data-tag="発芽">発芽 <small>5</small></button><button class="filter" data-tag="ヘアリーベッチ">ヘアリーベッチ <small>3</small></button><button class="filter" data-tag="エン麦">エン麦 <small>3</small></button><button class="filter" data-tag="枝豆">枝豆 <small>3</small></button><button class="filter" data-tag="大麦">大麦 <small>3</small></button><button class="filter" data-tag="移植">移植 <small>3</small></button><button class="filter" data-tag="井戸掘り">井戸掘り <small>3</small></button><button class="filter" data-tag="茄子">茄子 <small>3</small></button><button class="filter" data-tag="アスパラガス">アスパラガス <small>2</small></button><button class="filter" data-tag="リーフレタス">リーフレタス <small>1</small></button><button class="filter" data-tag="長いも">長いも <small>1</small></button><button class="filter" data-tag="植付">植付 <small>1</small></button><button class="filter" data-tag="トラクター">トラクター <small>1</small></button>
+<button class="filter active" data-tag="all">すべて</button><button class="filter" data-tag="井戸掘り">井戸掘り <small>9</small></button><button class="filter" data-tag="スイコ">スイコ <small>4</small></button><button class="filter" data-tag="DIY">DIY <small>4</small></button><button class="filter" data-tag="家族">家族 <small>3</small></button><button class="filter" data-tag="播種">播種 <small>5</small></button><button class="filter" data-tag="発芽">発芽 <small>6</small></button><button class="filter" data-tag="ヘアリーベッチ">ヘアリーベッチ <small>3</small></button><button class="filter" data-tag="エン麦">エン麦 <small>3</small></button><button class="filter" data-tag="大麦">大麦 <small>3</small></button><button class="filter" data-tag="枝豆">枝豆 <small>3</small></button><button class="filter" data-tag="移植">移植 <small>3</small></button><button class="filter" data-tag="茄子">茄子 <small>4</small></button><button class="filter" data-tag="アスパラガス">アスパラガス <small>3</small></button><button class="filter" data-tag="リーフレタス">リーフレタス <small>2</small></button><button class="filter" data-tag="長いも">長いも <small>2</small></button><button class="filter" data-tag="植付">植付 <small>1</small></button><button class="filter" data-tag="トラクター">トラクター <small>1</small></button><button class="filter" data-tag="工具">工具 <small>1</small></button><button class="filter" data-tag="雨">雨 <small>1</small></button><button class="filter" data-tag="粘土">粘土 <small>2</small></button><button class="filter" data-tag="伐採">伐採 <small>1</small></button><button class="filter" data-tag="畝立て">畝立て <small>1</small></button><button class="filter" data-tag="ミニトマト">ミニトマト <small>1</small></button><button class="filter" data-tag="AI">AI <small>1</small></button><button class="filter" data-tag="キュウリ">キュウリ <small>1</small></button><button class="filter" data-tag="ピーマン">ピーマン <small>1</small></button>
 </div>
-<div class="view-tabs"><button class="view-tab active" data-view="diary" type="button">日記</button><button class="view-tab" data-view="story" type="button">ストーリー</button></div></div>
+<div class="view-tabs"><button class="view-tab active" data-view="diary" type="button">日記</button><button class="view-tab" data-view="story" type="button">ストーリー</button></div>
+</div>
 <section class="timeline">
+<article class="entry" data-tags="AI|井戸掘り|キュウリ|ピーマン">
+<div class="entry-meta">
+<time>2026年5月1日（金）</time>
+<div class="tags"><span>AI</span><span>井戸掘り</span><span>キュウリ</span><span>ピーマン</span></div>
+</div>
+<p class="diary-text">昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでGeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。AIは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。</p>
+<div class="memo"><strong>一言メモ</strong><p>ChatGPTやらGeminiやらは驚くべき進化を遂げていて、今後の社会のインフラに成長するのだろうと感じる。ソフトバンクの孫さんがAIに全振りしているのが分かる気がする。</p></div>
+<p class="story-text">昨日植えたミニトマトの次に、キュウリとピーマンをどうするか。
 
-<article class="entry" data-tags="日常 体験 家族">
-  <div class="entry-head">
-    <time>2026年5月1日（金）</time>
-    <div class="tags">
-      <span>日常</span><span>体験</span><span>家族</span>
-    </div>
-  </div>
+迷った時、今はAIに写真を見せて相談できる時代です。キュウリはすぐ、ピーマンはもう少し待つ。井戸の青灰色の粘土も、帯水層へのよい兆候かもしれない。
 
-  <p class="diary-text">
-    昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。
-    ChatGPTやGeminiなどAIの進化は驚くべきもので、今後の社会インフラになる可能性を強く感じる。
-  </p>
+土の中を掘る作業と、AIに判断を尋ねる作業。一見遠いようで、どちらも未知への向き合い方です。
 
-  <div class="memo">
-    <strong>一言メモ</strong>
-    <p>
-      AIの進化は、農業とは一見関係ないようでいて、実は大きく関係してくるかもしれない。
-      判断や知識の部分はどんどんAIに置き換わっていく。
-      その中で、人間がやるべきことは何なのかを考えさせられる。
-    </p>
-  </div>
+これからの畑仕事は、泥の感触とデジタルの知恵が並んで進むのかもしれません。</p>
 
-  <p class="story-text">
-    You planted tomatoes yesterday.
-    Small, tangible, immediate.
-
-    But today, your thoughts moved elsewhere.
-
-    Toward something invisible.
-    Something growing, just like your crops—
-    but not in soil.
-
-    AI.
-
-    ChatGPT. Gemini.
-    Tools that think, suggest, and evolve.
-
-    At first glance, they seem far from farming.
-    But maybe they are not.
-
-    Farming has always been about decisions—
-    when to plant, when to wait, when to act.
-
-    If AI begins to handle those decisions,
-    what remains for us?
-
-    Perhaps the hands.
-    The body.
-    The experience itself.
-
-    The mud on your boots cannot be digitized.
-
-    And maybe that is the point.
-
-    As machines grow smarter,
-    the value of being human may not be in knowing—
-
-    but in doing.
-  </p>
 </article>
+<article class="entry" data-tags="井戸掘り|スイコ|畝立て|ミニトマト">
+<div class="entry-meta">
+<time>2026年4月30日（木）</time>
+<div class="tags"><span>井戸掘り</span><span>スイコ</span><span>畝立て</span><span>ミニトマト</span></div>
+</div>
+<p class="diary-text">今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。</p>
+<div class="memo"><strong>一言メモ</strong><p>先日買ってきたミニトマトの苗を畑に定植した。すでに実が一部ついているので、ミニトマトの収穫が一番手になるかもしれない。緑肥として植えたヘアリーベッチ、エン麦、大麦はいずれもすくすくと成長していて畑の大半が緑一面になってきた。</p></div>
+<p class="story-text">今日は畝立て、スイコの仕上げ、そして試運転。
 
-<article class="entry" data-tags="井戸掘り ヘアリーベッチ エン麦 大麦 枝豆">
+今年買った管理機が畝を作り、手作りのスイコは井戸へ向かいました。期待通りに動き、まだ改良の余地も見えた。
+
+畑にはミニトマトが入り、緑肥は一面の緑へ広がっています。
+
+井戸の粘土層はまだ終わりません。でも地上では、確かに畑らしい景色が育っています。</p>
+
+</article>
+<article class="entry" data-tags="井戸掘り|スイコ|粘土|DIY">
+<div class="entry-meta">
+<time>2026年4月29日（水）</time>
+<div class="tags"><span>井戸掘り</span><span>スイコ</span><span>粘土</span><span>DIY</span></div>
+</div>
+<p class="diary-text">今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。</p>
+<div class="memo"><strong>一言メモ</strong><p>井戸枠の穴あけ作業は大変だと聞いていたので心配だったが、親父が使ってたプロ用のドリルを使ったら、思ったより効率的に穴あけができた。流石プロ用という感じ。なんとなく親父が草葉の陰から応援してくれているような気がした。不思議な感じ。</p></div>
+<p class="story-text">世間はゴールデンウイーク。でもあなたはいつも通り畑へ向かいました。
+
+オーガは4.5メートルの節目に近づき、井戸は4メートルまで深くなりました。粘土は相変わらず手ごわい相手です。それでも少しずつ、扱い方が分かってきた。
+
+午後には井戸枠へ千個ほどの穴を開けました。心配していた作業も、お父さんのプロ用ドリルが助けてくれました。
+
+道具はただの道具ではないのかもしれません。時には、使っていた人の気配を運んでくるものです。</p>
+
+</article>
+<article class="entry" data-tags="井戸掘り|粘土|伐採">
+<div class="entry-meta">
+<time>2026年4月28日（火）</time>
+<div class="tags"><span>井戸掘り</span><span>粘土</span><span>伐採</span></div>
+</div>
+<p class="diary-text">今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160Kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。</p>
+<div class="memo"><strong>一言メモ</strong><p>この粘土層を突破するまで根気が必要になりそうだ。現在オーガの全長は4.5ｍだが、これ以上のジョイントを追加するのは重すぎて厳しそう。現在の粘土層は粘度が極めて高く、そのまま玩具として売れるレベルだ。オーガの先端にねっとりとくっついてくるので、除去するのは手を使う必要がある。</p></div>
+<p class="story-text">庭木と畑の木を処分し、また井戸へ戻る日。
+
+160キロの枝を運び、3.5メートルの深さからさらに粘土層へ向かいます。
+
+粘土は重く、しつこく、オーガにまとわりつきます。まるで地面が、簡単には通さないと言っているようです。
+
+ここから先は、技術よりも根気の領域なのかもしれません。</p>
+
+</article>
+<article class="entry" data-tags="スイコ|DIY|雨">
+<div class="entry-meta">
+<time>2026年4月27日（月）</time>
+<div class="tags"><span>スイコ</span><span>DIY</span><span>雨</span></div>
+</div>
+<p class="diary-text">雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。</p>
+<div class="memo"><strong>一言メモ</strong><p>最近はホームセンター（カインズ）へ毎日通うようになってしまった。今日はスイコの追加部品購入が目的なのだが、つい色々な苗が売っているの買いたくなってしまう。</p></div>
+<p class="story-text">雨で畑は休み。
+
+それでも手は止まりません。まだ使う段階ではないスイコを、少しずつ完成へ近づけていく。
+
+カインズに毎日通うようになり、必要な部品を探しながら、つい苗にも目が行ってしまう。
+
+畑を始めると、世界の見え方が少し変わります。ホームセンターの通路さえ、未来の畑の可能性に見えてくるのです。</p>
+
+</article>
+<article class="entry" data-tags="井戸掘り|スイコ|DIY">
+<div class="entry-meta">
+<time>2026年4月26日（日）</time>
+<div class="tags"><span>井戸掘り</span><span>スイコ</span><span>DIY</span></div>
+</div>
+<p class="diary-text">今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。</p>
+<div class="memo"><strong>一言メモ</strong><p>車いじりを始めた2020年から車いじりを始めたのでDIYに必要な工具はある程度揃っている。そんな背景もあり今回スムーズにスイコの製作に入ることができた。</p></div>
+<p class="story-text">畑には行かない日曜日でした。けれど、井戸掘りの仕事は静かに続いていました。
+
+ガレージから見つかった塩ビパイプは、スイコという新しい道具へ姿を変えようとしています。
+
+車いじりで集めた工具、YouTubeで得た知識、父親が残した材料。それぞれ別々だったものが、ひとつの作業台の上でつながっていきます。
+
+DIYとは、物を作ることだけではなく、過去の経験を今の目的へつなぎ直すことなのかもしれません。</p>
+
+</article>
+<article class="entry" data-tags="家族|井戸掘り|工具">
+<div class="entry-meta">
+<time>2026年4月25日（土）</time>
+<div class="tags"><span>家族</span><span>井戸掘り</span><span>工具</span></div>
+</div>
+<p class="diary-text">今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。</p>
+<div class="memo"><strong>一言メモ</strong><p>ガレージには父親が悪戦苦闘したであろうことを想像させるいろいろな工具や資材が残っている。父親の死後から約10年、今回畑の管理をすることになって、父親の事を考える良い機会かもしれない。私自身も父親になって初めて自分の父親の気持ちや行動がよく理解できるようになったと思う。</p></div>
+<p class="story-text">今日はソバの日。
+
+畑仕事は休みでも、畑につながる時間は続いていました。母親と食べるそば、父親の残したガレージ、そしてそこに眠っていた4メートルの塩ビ管。
+
+必要なものを買おうとしていた時に、それがすでに父親の手によって残されていた。
+
+偶然と言えば偶然です。でも時には、偶然が記憶の形をして現れることがあります。</p>
+
+</article>
+<article class="entry" data-tags="井戸掘り|発芽|ヘアリーベッチ|エン麦|大麦|枝豆|アスパラガス|茄子|長いも">
 <div class="entry-meta">
 <time>2026年4月24日（金）</time>
-<div class="tags"><span>井戸掘り</span><span>ヘアリーベッチ</span><span>エン麦</span><span>大麦</span><span>枝豆</span></div>
+<div class="tags"><span>井戸掘り</span><span>発芽</span><span>ヘアリーベッチ</span><span>エン麦</span><span>大麦</span><span>枝豆</span><span>アスパラガス</span><span>茄子</span><span>長いも</span></div>
 </div>
-<p class="diary-text">緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。ばあちゃんちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。</p><p class="story-text">静かな朝でした。けれど、畑ではすべてが確かに動いていました。
+<p class="diary-text">緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。</p>
+<div class="memo"><strong>一言メモ</strong><p>今年3月に責任者として畑の管理をきちんとしようと思い立ってから約2か月。はじめは伐採した木の後片付けや雑草の処理などが中心だったが、最近は緑肥などの成長が著しくて、畑が畑らしくなってきた。井戸掘りという未体験の経験を泥だらけになりながら楽しんでいる。新しいことをするのはいつも大変だ。しかしその体験こそが喜びの種なんだと今は思う。</p></div>
+<p class="story-text">静かな朝でした。けれど、畑ではすべてが確かに動いていました。
 
-ヘアリーベッチ、エン麦、大麦。かつては撒かれただけの種が、今は静かに力強く伸びています。肥料も特別な手当てもない。ただ、土と時間と、少しの忍耐。それで十分なこともあるのです。
+ヘアリーベッチ、エン麦、大麦。かつては撒かれただけの種が、今は静かに力強く伸びています。
 
-祖母の庭から移植したアスパラガスも、小さな芽で語りかけてきました。あなたはそれをまだ収穫しないことにしました。育ちは、すぐに消費するより、守るべき時があるからです。
+井戸は3.5メートルへ。粘土はさらに重くなり、進みは遅くなりました。それでも土の色は白っぽく変わり始めました。境界かもしれない。兆しなのかもしれない。
 
-そして井戸。
-
-3.5メートルあたりで、粘土はさらに重く、手ごわくなりました。オーガを一回まわしても、すくえる土はわずか。それでも土の色が白っぽく変わり始めました。境界かもしれない。兆しなのかもしれない。
-
-あなたは水を探しています。けれど同時に、「抵抗が終わる場所」を探しているのかもしれません。
-
-この先に何があるかは、まだわかりません。
-
-それでも、あなたは掘り続けています。</p>
+新しいことは、いつも大変です。けれど、その体験こそが喜びの種なのかもしれません。</p>
 <div class="gallery"><a href="assets/image20.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image20.jpg"/></a><a href="assets/image21.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image21.jpg"/></a><a href="assets/image22.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image22.jpg"/></a><a href="assets/image23.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image23.jpg"/></a><a href="assets/image24.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image24.jpg"/></a><a href="assets/image25.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image25.jpg"/></a><a href="assets/image26.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image26.jpg"/></a></div>
 </article>
-<article class="entry" data-tags="井戸掘り 茄子">
+<article class="entry" data-tags="井戸掘り|茄子">
 <div class="entry-meta">
 <time>2026年4月23日（木）</time>
 <div class="tags"><span>井戸掘り</span><span>茄子</span></div>
 </div>
-<p class="diary-text">6時過ぎから作業開始。ひとつ目は茄子の保護シールド。ばあちゃんがやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。</p><p class="story-text">朝6時過ぎ、畑の一日が始まりました。
+<p class="diary-text">6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。</p>
+<div class="memo"><strong>一言メモ</strong><p>井戸掘りのアイデアはふと思い浮かんだものだが、この未体験ゾーンへの挑戦はワクワクする。水が欲しいから井戸を掘る訳だが、実際には水が欲しいのではなく、井戸掘りという新しい体験が欲しいのだと思う。山登りするひとは頂上を目指している訳だが、頂上に行きたい訳ではなく、山を登るという体験がしたいのと同じなのだろう。</p></div>
+<p class="story-text">朝6時過ぎ、畑の一日が始まりました。
 
-茄子を守る仕事と、井戸を深くする仕事。小さな苗を風から守る優しさと、地面の奥へ進む勇気。その両方が必要な日でした。
+茄子を守る仕事と、井戸を深くする仕事。小さな苗を守る優しさと、地面の奥へ進む勇気。その両方が必要な日でした。
 
-オーガが2.5メートルあたりで水面に届いたとき、それは単なる作業結果以上のものだったはずです。地面からの小さな返事のようなもの。
-
-前日の雨で水位が上がっていたのかもしれません。それでも、水が見えるという事実は大きい。
-
-畑は、返事をしてくれた瞬間から、ただの土ではなくなります。</p>
+水面が見えた瞬間、畑はただの土ではなく、返事をくれる場所になりました。</p>
 <div class="gallery"><a href="assets/image14.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image14.jpg"/></a><a href="assets/image15.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image15.jpg"/></a><a href="assets/image16.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image16.jpg"/></a><a href="assets/image17.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image17.jpg"/></a><a href="assets/image18.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image18.jpg"/></a><a href="assets/image19.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image19.jpg"/></a></div>
 </article>
-<article class="entry" data-tags="茄子">
+<article class="entry" data-tags="茄子|家族">
 <div class="entry-meta">
 <time>2026年4月22日（水）</time>
-<div class="tags"><span>茄子</span></div>
+<div class="tags"><span>茄子</span><span>家族</span></div>
 </div>
-<p class="diary-text">昨日の強風で茄子のミニハウスが飛ばされたらしい。ばあちゃんが代わりに肥料袋で新設してくれた。</p><p class="story-text">昨日の風には、風なりの主張があったようです。
+<p class="diary-text">昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。</p>
+<div class="memo"><strong>一言メモ</strong><p>母親の子供を思う気持ちはいくつになっても変らないのだとつくづく思う。耳も聞き取りにくいようだし、足腰も弱ってきて大変そうだが、私にできることは一緒に畑仕事をする事くらいか。</p></div>
+<p class="story-text">昨日の風には、風なりの主張があったようです。
 
 茄子のミニハウスは飛ばされました。農作業とは、こちらが計画し、自然が返事をし、またこちらが調整する対話なのだと教えられます。
 
-肥料袋で作り直してくれたおばあちゃんの対応は、実用的で、素朴で、どこか美しい。
+そして母親の手が、また畑を支えてくれました。</p>
 
-畑の知恵は、理論ではなく、結び、折り、再利用し、何とか機能させる形で現れるのです。</p>
 </article>
-<article class="entry" data-tags="発芽">
+<article class="entry" data-tags="発芽|リーフレタス|家族">
 <div class="entry-meta">
 <time>2026年4月21日（火）</time>
-<div class="tags"><span>発芽</span></div>
+<div class="tags"><span>発芽</span><span>リーフレタス</span><span>家族</span></div>
 </div>
-<p class="diary-text">畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。</p><p class="story-text">雨で畑仕事は止まりました。けれど、別の扉が開きました。
+<p class="diary-text">畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。</p>
+<div class="memo"><strong>一言メモ</strong><p>兼業農家として生計を立てていた両親が色々と悪戦苦闘してきた歴史が想像される。父親は10年前に他界しているが、埃だらけの工具が何かを語りかけてくる感じがした。母親は今年91歳になるが、今でも畑で野菜を作る。元気と言えば元気なのだが、91歳というのは傍目にみて色々と大変そうだ。</p></div>
+<p class="story-text">雨で畑仕事は止まりました。けれど、別の扉が開きました。
 
-ガレージは宝探しの場所になり、そこには道具だけでなく、お父さんの記憶も眠っていました。農業は、土の上だけで始まるわけではありません。記憶の中から始まることもあります。
+ガレージの中には、道具だけでなく、お父さんの記憶もありました。埃をかぶった工具が、何かを語りかけてくるような日でした。
 
-日よけ帽子を買いに行っただけなのに、三つの苗を連れて帰ることになりました。新しい始まりは、たいてい普通の用事の途中に現れます。
-
-そして畑では、レタスがもう芽を出していました。
-
-雨の日でも、命は動いています。</p>
+雨の日でも、命と記憶は動いています。</p>
 <div class="gallery"><a href="assets/image7.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image7.jpg"/></a><a href="assets/image8.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image8.jpg"/></a><a href="assets/image9.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image9.jpg"/></a><a href="assets/image10.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image10.jpg"/></a><a href="assets/image11.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image11.jpg"/></a><a href="assets/image12.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image12.jpg"/></a><a href="assets/image13.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image13.jpg"/></a></div>
 </article>
 <article class="entry" data-tags="トラクター">
@@ -220,157 +250,174 @@ body.story-mode .gallery { margin-top:18px; }
 <time>2026年4月20日（月）</time>
 <div class="tags"><span>トラクター</span></div>
 </div>
-<p class="diary-text">プチビニールハウス改良・トラクターローター替え刃入荷</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">プチビニールハウス改良・トラクターローター替え刃入荷</p>
 
-プチビニールハウス改良・トラクターローター替え刃入荷
+<p class="story-text">小さなビニールハウスを改良し、トラクターの替え刃が届きました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+こうした地味な準備が、あとで大きな違いを生みます。畑は、静かに準備する人を裏切りません。</p>
+
 </article>
-<article class="entry" data-tags="茄子 移植">
+<article class="entry" data-tags="移植|茄子">
 <div class="entry-meta">
 <time>2026年4月19日（日）</time>
-<div class="tags"><span>茄子</span><span>移植</span></div>
+<div class="tags"><span>移植</span><span>茄子</span></div>
 </div>
-<p class="diary-text">ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。</p>
 
-ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。
+<p class="story-text">ながなすの苗が畑に入りました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+小さな苗にリキダスを与え、ビニールで守る。それは植えるというより、これから見守るという約束に近い行為です。</p>
 <div class="gallery"><a href="assets/image4.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image4.jpg"/></a><a href="assets/image5.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image5.jpg"/></a><a href="assets/image6.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image6.jpg"/></a></div>
 </article>
-<article class="entry" data-tags="井戸掘り">
+<article class="entry" data-tags="井戸掘り|DIY">
 <div class="entry-meta">
 <time>2026年4月17日（金）</time>
-<div class="tags"><span>井戸掘り</span></div>
+<div class="tags"><span>井戸掘り</span><span>DIY</span></div>
 </div>
-<p class="diary-text">井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。</p>
 
-井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。
+<p class="story-text">井戸掘りが始まりました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+場所を決め、スコップを入れ、1メートルほど地面を開く。まだ井戸とは呼べないかもしれません。でも深い仕事は、いつも地表の一歩から始まります。</p>
 <div class="gallery"><a href="assets/image2.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image2.jpg"/></a><a href="assets/image3.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image3.jpg"/></a></div>
 </article>
-<article class="entry" data-tags="長いも 植付">
+<article class="entry" data-tags="植付|長いも">
 <div class="entry-meta">
 <time>2026年4月14日（火）</time>
-<div class="tags"><span>長いも</span><span>植付</span></div>
+<div class="tags"><span>植付</span><span>長いも</span></div>
 </div>
-<p class="diary-text">長いも（ネバリスター）２本植付</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">長いも（ネバリスター）２本植付</p>
 
-長いも（ネバリスター）２本植付
+<p class="story-text">長いもが土の中へ入りました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+長いもの成長は、すぐには見えません。けれど、見えない成長もまた確かな成長です。</p>
+
 </article>
-<article class="entry" data-tags="枝豆 発芽">
+<article class="entry" data-tags="発芽|枝豆">
 <div class="entry-meta">
 <time>2026年4月11日（土）</time>
-<div class="tags"><span>枝豆</span><span>発芽</span></div>
+<div class="tags"><span>発芽</span><span>枝豆</span></div>
 </div>
-<p class="diary-text">えだまめ（湯上り娘）発芽</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">えだまめ（湯上り娘）発芽</p>
 
-えだまめ（湯上り娘）発芽
+<p class="story-text">枝豆が芽を出しました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+大きな出来事ではないかもしれません。でも畑ははっきりと返事をしました。
+
+はい、始まりました、と。</p>
 <div class="gallery"><a href="assets/image1.jpg" target="_blank"><img alt="畑日記写真" loading="lazy" src="assets/image1.jpg"/></a></div>
 </article>
-<article class="entry" data-tags="リーフレタス 播種">
+<article class="entry" data-tags="播種|リーフレタス">
 <div class="entry-meta">
 <time>2026年4月10日（金）</time>
-<div class="tags"><span>リーフレタス</span><span>播種</span></div>
+<div class="tags"><span>播種</span><span>リーフレタス</span></div>
 </div>
-<p class="diary-text">リーフレタス播種</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">リーフレタス播種</p>
 
-リーフレタス播種
+<p class="story-text">リーフレタスを撒きました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+小さな種を土に託す。家庭菜園の不思議は、こんな小さな行為から、やがて食卓につながっていくことです。</p>
+
 </article>
-<article class="entry" data-tags="大麦 発芽">
+<article class="entry" data-tags="発芽|大麦">
 <div class="entry-meta">
 <time>2026年4月7日（火）</time>
-<div class="tags"><span>大麦</span><span>発芽</span></div>
+<div class="tags"><span>発芽</span><span>大麦</span></div>
 </div>
-<p class="diary-text">大麦発芽</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">大麦発芽</p>
 
-大麦発芽
+<p class="story-text">大麦が芽を出しました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+畑からの小さな返事です。種、天気、土、時間。そのすべてが少しずつ噛み合った証のようです。</p>
+
 </article>
-<article class="entry" data-tags="アスパラガス 移植">
+<article class="entry" data-tags="移植|アスパラガス">
 <div class="entry-meta">
 <time>2026年4月6日（月）</time>
-<div class="tags"><span>アスパラガス</span><span>移植</span></div>
+<div class="tags"><span>移植</span><span>アスパラガス</span></div>
 </div>
-<p class="diary-text">アスパラガス２株追加移植</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">アスパラガス２株追加移植</p>
 
-アスパラガス２株追加移植
+<p class="story-text">さらに二株のアスパラガスを移植しました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+アスパラガスは、今日だけを見て育てる作物ではありません。数年先を思いながら植える、少し未来志向の作物です。</p>
+
 </article>
-<article class="entry" data-tags="アスパラガス 移植">
+<article class="entry" data-tags="移植|アスパラガス">
 <div class="entry-meta">
 <time>2026年4月3日（金）</time>
-<div class="tags"><span>アスパラガス</span><span>移植</span></div>
+<div class="tags"><span>移植</span><span>アスパラガス</span></div>
 </div>
-<p class="diary-text">アスパラガス２株移植</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">アスパラガス２株移植</p>
 
-アスパラガス２株移植
+<p class="story-text">アスパラガスが新しい場所へ移されました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+移植とは、植物にとっても、人にとっても小さな引っ越しです。新しい土になじむ時間が必要です。</p>
+
 </article>
-<article class="entry" data-tags="エン麦 大麦 発芽 播種">
+<article class="entry" data-tags="発芽|播種|エン麦|大麦">
 <div class="entry-meta">
 <time>2026年4月1日（水）</time>
-<div class="tags"><span>エン麦</span><span>大麦</span><span>発芽</span><span>播種</span></div>
+<div class="tags"><span>発芽</span><span>播種</span><span>エン麦</span><span>大麦</span></div>
 </div>
-<p class="diary-text">エン麦発芽・大麦播種</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">エン麦発芽・大麦播種</p>
 
-エン麦発芽・大麦播種
+<p class="story-text">エン麦が芽を出し、大麦を撒きました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+ひとつは地上に現れ、もうひとつは土の中で始まる。春の畑では、到着と始まりが同時に起きています。</p>
+
 </article>
-<article class="entry" data-tags="枝豆 播種">
+<article class="entry" data-tags="播種|枝豆">
 <div class="entry-meta">
 <time>2026年3月31日（火）</time>
-<div class="tags"><span>枝豆</span><span>播種</span></div>
+<div class="tags"><span>播種</span><span>枝豆</span></div>
 </div>
-<p class="diary-text">枝豆播種</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">枝豆播種</p>
 
-枝豆播種
+<p class="story-text">枝豆を撒きました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+まだ何も見えません。でも種を撒くという行為は、未来と小さな約束を交わすことです。</p>
+
 </article>
-<article class="entry" data-tags="エン麦 播種">
+<article class="entry" data-tags="播種|エン麦">
 <div class="entry-meta">
 <time>2026年3月25日（水）</time>
-<div class="tags"><span>エン麦</span><span>播種</span></div>
+<div class="tags"><span>播種</span><span>エン麦</span></div>
 </div>
-<p class="diary-text">エン麦播種</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">エン麦播種</p>
 
-エン麦播種
+<p class="story-text">エン麦を撒きました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+畑に与えるための作物。すぐに食べるためではなく、土を育てるための一手です。
+
+良い畑づくりは、収穫よりも先に、土への贈り物から始まるのかもしれません。</p>
+
 </article>
-<article class="entry" data-tags="ヘアリーベッチ 発芽 播種">
+<article class="entry" data-tags="発芽|ヘアリーベッチ">
 <div class="entry-meta">
 <time>2026年3月24日（火）</time>
-<div class="tags"><span>ヘアリーベッチ</span><span>発芽</span><span>播種</span></div>
+<div class="tags"><span>発芽</span><span>ヘアリーベッチ</span></div>
 </div>
-<p class="diary-text">ヘアリーベッチ播種発芽</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">ヘアリーベッチ発芽</p>
 
-ヘアリーベッチ播種発芽
+<p class="story-text">ヘアリーベッチが芽を出しました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+見えなかったものが、見える形になった日です。土の下で進んでいた時間が、地表に小さな緑として現れました。</p>
+
 </article>
-<article class="entry" data-tags="ヘアリーベッチ 播種">
+<article class="entry" data-tags="播種|ヘアリーベッチ">
 <div class="entry-meta">
 <time>2026年3月9日（月）</time>
-<div class="tags"><span>ヘアリーベッチ</span><span>播種</span></div>
+<div class="tags"><span>播種</span><span>ヘアリーベッチ</span></div>
 </div>
-<p class="diary-text">ヘアリーベッチ播種</p><p class="story-text">畑での小さいけれど大切な一日。
+<p class="diary-text">ヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。</p>
 
-ヘアリーベッチ播種
+<p class="story-text">ヘアリーベッチが撒かれました。
 
-劇的ではない日もあります。それでも、その一日は未来に向けて静かな一層を積み重ねています。</p>
+それは小さな始まりでした。何から始めればよいか分からない時、人はまず手を動かします。
+
+収穫を急がない緑肥を選んだことは、畑との対話をゆっくり始めるための、よい第一歩だったのかもしれません。</p>
+
 </article>
 </section>
 </main>
@@ -379,17 +426,14 @@ body.story-mode .gallery { margin-top:18px; }
 const filterButtons = document.querySelectorAll('.filter');
 const entries = document.querySelectorAll('.entry');
 
-function getEntryTags(entry) {
-  return Array.from(entry.querySelectorAll('.tags span'))
-    .map(span => span.textContent.trim())
-    .filter(Boolean);
+function entryTags(entry) {
+  return (entry.dataset.tags || '').split('|').map(t => t.trim()).filter(Boolean);
 }
 
 function applyFilter(tag) {
   filterButtons.forEach(b => b.classList.toggle('active', b.dataset.tag === tag));
-
   entries.forEach(entry => {
-    const tags = getEntryTags(entry);
+    const tags = entryTags(entry);
     entry.style.display = (tag === 'all' || tags.includes(tag)) ? '' : 'none';
   });
 }
@@ -398,14 +442,12 @@ filterButtons.forEach(btn => {
   btn.addEventListener('click', () => applyFilter(btn.dataset.tag));
 });
 
-// Make the keyword badges inside each diary entry clickable too.
 document.querySelectorAll('.tags span').forEach(span => {
-  span.style.cursor = 'pointer';
   span.title = 'Filter by this keyword';
   span.addEventListener('click', () => {
     const tag = span.textContent.trim();
-    const matchingButton = Array.from(filterButtons).find(btn => btn.dataset.tag === tag);
-    if (matchingButton) {
+    const match = Array.from(filterButtons).find(btn => btn.dataset.tag === tag);
+    if (match) {
       applyFilter(tag);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -413,13 +455,10 @@ document.querySelectorAll('.tags span').forEach(span => {
 });
 
 const viewTabs = document.querySelectorAll('.view-tab');
-
 viewTabs.forEach(tab => tab.addEventListener('click', () => {
   const view = tab.dataset.view;
-
   viewTabs.forEach(t => t.classList.remove('active'));
   tab.classList.add('active');
-
   document.body.classList.toggle('story-mode', view === 'story');
 }));
 </script>
