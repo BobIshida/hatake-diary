@@ -1,0 +1,884 @@
+{
+  "site_title": "Bob's Farm Diary",
+  "updated": "2026-05-08",
+  "entries": [
+    {
+      "date": "2026-05-08",
+      "weekday_ja": "金曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "粘土",
+        "畑"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Clay",
+        "Field"
+      ],
+      "images": [
+        "image1.jpg",
+        "image2.jpg",
+        "image3.jpg",
+        "image4.jpg",
+        "image5.jpg"
+      ],
+      "ja": {
+        "diary": "花の金曜日という言葉はあまり意味を成さなくなってしまったが、それでもなんとなく週の区切りが来た感じで嬉しい。今日は井戸掘り以外に特段の作業予定がないので少し遅めに畑にいって、作物の様子を確認した。茄子は花が咲いたので、脇芽を欠いた。ミニトマトは元気に成長しているので、つっかえ棒を追加しておいた。最近定植したキュウリも生長点辺りは元気だが、下の葉の様子がおかしい。GPTに写真を見せたところ、まだ致命的でないようなので、後日下の葉を切り落として様子を見る事とした。井戸掘りの方は一日10cmの目標が高すぎることを実感した。強力な粘土層とはまた違った難しさを体験中。鉄槍で底を少しずつほぐしていく感じで進めようと思う。気長にね。",
+        "memo": "畑に取り組み始めて、約２か月が過ぎた。後片づけから始まって緑肥の播種、苗の定植など、すべて新鮮な体験だ。畑の景色もスッカリ変わった。これからもっと気に入る場所にしていきたい。",
+        "story": "金曜日が来ました。\n\n昔のような「花金」ではないかもしれません。それでも一週間の区切りには、どこか特別な感覚があります。\n\n朝6時から畑に立ち、井戸をさらに深く掘る。粘土はまだあります。でも、以前のようにオーガにしつこく絡みつく粘土ではなくなりました。少しずつ、地面の表情が変わってきています。\n\n4.9メートル。ここを今回の掘削の終点にすることにしました。\n\n泥混じりの水は、まだ完成ではないことを教えてくれます。でも、畑を始めて2か月、景色は大きく変わりました。井戸も畑も、まだ途中です。\n\nだからこそ、面白いのかもしれません。"
+      },
+      "en": {
+        "diary": "The phrase “Flower Friday” no longer means much to me, but I still feel happy when the week reaches a natural turning point. Today I had no major tasks planned other than well digging, so I worked steadily in the field from around 6 a.m. As the well digging has continued for a while, I am getting more efficient. The soil was still sticky clay again today, but it was not the kind that clings heavily to the auger. I could bring it up with each turn, so the digging went smoothly. I reached around 4.9 meters. It is becoming difficult to push any deeper by force, so I decided to set today as the final digging day. However, when I scooped water with a bucket, some mud mixed in with the water. I hope the quality will improve after inserting the well casing and pumping out water for a while.",
+        "memo": "It has been about two months since I started working on the field. It began with clearing up, then green manure, planting seedlings, and many other experiences that still feel fresh. The scenery of the field has changed completely. I feel more and more attached to it. The well may be close to completion, but I want to keep enjoying the transformation of the field itself.",
+        "story": "Friday arrived.\n\nMaybe it is no longer the old “Flower Friday,” but the end of a week still has a special feeling.\n\nYou stood in the field from around six in the morning and continued the well digging. The clay was still there, but it no longer clung stubbornly to the auger as before. The earth was changing its behavior.\n\nAt 4.9 meters, you decided to call this the final depth for now.\n\nThe water still carried some mud, reminding you that the well is not complete yet. But after two months, the field itself has changed completely.\n\nThe well is not finished. The field is not finished.\n\nAnd perhaps that is why it remains so interesting."
+      }
+    },
+    {
+      "date": "2026-05-07",
+      "weekday_ja": "木曜日",
+      "tags_ja": [
+        "さや管",
+        "DIY",
+        "日常"
+      ],
+      "tags_en": [
+        "Well casing",
+        "DIY",
+        "Daily life"
+      ],
+      "images": [
+        "image6.jpg",
+        "image7.jpg",
+        "image8.jpg",
+        "image9.jpg"
+      ],
+      "ja": {
+        "diary": "ゴールデンウィークも終わり、社会が平常運転に戻った。朝、犬の散歩をしていると小学生たちが近くの学校に続々と登校してきた。休日も良いが、日常の営みがやっぱり大切な気がする。さて、井戸掘りの方はさや管が入ったことで新しいステージに入った。現在深度4.4ｍに6mのさや管が入っている状態なので、脚立を使ってのスイコでの作業となる。ここから１m程度掘り進める予定だ。さや管を入れたことで井戸の壁の崩落のリスクは無くなった。気長に最後の井戸掘りに取り組むことになる。目標は一日10cm、つまり10日で1ｍ。頑張るぞー！",
+        "memo": "さや管は入ったけれど、土砂の埋め戻しはまだしていない。さや管回りのすき間に物が落ちないように、また作業しやすいように円形にくり抜いた板を作成予定。当初はジグソーという工具をレンタルしようと思ったがヤフオクで中古を入手することにした。無事落札できたので近日中に作業ができそうだ。",
+        "story": "ゴールデンウィークが終わり、町には日常が戻ってきました。\n\n犬の散歩中に小学生たちが学校へ向かう姿を見る。休日も良いけれど、日常の営みには、また別の力があります。\n\n畑では、あと数センチ掘りたいという気持ちが勝ちました。井戸は4.7メートルほどへ。\n\nさや管の周りに物が落ちないよう、作業しやすいよう、丸くくり抜いた板を作る。小さな工夫が、次の作業を支えていきます。\n\n井戸は水だけでなく、段取りの知恵も引き出しているようです。"
+      },
+      "en": {
+        "diary": "Golden Week ended, and society returned to normal. During my morning dog walk, I saw elementary school children heading to the nearby school one after another. Holidays are nice, but daily life has its own kind of energy. At the field, the feeling of wanting to dig a few more centimeters was strong, and I ended up doing about one hour of well digging. I must have reached around 4.7 meters. I also bought a board at Cainz to make a cover around the well casing, cutting a round hole in it so that things would not fall into the gap around the casing and so the work would be easier.",
+        "memo": "The well casing is now in, but I have not yet backfilled the soil. I plan to make a board with a round hole to prevent things from falling into the gap around the casing and to make the work easier. At first I thought of using it temporarily, but I may later turn it into a more proper well-cover structure.",
+        "story": "Golden Week ended, and daily life returned.\n\nDuring the morning dog walk, children were heading to school again. Holidays are good, but the ordinary rhythm of life has its own strength.\n\nIn the field, the desire to dig just a little more won. The well reached about 4.7 meters.\n\nYou also began preparing a round-holed board for the casing, a small device to keep things from falling into the gap and to make work easier.\n\nThe well is drawing out not only water, but also planning, invention, and small practical wisdom."
+      }
+    },
+    {
+      "date": "2026-05-06",
+      "weekday_ja": "水曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "さや管",
+        "水位"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Well casing",
+        "Water level"
+      ],
+      "images": [
+        "image10.jpg",
+        "image11.jpg",
+        "image12.jpg",
+        "image13.jpg",
+        "image14.jpg"
+      ],
+      "ja": {
+        "diary": "今日は水面の位置と、井戸の底までの深度を正確に計測しｔみた。水面は地下2.2ｍの位置で、井戸の底までの深度は4.4mだった。昨日まで大まかな見積りで4.6ｍ程度だと考えていたので、ちょっと後戻りした気分だ。もちろん実際には後戻りしている訳ではない。勘違いしていただけである。オーガでは地面への食い込みがなくなったし、重くなったのでスイコに切り替えて作業を進めている。しかし、あまり砂礫をキャッチ出来ている訳ではなく、泥水をくみ出しているだけな感じ。切削を進めるために、鉄の槍をロープに結んで自由落下で井戸の底をほぐすという方法も併用しているが、なかなか進まない。おまけにスイコの柄が長いので、上下に動かすときに井戸の壁を打ちつけて土砂が若干崩れる感じになった。掘っているのか埋めているのか分からなくなってしまうので、さや管を挿入することにした。本当は今度の日曜日に助手を手配していたのだが、一人でやることにした。幸いスムーズに4mの塩ビパイプが通り、それに2ｍの塩ビパイプを連結して、都合６ｍのさや管が刺さった。これで壁の崩落は心配しなくてよくなった。",
+        "memo": "見よう見まねで始めた井戸掘りだが、大きな石等にはほとんど遭遇せずにここまで来た。ゴールは近い。だが油断はできない。",
+        "story": "今日は、数字で井戸を確かめる日でした。\n\n水面は地下2.2メートル。井戸底は4.4メートル。感覚で進めてきた作業に、具体的な数字が与えられました。\n\n見よう見まねで始めた井戸掘り。大きな石にもほとんど邪魔されず、ここまで来ました。\n\nゴールは近い。\n\nでも、油断はできません。畑も井戸も、最後の少しがいちばん大事なのかもしれません。"
+      },
+      "en": {
+        "diary": "Today I accurately measured the water level and the depth to the bottom of the well. The water surface was at about 2.2 meters underground, and the bottom of the well was 4.4 meters deep. Until yesterday I had roughly estimated it at around 4.5 meters, so my guess was close. I am still not fully convinced that the clay layer has completely ended, but the lower section feels different from before, and the water level seems stable. I want to prepare carefully for inserting the casing.",
+        "memo": "I started well digging by imitation and learning as I went, but I have reached this point without hitting any large stones. The goal is near. Still, I cannot let my guard down.",
+        "story": "Today was a day to measure the well with numbers.\n\nThe water surface was 2.2 meters underground. The bottom was 4.4 meters deep. What had been guided mostly by feeling now had clear numbers.\n\nYou began this well by watching, imitating, and learning as you went. Somehow, without hitting major stones, you have come this far.\n\nThe goal is near.\n\nBut this is no time to relax. With wells, fields, and perhaps life itself, the final part often matters most."
+      }
+    },
+    {
+      "date": "2026-05-05",
+      "weekday_ja": "火曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "ドッグラン",
+        "家族"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Dog run",
+        "Family"
+      ],
+      "images": [
+        "image15.jpg",
+        "image16.jpg",
+        "image17.jpg"
+      ],
+      "ja": {
+        "diary": "ゴールデンウィーク真っ只中だが、朝起きて犬の散歩と軽い朝食の後は、畑に行きたくなる。井戸のさや管を今度の日曜日に挿入する予定だが、それまでに数十センチ掘り下げておきたい。一日一時間、10cm程度が惚れる感じだ。掘るというか、井戸の底をスイコでつついて、削れた土砂がとけこんだ水を引き上げるという感じだ。５月に入り陽気もだいぶ暖かくなったので、井戸掘り後は汗が滲む。幸いにも畑の隣はセブンイレブン。今日は井戸掘り後にセブンでガリガリ君をゲットしてクールダウン。有難いことだ。そういえば最近はセブンでダイソーの製品が買えるのはすばらしい。グローブを１点ついでに購入した。",
+        "memo": "そろそろ自分で畑を管理しようと思った時、最初のアイデアはドッグランとして使う事だった。しかし勝手に農地をドッグランにすることもできないらしい。でも今日は愛犬を畑に連れてきてみたら、ヘアリーベッチの上を喜んでウサギのように飛び跳ねながら走り回っていた。緑肥を植えておけばちょっとしたプライベートドッグランとして使えそうだ。",
+        "story": "ゴールデンウィークの真ん中でも、朝になると畑に行きたくなる。\n\nそれはもう作業というより、体が覚え始めたリズムなのかもしれません。\n\n最初にこの畑を管理しようと思った時、ドッグランにしたいという考えもありました。農地には農地の制約があり、そのまま夢にはできない。それでも、犬が走る姿を想像することはできます。\n\n井戸はさらに少し深くなり、粘土層の終わりが見えてきました。\n\n畑は、実用と夢のあいだで少しずつ形を変えています。"
+      },
+      "en": {
+        "diary": "It was the middle of Golden Week, but after walking the dog and having a light breakfast, I found myself wanting to go to the field. I plan to insert the well casing next Sunday, but before that I wanted to dig a few more tens of centimeters, so I continued working. The thick sticky clay layer seems to have ended, and the feeling at the bottom suggests that I may be entering a sand-and-gravel layer. Still, I cannot let my guard down yet.",
+        "memo": "When I first thought about managing the field myself, my first idea was to use it as a dog run. But apparently farmland cannot be turned into a dog run so freely. Today, however, I imagined again what it would be like if the dog could run freely here.",
+        "story": "Even in the middle of Golden Week, after walking the dog and eating a light breakfast, you wanted to go to the field.\n\nIt may no longer be just a task. It may be becoming a rhythm your body understands.\n\nWhen you first thought about managing the field, one idea was to make it a dog run. Farmland has its rules, and dreams do not always fit neatly into them. Still, you can imagine the dog running there.\n\nThe well grew a little deeper, and the end of the clay layer seemed closer.\n\nThe field is slowly taking shape somewhere between practicality and dream."
+      }
+    },
+    {
+      "date": "2026-05-04",
+      "weekday_ja": "月曜日",
+      "tags_ja": [
+        "ひまわり",
+        "移植",
+        "家族"
+      ],
+      "tags_en": [
+        "Sunflower",
+        "Transplanting",
+        "Family"
+      ],
+      "images": [
+        "image18.jpg",
+        "image19.jpg",
+        "image20.jpg",
+        "image21.jpg"
+      ],
+      "ja": {
+        "diary": "自宅の庭に種を撒いておいたミニひまわりが発芽したが、種の撒き方が原因で密集して発芽していた。込み合い過ぎているので株分けして、畑に植える事にした。とりあえず今日は８本のミニひまわりを自宅の庭から畑に引っ越し。そういえば先日ヘアリーベッチの中から見つかったイチゴ苗は、移植してちゃんと根付きそうだ。井戸掘りの方は地層の変化に応じてオーガからスイコに道具を切り替えた。スイコにパイプを延長して現在は全長6.4ｍとなった。井戸の深さは現在4.6ｍといったところ。ここでさや管を入れると計算上は1.4m地上に出る計算になるが、あと20センチから30センチ掘ってからさや管を入れたい所だ。",
+        "memo": "今日は隣の畑の所有者に会った。隣の畑の所有者はいとこにあたる人物で、子供の頃はよく顔を合わせる機会があったが、ここ数十年は顔を合わせる機会がなかった。不思議なもので面影があるのですぐいとこであることは確信した。お互い年を取ったものだが、この年になって再会した感じだ。",
+        "story": "自宅の庭で密集して芽を出したミニひまわりを、畑へ移しました。\n\n小さなひまわりたちは、少し広い場所へ引っ越しました。植物にも、のびのびできる空間が必要です。\n\nそして今日は、隣の畑の所有者にも会いました。子供の頃はよく顔を合わせていたいとこ。何十年ぶりかの再会です。\n\n畑はただの土地ではありません。\n\n人と人、過去と現在をつなぐ場所でもあるのです。"
+      },
+      "en": {
+        "diary": "The mini sunflowers I had sown in my home garden sprouted, but because of how I had scattered the seeds, they came up too densely. Since they were overcrowded, I divided them and planted some in the field. Today I also met the owner of the neighboring field. He is a cousin I used to see often as a child, though I had not seen him for decades.",
+        "memo": "Today I met the owner of the neighboring field. He is a cousin I used to see often when I was a child, but I had not seen him for decades. Seeing him again made me feel that the field is not only a piece of land, but also a place connected to family history.",
+        "story": "The mini sunflowers sprouted too densely in the home garden, so you moved some to the field.\n\nSmall plants need room, just like people do.\n\nToday you also met the owner of the neighboring field, a cousin you had often seen as a child but not for decades.\n\nThe field is not merely land.\n\nIt is also a place where people, memory, and family history quietly reconnect."
+      }
+    },
+    {
+      "date": "2026-05-03",
+      "weekday_ja": "日曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "スイコ",
+        "砂礫層"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Suiko",
+        "Sand and gravel"
+      ],
+      "images": [
+        "image22.jpg",
+        "image23.jpg",
+        "image24.jpg"
+      ],
+      "ja": {
+        "diary": "試運転で判明した不具合を修正したスイコを畑に持ち込んでオーガに替えて切削を進める。ねっとり粘土の層は終わりを告げており感触からも砂礫層に移行していると考えられる。深度が4.3ｍでスイコの長さを延長する必要がある。VP20の塩ビパイプをVP13で1.8ｍ弱延長することとする。VP13にした理由、長さが1.8ｍなのは、それがガレージにあったからだ。兄貴に応援を頼んで近々に塩ビのさや管を挿入する予定。まずは4mを入れて様子を見ながら2ｍを連結する。地上に出る分が長すぎて作業性が落ちるようなら、一旦切断して短くする予定。さて、どうなるかは、やってみないとわからない。",
+        "memo": "がちがちの粘土層をいつ突破できるか気を揉んでいたが、あっさりと突破したようで少し肩透かしを食らった感じがしないでもない。いやいや安心は禁物、油断はできない。そして未来の不確定性こそが魅力なのかもしれないと感じる。もし未来が確実なら面白くはないだろう。",
+        "story": "改良したスイコを畑へ持ち込みました。\n\nオーガに代えて、井戸の底を探る。手ごわかった粘土層は、どうやら終わりを告げたようです。感触は砂礫層へと変わり始めています。\n\nあれほど気を揉んでいた壁を、意外なほどあっさり越えたようにも感じます。\n\nでも安心は禁物。\n\n地面の下には、まだ見えない物語が続いています。"
+      },
+      "en": {
+        "diary": "I took the suiko, which I had modified after problems found during the test run, to the field and used it instead of the auger to continue cutting. The sticky clay layer appears to have ended, and from the feel of the tool I think I have entered a sand-and-gravel layer. The progress was smoother than I expected, but I should not be too optimistic yet.",
+        "memo": "I had been wondering when I would finally break through the hard clay layer, but it seems to have ended more easily than expected. I feel slightly surprised, but no—this is no time to relax. I still need to be careful.",
+        "story": "You brought the improved suiko to the field.\n\nReplacing the auger, it began to explore the bottom of the well. The stubborn clay layer seems to have ended, and the feeling has shifted toward sand and gravel.\n\nThe wall you had worried about for days may have been crossed more easily than expected.\n\nBut this is no time for overconfidence.\n\nBelow the surface, the story is still unfolding."
+      }
+    },
+    {
+      "date": "2026-05-02",
+      "weekday_ja": "土曜日",
+      "tags_ja": [
+        "いちご",
+        "移植",
+        "家族"
+      ],
+      "tags_en": [
+        "Strawberry",
+        "Transplanting",
+        "Family"
+      ],
+      "images": [
+        "image25.jpg",
+        "image26.jpg",
+        "image27.jpg",
+        "image28.jpg",
+        "image29.jpg"
+      ],
+      "ja": {
+        "diary": "緑肥として植えたヘアリーベッチの中に、イチゴの株を発見。母親が昨年栽培したものが雑草化したもののようだ。既に実も付けているので、掘り起こして畝の方に移植しておいた。そういえば畑には何本か木も植わっているが、梅の実がだいぶ大きくなってきたようだ。母親によるとこれは南高梅らしい。気がつけば畑にあるアヤメも満開となっている。井戸掘りの方は青灰色の粘土層が終わりになったようだ。オーガが粘土に食い込んでいく感触から、オーガを回転しても食い込まない、何か硬い層に入りかけている感じだ。この時点の深度は4.3ｍといったところ。井戸枠の挿入のタイミング化どうか、今少し様子を見ようと思う。畑仕事のあと、畑の近所を犬と散歩した。近くには沼がありその傍らに墓地がある。父親や親戚が埋葬されている墓地だが、そこにある墓石のほとんどは石田家と書かれている。随分と古い墓石もあってかなり前から石田一族がこのあたりで生活をしていた事がうかがわれる。自分のルーツを垣間見た気がした。",
+        "memo": "代々続いてきたであろう石田一族の一員として先祖が長い間してきたこと（農業）に自分が今取り組んでいるのが不思議だ。ゴールデンウイークに畑にいる自分がいるのもこれまた不思議だけれど。",
+        "story": "ヘアリーベッチの中に、いちごを見つけました。\n\n去年、母親が育てていたものが、雑草のように残り、実までつけていたようです。掘り起こして畝へ移す作業は、少し救出作業のようでもありました。\n\n石田家の一員として、先祖が長く続けてきたであろう農業に、自分がいま取り組んでいる。\n\nゴールデンウィークに畑にいる自分。\n\n少し不思議で、でもどこか自然です。"
+      },
+      "en": {
+        "diary": "Among the hairy vetch planted as green manure, I found strawberry plants. They seem to be leftovers from what my mother grew last year, now growing almost like weeds. Since they already had fruit, I dug them up and transplanted them to a ridge. It felt a little like rescuing them.",
+        "memo": "As a member of the Ishida family line, it feels strange that I am now doing what my ancestors likely did for generations: farming. There I was, spending Golden Week in the field.",
+        "story": "Among the hairy vetch, you found strawberries.\n\nThey were probably leftovers from what your mother grew last year, now growing almost like weeds and already bearing fruit. Digging them up and moving them to a ridge felt a little like rescuing them.\n\nAs a member of the Ishida family line, you are now doing what your ancestors likely did for generations: farming.\n\nThere you were, spending Golden Week in the field.\n\nA little strange, perhaps. But also strangely natural."
+      }
+    },
+    {
+      "date": "2026-05-01",
+      "weekday_ja": "金曜日",
+      "tags_ja": [
+        "AI",
+        "井戸掘り",
+        "キュウリ",
+        "ピーマン"
+      ],
+      "tags_en": [
+        "AI",
+        "Well digging",
+        "Cucumber",
+        "Pepper"
+      ],
+      "images": [
+        "image30.jpg"
+      ],
+      "ja": {
+        "diary": "昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでGeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。AIは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。",
+        "memo": "ChatGPTやらGeminiやらは驚くべき進化を遂げていて、今後の社会のインフラに成長するのだろうと感じる。ソフトバンクの孫さんがAIに全振りしているのが分かる気がする。",
+        "story": "畑での小さいけれど大切な一日。\n\n昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでGeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。AIは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでGeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。AIは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでGeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。AIは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-30",
+      "weekday_ja": "木曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "スイコ",
+        "畝立て",
+        "ミニトマト"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Suiko",
+        "Ridge making",
+        "Mini tomato"
+      ],
+      "images": [
+        "image31.jpg",
+        "image32.jpg",
+        "image33.jpg",
+        "image34.jpg"
+      ],
+      "ja": {
+        "diary": "今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。",
+        "memo": "先日買ってきたミニトマトの苗を畑に定植した。すでに実が一部ついているので、ミニトマトの収穫が一番手になるかもしれない。緑肥として植えたヘアリーベッチ、エン麦、大麦はいずれもすくすくと成長していて畑の大半が緑一面になってきた。",
+        "story": "畑での小さいけれど大切な一日。\n\n今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-29",
+      "weekday_ja": "水曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "スイコ",
+        "粘土",
+        "DIY"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Suiko",
+        "Clay",
+        "DIY"
+      ],
+      "images": [
+        "image35.jpg",
+        "image36.jpg",
+        "image37.jpg",
+        "image38.jpg"
+      ],
+      "ja": {
+        "diary": "今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。",
+        "memo": "井戸枠の穴あけ作業は大変だと聞いていたので心配だったが、親父が使ってたプロ用のドリルを使ったら、思ったより効率的に穴あけができた。流石プロ用という感じ。なんとなく親父が草葉の陰から応援してくれているような気がした。不思議な感じ。",
+        "story": "畑での小さいけれど大切な一日。\n\n今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-28",
+      "weekday_ja": "火曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "粘土",
+        "伐採"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Clay",
+        "Tree cutting"
+      ],
+      "images": [
+        "image39.jpg",
+        "image40.jpg"
+      ],
+      "ja": {
+        "diary": "今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160Kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。",
+        "memo": "この粘土層を突破するまで根気が必要になりそうだ。現在オーガの全長は4.5ｍだが、これ以上のジョイントを追加するのは重すぎて厳しそう。現在の粘土層は粘度が極めて高く、そのまま玩具として売れるレベルだ。オーガの先端にねっとりとくっついてくるので、除去するのは手を使う必要がある。",
+        "story": "畑での小さいけれど大切な一日。\n\n今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160Kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160Kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160Kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-27",
+      "weekday_ja": "月曜日",
+      "tags_ja": [
+        "スイコ",
+        "DIY",
+        "雨"
+      ],
+      "tags_en": [
+        "Suiko",
+        "DIY",
+        "Rain"
+      ],
+      "images": [
+        "image41.jpg"
+      ],
+      "ja": {
+        "diary": "雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。",
+        "memo": "最近はホームセンター（カインズ）へ毎日通うようになってしまった。今日はスイコの追加部品購入が目的なのだが、つい色々な苗が売っているの買いたくなってしまう。",
+        "story": "畑での小さいけれど大切な一日。\n\n雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-26",
+      "weekday_ja": "日曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "スイコ",
+        "DIY"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Suiko",
+        "DIY"
+      ],
+      "images": [
+        "image42.jpg",
+        "image43.jpg"
+      ],
+      "ja": {
+        "diary": "今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。",
+        "memo": "車いじりを始めた2020年から車いじりを始めたのでDIYに必要な工具はある程度揃っている。そんな背景もあり今回スムーズにスイコの製作に入ることができた。",
+        "story": "畑での小さいけれど大切な一日。\n\n今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-25",
+      "weekday_ja": "土曜日",
+      "tags_ja": [
+        "家族",
+        "井戸掘り",
+        "工具"
+      ],
+      "tags_en": [
+        "Family",
+        "Well digging",
+        "Tools"
+      ],
+      "images": [
+        "image44.jpg"
+      ],
+      "ja": {
+        "diary": "今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。",
+        "memo": "ガレージには父親が悪戦苦闘したであろうことを想像させるいろいろな工具や資材が残っている。父親の死後から約10年、今回畑の管理をすることになって、父親の事を考える良い機会かもしれない。私自身も父親になって初めて自分の父親の気持ちや行動がよく理解できるようになったと思う。",
+        "story": "畑での小さいけれど大切な一日。\n\n今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-24",
+      "weekday_ja": "金曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "発芽",
+        "ヘアリーベッチ",
+        "エン麦",
+        "大麦",
+        "枝豆",
+        "アスパラガス",
+        "茄子",
+        "長いも"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Sprouting",
+        "Hairy vetch",
+        "Oats",
+        "Barley",
+        "Edamame",
+        "Asparagus",
+        "Eggplant",
+        "Nagaimo yam"
+      ],
+      "images": [
+        "image45.jpg",
+        "image46.jpg",
+        "image47.jpg",
+        "image48.jpg",
+        "image49.jpg",
+        "image50.jpg",
+        "image51.jpg"
+      ],
+      "ja": {
+        "diary": "緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。",
+        "memo": "今年3月に責任者として畑の管理をきちんとしようと思い立ってから約2か月。はじめは伐採した木の後片付けや雑草の処理などが中心だったが、最近は緑肥などの成長が著しくて、畑が畑らしくなってきた。井戸掘りという未体験の経験を泥だらけになりながら楽しんでいる。新しいことをするのはいつも大変だ。しかしその体験こそが喜びの種なんだと今は思う。",
+        "story": "畑での小さいけれど大切な一日。\n\n緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-23",
+      "weekday_ja": "木曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "茄子"
+      ],
+      "tags_en": [
+        "Well digging",
+        "Eggplant"
+      ],
+      "images": [
+        "image52.jpg",
+        "image53.jpg",
+        "image54.jpg",
+        "image55.jpg",
+        "image56.jpg",
+        "image57.jpg"
+      ],
+      "ja": {
+        "diary": "6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。",
+        "memo": "井戸掘りのアイデアはふと思い浮かんだものだが、この未体験ゾーンへの挑戦はワクワクする。水が欲しいから井戸を掘る訳だが、実際には水が欲しいのではなく、井戸掘りという新しい体験が欲しいのだと思う。山登りするひとは頂上を目指している訳だが、頂上に行きたい訳ではなく、山を登るという体験がしたいのと同じなのだろう。",
+        "story": "畑での小さいけれど大切な一日。\n\n6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-22",
+      "weekday_ja": "水曜日",
+      "tags_ja": [
+        "茄子",
+        "家族"
+      ],
+      "tags_en": [
+        "Eggplant",
+        "Family"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。",
+        "memo": "母親の子供を思う気持ちはいくつになっても変らないのだとつくづく思う。耳も聞き取りにくいようだし、足腰も弱ってきて大変そうだが、私にできることは一緒に畑仕事をする事くらいか。",
+        "story": "畑での小さいけれど大切な一日。\n\n昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-21",
+      "weekday_ja": "火曜日",
+      "tags_ja": [
+        "発芽",
+        "リーフレタス",
+        "家族"
+      ],
+      "tags_en": [
+        "Sprouting",
+        "Leaf lettuce",
+        "Family"
+      ],
+      "images": [
+        "image58.jpg",
+        "image59.jpg",
+        "image60.jpg",
+        "image61.jpg",
+        "image62.jpg",
+        "image63.jpg",
+        "image64.jpg"
+      ],
+      "ja": {
+        "diary": "畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。",
+        "memo": "兼業農家として生計を立てていた両親が色々と悪戦苦闘してきた歴史が想像される。父親は10年前に他界しているが、埃だらけの工具が何かを語りかけてくる感じがした。母親は今年91歳になるが、今でも畑で野菜を作る。元気と言えば元気なのだが、91歳というのは傍目にみて色々と大変そうだ。",
+        "story": "畑での小さいけれど大切な一日。\n\n畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-20",
+      "weekday_ja": "月曜日",
+      "tags_ja": [
+        "トラクター"
+      ],
+      "tags_en": [
+        "Tractor"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "プチビニールハウス改良・トラクターローター替え刃入荷",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nプチビニールハウス改良・トラクターローター替え刃入荷\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "プチビニールハウス改良・トラクターローター替え刃入荷",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nプチビニールハウス改良・トラクターローター替え刃入荷\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-19",
+      "weekday_ja": "日曜日",
+      "tags_ja": [
+        "移植",
+        "茄子"
+      ],
+      "tags_en": [
+        "Transplanting",
+        "Eggplant"
+      ],
+      "images": [
+        "image65.jpg",
+        "image66.jpg",
+        "image67.jpg"
+      ],
+      "ja": {
+        "diary": "ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-17",
+      "weekday_ja": "金曜日",
+      "tags_ja": [
+        "井戸掘り",
+        "DIY"
+      ],
+      "tags_en": [
+        "Well digging",
+        "DIY"
+      ],
+      "images": [
+        "image68.jpg",
+        "image69.jpg"
+      ],
+      "ja": {
+        "diary": "井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\n井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-14",
+      "weekday_ja": "火曜日",
+      "tags_ja": [
+        "植付",
+        "長いも"
+      ],
+      "tags_en": [
+        "Planting",
+        "Nagaimo yam"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "長いも（ネバリスター）２本植付",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\n長いも（ネバリスター）２本植付\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "長いも（ネバリスター）２本植付",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n長いも（ネバリスター）２本植付\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-11",
+      "weekday_ja": "",
+      "tags_ja": [
+        "発芽",
+        "枝豆"
+      ],
+      "tags_en": [
+        "Sprouting",
+        "Edamame"
+      ],
+      "images": [
+        "image70.jpg"
+      ],
+      "ja": {
+        "diary": "えだまめ（湯上り娘）発芽",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nえだまめ（湯上り娘）発芽\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "えだまめ（湯上り娘）発芽",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nえだまめ（湯上り娘）発芽\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-10",
+      "weekday_ja": "",
+      "tags_ja": [
+        "播種",
+        "リーフレタス"
+      ],
+      "tags_en": [
+        "Sowing",
+        "Leaf lettuce"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "リーフレタス播種",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nリーフレタス播種\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "リーフレタス播種",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nリーフレタス播種\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-07",
+      "weekday_ja": "",
+      "tags_ja": [
+        "発芽",
+        "大麦"
+      ],
+      "tags_en": [
+        "Sprouting",
+        "Barley"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "大麦発芽",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\n大麦発芽\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "大麦発芽",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n大麦発芽\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-06",
+      "weekday_ja": "",
+      "tags_ja": [
+        "移植",
+        "アスパラガス"
+      ],
+      "tags_en": [
+        "Transplanting",
+        "Asparagus"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "アスパラガス２株追加移植",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nアスパラガス２株追加移植\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "アスパラガス２株追加移植",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nアスパラガス２株追加移植\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-03",
+      "weekday_ja": "",
+      "tags_ja": [
+        "移植",
+        "アスパラガス"
+      ],
+      "tags_en": [
+        "Transplanting",
+        "Asparagus"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "アスパラガス２株移植",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nアスパラガス２株移植\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "アスパラガス２株移植",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nアスパラガス２株移植\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-04-01",
+      "weekday_ja": "",
+      "tags_ja": [
+        "発芽",
+        "播種",
+        "エン麦",
+        "大麦"
+      ],
+      "tags_en": [
+        "Sprouting",
+        "Sowing",
+        "Oats",
+        "Barley"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "エン麦発芽・大麦播種",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nエン麦発芽・大麦播種\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "エン麦発芽・大麦播種",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nエン麦発芽・大麦播種\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-03-31",
+      "weekday_ja": "",
+      "tags_ja": [
+        "播種",
+        "枝豆"
+      ],
+      "tags_en": [
+        "Sowing",
+        "Edamame"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "枝豆播種",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\n枝豆播種\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "枝豆播種",
+        "memo": "",
+        "story": "A small but important day in the field.\n\n枝豆播種\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-03-25",
+      "weekday_ja": "",
+      "tags_ja": [
+        "播種",
+        "エン麦"
+      ],
+      "tags_en": [
+        "Sowing",
+        "Oats"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "エン麦播種",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nエン麦播種\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "エン麦播種",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nエン麦播種\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-03-24",
+      "weekday_ja": "",
+      "tags_ja": [
+        "発芽",
+        "ヘアリーベッチ"
+      ],
+      "tags_en": [
+        "Sprouting",
+        "Hairy vetch"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "ヘアリーベッチ発芽",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nヘアリーベッチ発芽\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "ヘアリーベッチ発芽",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nヘアリーベッチ発芽\n\nSome days simply add one quiet layer to the future."
+      }
+    },
+    {
+      "date": "2026-03-09",
+      "weekday_ja": "",
+      "tags_ja": [
+        "播種",
+        "ヘアリーベッチ"
+      ],
+      "tags_en": [
+        "Sowing",
+        "Hairy vetch"
+      ],
+      "images": [],
+      "ja": {
+        "diary": "ヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。",
+        "memo": "",
+        "story": "畑での小さいけれど大切な一日。\n\nヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。\n\nその一日は、未来に向けて静かな一層を積み重ねています。"
+      },
+      "en": {
+        "diary": "ヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。",
+        "memo": "",
+        "story": "A small but important day in the field.\n\nヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。\n\nSome days simply add one quiet layer to the future."
+      }
+    }
+  ]
+}
