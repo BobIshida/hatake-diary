@@ -1,413 +1,368 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bob's Farm Diary</title>
-<style>
-:root{--card:#fffdf8;--ink:#253026;--muted:#6f766f;--green:#47734d;--green2:#e4efe2;--line:#e2ddcf}
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#eef6eb 0,#f7f4ec 260px);color:var(--ink);line-height:1.75}
-html[lang="en"] body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-header{max-width:1100px;margin:0 auto;padding:56px 22px 28px}
-.hero{background:rgba(255,253,248,.9);border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 18px 50px rgba(42,54,38,.08);position:relative}
-.lang-toggle{text-decoration:none;display:inline-block;position:absolute;right:24px;top:24px;border:1px solid #cddbc9;background:#fff;color:#315c35;border-radius:999px;padding:9px 16px;font-weight:700}
-h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:.04em;padding-right:120px}
-.lead{max-width:760px;color:var(--muted);font-size:18px;margin:12px 0 0}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
-.stat strong{display:block;font-size:24px;color:var(--green);line-height:1.35}
-main{max-width:1100px;margin:0 auto;padding:0 22px 70px}
-.toolbar{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);background:rgba(247,244,236,.9);padding:12px 0}
-.filters,.view-tabs{display:flex;gap:10px;flex-wrap:wrap}
-.view-tabs{margin-top:14px}
-.filter,.view-tab{border:1px solid #cddbc9;background:#fff;color:#315c35;border-radius:999px;padding:9px 14px;cursor:pointer;font-size:14px;font-weight:700}
-.filter.active,.view-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
-.timeline{display:grid;gap:22px;margin-top:20px}
-.entry{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 12px 30px rgba(42,54,38,.06)}
-.entry-meta{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}
-time{color:var(--green);font-weight:700}
-.tags{display:flex;gap:8px;flex-wrap:wrap}
-.tags span{background:var(--green2);color:#37603b;border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer}
-.entry p{margin:10px 0 0;font-size:17px;white-space:pre-wrap}
-.memo{margin-top:16px;padding:14px 16px;border-left:4px solid #9abf8f;border-radius:14px;background:#f6fbf4;color:#314733}
-.memo strong{color:#24502b}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:18px}
-.gallery a{display:block;overflow:hidden;border-radius:16px;background:#eee;aspect-ratio:4/3;border:1px solid var(--line)}
-.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
-.gallery a:hover img{transform:scale(1.04)}
-footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--line)}
-.story-text{display:none;border-left:4px solid var(--green);padding-left:16px;color:#334336}
-body.story-mode .diary-text,body.story-mode .memo{display:none}
-body.story-mode .story-text{display:block}
-@media(max-width:720px){.hero{padding:24px}.lang-toggle{position:static;margin-bottom:16px}h1{padding-right:0}.stats{grid-template-columns:1fr}.entry{padding:18px;border-radius:18px}}
-</style>
-</head>
-<body>
-<header><section class="hero">
-<a class="lang-toggle" href="index.html">日本語</a>
-<h1>Bob's Farm Diary</h1>
-<p class="lead">A small web diary made from notes and photos of farm work.</p>
-<div class="stats">
-<div class="stat"><strong>46</strong>Entries</div>
-<div class="stat"><strong>123</strong>Photos</div>
-<div class="stat"><strong>March 9, 2026 (Mon) –<br>May 22, 2026 (Fri)</strong>Period</div>
-</div>
-</section></header>
-<main>
-<div class="toolbar">
-<div class="filters"><button class="filter active" data-tag="all">All</button><button class="filter" data-tag="Well digging">Well digging <small>27</small></button><button class="filter" data-tag="Field">Field <small>19</small></button><button class="filter" data-tag="Well casing">Well casing <small>14</small></button><button class="filter" data-tag="Suiko">Suiko <small>14</small></button><button class="filter" data-tag="Hairy vetch">Hairy vetch <small>11</small></button><button class="filter" data-tag="Family">Family <small>11</small></button><button class="filter" data-tag="Mother">Mother <small>11</small></button><button class="filter" data-tag="Clay">Clay <small>9</small></button><button class="filter" data-tag="Pump">Pump <small>8</small></button><button class="filter" data-tag="DIY">DIY <small>6</small></button><button class="filter" data-tag="Sowing">Sowing <small>6</small></button><button class="filter" data-tag="Sprouting">Sprouting <small>6</small></button><button class="filter" data-tag="Hand pump">Hand pump <small>5</small></button><button class="filter" data-tag="Sand and gravel">Sand and gravel <small>5</small></button><button class="filter" data-tag="Tools">Tools <small>5</small></button><button class="filter" data-tag="Transplanting">Transplanting <small>5</small></button><button class="filter" data-tag="Pepper">Pepper <small>4</small></button><button class="filter" data-tag="Harvest">Harvest <small>4</small></button><button class="filter" data-tag="Rain">Rain <small>4</small></button><button class="filter" data-tag="Strawberry">Strawberry <small>4</small></button><button class="filter" data-tag="Mini tomato">Mini tomato <small>4</small></button><button class="filter" data-tag="Tomato">Tomato <small>4</small></button><button class="filter" data-tag="Eggplant">Eggplant <small>4</small></button><button class="filter" data-tag="Leaf lettuce">Leaf lettuce <small>3</small></button><button class="filter" data-tag="Sunflower">Sunflower <small>3</small></button><button class="filter" data-tag="Edamame">Edamame <small>3</small></button><button class="filter" data-tag="Brush cutter">Brush cutter <small>3</small></button><button class="filter" data-tag="Nebaristar">Nebaristar <small>3</small></button><button class="filter" data-tag="Cucumber">Cucumber <small>3</small></button><button class="filter" data-tag="Dog">Dog <small>3</small></button><button class="filter" data-tag="Father">Father <small>3</small></button><button class="filter" data-tag="Shredder blade">Shredder blade <small>2</small></button><button class="filter" data-tag="Tractor">Tractor <small>2</small></button><button class="filter" data-tag="Incorporation">Incorporation <small>2</small></button><button class="filter" data-tag="AI">AI <small>2</small></button><button class="filter" data-tag="Jigsaw">Jigsaw <small>2</small></button><button class="filter" data-tag="Water level">Water level <small>2</small></button><button class="filter" data-tag="Nagaimo yam">Nagaimo yam <small>2</small></button><button class="filter" data-tag="Asparagus">Asparagus <small>2</small></button><button class="filter" data-tag="Watering">Watering <small>1</small></button><button class="filter" data-tag="Watering can">Watering can <small>1</small></button><button class="filter" data-tag="Baby leaf">Baby leaf <small>1</small></button><button class="filter" data-tag="Professional farm">Professional farm <small>1</small></button><button class="filter" data-tag="Mother's Day">Mother's Day <small>1</small></button><button class="filter" data-tag="Rapeseed flowers">Rapeseed flowers <small>1</small></button><button class="filter" data-tag="Daily life">Daily life <small>1</small></button><button class="filter" data-tag="Ridge making">Ridge making <small>1</small></button><button class="filter" data-tag="Planting">Planting <small>1</small></button></div>
-<div class="view-tabs">
-<button class="view-tab active" data-view="diary" type="button">Diary</button>
-<button class="view-tab" data-view="story" type="button">Story</button>
-</div>
-</div>
-<section class="timeline">
-<article class="entry" data-tags="Well digging|Pump|Well casing|Pepper|Leaf lettuce|Harvest|Watering|Field">
-<div class="entry-meta"><time>May 22, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Pump</span><span>Well casing</span><span>Pepper</span><span>Leaf lettuce</span><span>Harvest</span><span>Watering</span><span>Field</span></div></div>
-<p class="diary-text">Today I did not need to water the field, and the soil was too wet to work, but I went to take a quick look anyway. The peppers transplanted yesterday seem to have rooted well. The plants are growing so quickly that it almost feels overwhelming. As for the well, after yesterday’s first experience of running out of water, I tried pumping again today and it ran dry almost immediately. I still do not know whether the pipe is clogged, whether there is not enough water, or whether the pump itself is the issue.</p>
-<div class="memo"><strong>Reflection</strong><p>Watching plants grow vigorously is very encouraging. It makes me feel deeply that they are alive, and it also makes me think about what it means to live.</p></div>
-<p class="story-text">Watching plants grow vigorously is very encouraging. It makes me feel deeply that they are alive, and it also makes me think about what it means to live.</p>
-<div class="gallery"><a href="assets/image114.jpg" target="_blank"><img src="assets/image114.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image115.jpg" target="_blank"><img src="assets/image115.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image116.jpg" target="_blank"><img src="assets/image116.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image117.jpg" target="_blank"><img src="assets/image117.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image118.jpg" target="_blank"><img src="assets/image118.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image119.jpg" target="_blank"><img src="assets/image119.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image120.jpg" target="_blank"><img src="assets/image120.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image121.jpg" target="_blank"><img src="assets/image121.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image122.jpg" target="_blank"><img src="assets/image122.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image123.jpg" target="_blank"><img src="assets/image123.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bob's Farm Diary</title><style>
+:root{--card:#fffdf8;--ink:#253026;--muted:#6f766f;--green:#47734d;--green2:#e4efe2;--line:#e2ddcf}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#eef6eb 0,#f7f4ec 260px);color:var(--ink);line-height:1.75}html[lang="en"] body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}header{max-width:1100px;margin:0 auto;padding:56px 22px 28px}.hero{background:rgba(255,253,248,.88);border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 18px 50px rgba(42,54,38,.08);position:relative}.lang-toggle{text-decoration:none;display:inline-block;position:absolute;right:24px;top:24px;border:1px solid #cddbc9;background:#fff;color:#315c35;border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:700}h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:.04em;padding-right:120px}.lead{max-width:760px;color:var(--muted);font-size:18px;margin:12px 0 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.stat strong{display:block;font-size:24px;color:var(--green);line-height:1.35}main{max-width:1100px;margin:0 auto;padding:0 22px 70px}.toolbar{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);background:rgba(247,244,236,.88);padding:12px 0}.filters{display:flex;gap:10px;flex-wrap:wrap}.filter{border:1px solid #cddbc9;background:#fff;color:#315c35;border-radius:999px;padding:9px 14px;cursor:pointer;font-size:14px;font-weight:700}.filter.active{background:var(--green);color:#fff;border-color:var(--green)}.timeline{display:grid;gap:22px;margin-top:20px}.entry{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 12px 30px rgba(42,54,38,.06)}.entry-meta{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}time{color:var(--green);font-weight:700}.tags{display:flex;gap:8px;flex-wrap:wrap}.tags span{background:var(--green2);color:#37603b;border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer}.entry p{margin:10px 0 0;font-size:17px;white-space:pre-wrap}.memo{margin-top:16px;padding:14px 16px;border-left:4px solid #9abf8f;border-radius:14px;background:#f6fbf4;color:#314733}.memo strong{color:#24502b}.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:18px}.gallery a{display:block;overflow:hidden;border-radius:16px;background:#eee;aspect-ratio:4/3;border:1px solid var(--line)}.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}.gallery a:hover img{transform:scale(1.04)}footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--line)}@media(max-width:720px){.hero{padding:24px}.lang-toggle{position:static;margin-bottom:16px}h1{padding-right:0}.stats{grid-template-columns:1fr}.entry{padding:18px;border-radius:18px}}
+</style></head><body><header><section class="hero"><a class="lang-toggle" href="index.html">日本語</a><h1>Bob's Farm Diary</h1><p class="lead">A small web diary made from notes and photos of farm work.</p><div class="stats"><div class="stat"><strong>52</strong>Entries</div><div class="stat"><strong>146</strong>Photos</div><div class="stat"><strong>March 9, 2026 (Mon) –<br>May 29, 2026 (Fri)</strong>Period</div></div></section></header><main><div class="toolbar"><div class="filters"><button class="filter active" data-tag="all">All</button><button class="filter" data-tag="Well digging">Well digging <small>30</small></button><button class="filter" data-tag="Field">Field <small>22</small></button><button class="filter" data-tag="Suiko">Suiko <small>15</small></button><button class="filter" data-tag="Well casing">Well casing <small>15</small></button><button class="filter" data-tag="Family">Family <small>14</small></button><button class="filter" data-tag="Mother">Mother <small>13</small></button><button class="filter" data-tag="Hairy vetch">Hairy vetch <small>12</small></button><button class="filter" data-tag="Clay">Clay <small>9</small></button><button class="filter" data-tag="Pump">Pump <small>8</small></button><button class="filter" data-tag="Sprouting">Sprouting <small>7</small></button><button class="filter" data-tag="Oats">Oats <small>6</small></button><button class="filter" data-tag="DIY">DIY <small>6</small></button><button class="filter" data-tag="Sowing">Sowing <small>6</small></button><button class="filter" data-tag="Eggplant">Eggplant <small>5</small></button><button class="filter" data-tag="Tractor">Tractor <small>5</small></button><button class="filter" data-tag="Pepper">Pepper <small>5</small></button><button class="filter" data-tag="Mini tomato">Mini tomato <small>5</small></button><button class="filter" data-tag="Harvest">Harvest <small>5</small></button><button class="filter" data-tag="Barley">Barley <small>5</small></button><button class="filter" data-tag="Hand pump">Hand pump <small>5</small></button><button class="filter" data-tag="Sand and gravel">Sand and gravel <small>5</small></button><button class="filter" data-tag="Tools">Tools <small>5</small></button><button class="filter" data-tag="Transplanting">Transplanting <small>5</small></button><button class="filter" data-tag="Nebaristar">Nebaristar <small>4</small></button><button class="filter" data-tag="Cucumber">Cucumber <small>4</small></button><button class="filter" data-tag="Tomato">Tomato <small>4</small></button><button class="filter" data-tag="Leaf lettuce">Leaf lettuce <small>4</small></button><button class="filter" data-tag="Incorporation">Incorporation <small>4</small></button><button class="filter" data-tag="Rain">Rain <small>4</small></button><button class="filter" data-tag="Strawberry">Strawberry <small>4</small></button><button class="filter" data-tag="Edamame">Edamame <small>3</small></button><button class="filter" data-tag="Asparagus">Asparagus <small>3</small></button><button class="filter" data-tag="Sunflower">Sunflower <small>3</small></button><button class="filter" data-tag="Brush cutter">Brush cutter <small>3</small></button><button class="filter" data-tag="Dog">Dog <small>3</small></button><button class="filter" data-tag="Father">Father <small>3</small></button><button class="filter" data-tag="Watering">Watering <small>2</small></button><button class="filter" data-tag="Shredder blade">Shredder blade <small>2</small></button><button class="filter" data-tag="AI">AI <small>2</small></button><button class="filter" data-tag="Jigsaw">Jigsaw <small>2</small></button><button class="filter" data-tag="Water level">Water level <small>2</small></button><button class="filter" data-tag="Nagaimo yam">Nagaimo yam <small>2</small></button><button class="filter" data-tag="Foot valve">Foot valve <small>1</small></button><button class="filter" data-tag="Potatoes">Potatoes <small>1</small></button><button class="filter" data-tag="Fruit thinning">Fruit thinning <small>1</small></button><button class="filter" data-tag="Rake">Rake <small>1</small></button><button class="filter" data-tag="Bird">Bird <small>1</small></button><button class="filter" data-tag="Plums">Plums <small>1</small></button><button class="filter" data-tag="Rice field">Rice field <small>1</small></button><button class="filter" data-tag="Rice">Rice <small>1</small></button><button class="filter" data-tag="Seedling trays">Seedling trays <small>1</small></button><button class="filter" data-tag="Watering can">Watering can <small>1</small></button><button class="filter" data-tag="Baby leaf">Baby leaf <small>1</small></button><button class="filter" data-tag="Professional farm">Professional farm <small>1</small></button><button class="filter" data-tag="Mother's Day">Mother's Day <small>1</small></button><button class="filter" data-tag="Rapeseed flowers">Rapeseed flowers <small>1</small></button><button class="filter" data-tag="Daily life">Daily life <small>1</small></button><button class="filter" data-tag="Planting">Planting <small>1</small></button></div></div><section class="timeline">
+<article class="entry" data-tags="Well digging|Foot valve|Suiko|Well casing|Family|Mother|Potatoes|Eggplant|Fruit thinning">
+  <div class="entry-meta"><time>May 29, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Foot valve</span><span>Suiko</span><span>Well casing</span><span>Family</span><span>Mother</span><span>Potatoes</span><span>Eggplant</span><span>Fruit thinning</span></div></div>
+  <p class="diary-text">Following Gemini’s advice, I removed the fruit up to the third flower on the two eggplant plants. I hope this will help them grow into stronger plants. I also received part of my mother’s first potato harvest, which immediately went into today’s miso soup. For the well, I checked the measurements while installing the foot valve. The casing pipe is 5.5 meters long, and a 5-meter hose is inserted into it, so the hose reaches about 50 cm above the bottom. I suspect that the low water volume was caused by the hose being too close to the bottom.</p>
+  <div class="memo"><strong>Reflection</strong><p>Because I inserted the suiko again and touched the bottom, thick muddy water came up.</p></div>
+  <div class="gallery"><a href="assets/image145.jpg" target="_blank"><img src="assets/image145.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image146.jpg" target="_blank"><img src="assets/image146.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
+<article class="entry" data-tags="Well digging|Rake|Tractor|Bird|Field">
+  <div class="entry-meta"><time>May 28, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Rake</span><span>Tractor</span><span>Bird</span><span>Field</span></div></div>
+  <p class="diary-text">I bought the rake I had wanted for some time. I used it to level the area around the well and also to correct the uneven surface left after tilling with the tractor the other day.</p>
+  <div class="memo"><strong>Reflection</strong><p>While I was leveling the area around the well, a beautiful bird appeared from somewhere. I suppose it was after insects in the freshly disturbed soil, but I was impressed by how carefully it was watching.</p></div>
+  <div class="gallery"><a href="assets/image139.jpg" target="_blank"><img src="assets/image139.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image140.jpg" target="_blank"><img src="assets/image140.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image141.jpg" target="_blank"><img src="assets/image141.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image142.jpg" target="_blank"><img src="assets/image142.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image143.jpg" target="_blank"><img src="assets/image143.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image144.jpg" target="_blank"><img src="assets/image144.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+</article>
+
+<article class="entry" data-tags="Nebaristar|Cucumber|Pepper|Mini tomato|Tomato|Eggplant|Edamame|Asparagus|Leaf lettuce">
+  <div class="entry-meta"><time>May 27, 2026 (Wed)</time><div class="tags"><span>Nebaristar</span><span>Cucumber</span><span>Pepper</span><span>Mini tomato</span><span>Tomato</span><span>Eggplant</span><span>Edamame</span><span>Asparagus</span><span>Leaf lettuce</span></div></div>
+  <p class="diary-text">At first, I had not really imagined growing many crops, but before I knew it, the field had eggplants, mini tomatoes, peppers, cucumbers, leaf lettuce, edamame, asparagus, and Nebaristar. The leaf lettuce has already reached its first thinning and harvest. Only three months have passed since the start, but the progress feels tremendous.</p>
+  <div class="memo"><strong>Reflection</strong><p>This was the third thinning and harvest of the leaf lettuce. It looks like I can continue harvesting for a while.</p></div>
+  <div class="gallery"><a href="assets/image130.jpg" target="_blank"><img src="assets/image130.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image131.jpg" target="_blank"><img src="assets/image131.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image132.jpg" target="_blank"><img src="assets/image132.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image133.jpg" target="_blank"><img src="assets/image133.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image134.jpg" target="_blank"><img src="assets/image134.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image135.jpg" target="_blank"><img src="assets/image135.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image136.jpg" target="_blank"><img src="assets/image136.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image137.jpg" target="_blank"><img src="assets/image137.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image138.jpg" target="_blank"><img src="assets/image138.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+</article>
+
+<article class="entry" data-tags="Well digging|Incorporation|Family|Mother|Plums|Harvest|Watering|Field">
+  <div class="entry-meta"><time>May 26, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Incorporation</span><span>Family</span><span>Mother</span><span>Plums</span><span>Harvest</span><span>Watering</span><span>Field</span></div></div>
+  <p class="diary-text">Yesterday I incorporated the green manure into the soil, so that part feels settled for now. After watering the plants, I was leveling the area around the well when my mother arrived by light truck to harvest small plums from the field. She gave me more than half of what she picked, and I brought them home. I left the question of how to cook or prepare them to my wife.</p>
+  
+  <div class="gallery"><a href="assets/image129.jpg" target="_blank"><img src="assets/image129.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+</article>
+
+<article class="entry" data-tags="Hairy vetch|Oats|Barley|Incorporation|Tractor|Field">
+  <div class="entry-meta"><time>May 25, 2026 (Mon)</time><div class="tags"><span>Hairy vetch</span><span>Oats</span><span>Barley</span><span>Incorporation</span><span>Tractor</span><span>Field</span></div></div>
+  <p class="diary-text">The oats had begun to head, so I cut and incorporated them into the soil. The barley was still a little early, but I cut it together with the oats. Both oats and barley had stronger bases than hairy vetch, so cutting them was harder. I also incorporated the hairy vetch that I had cut a week earlier, and the whole appearance of the field changed completely. The star of the day was, of course, the tractor. The power of machines is truly impressive.</p>
+  <div class="memo"><strong>Reflection</strong><p>I woke up before five today and started field work at 5:30. I felt a strange sensation, as if another version of myself was watching me become someone who works in the field early in the morning.</p></div>
+  <div class="gallery"><a href="assets/image125.jpg" target="_blank"><img src="assets/image125.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image126.jpg" target="_blank"><img src="assets/image126.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image127.jpg" target="_blank"><img src="assets/image127.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image128.jpg" target="_blank"><img src="assets/image128.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+</article>
+
+<article class="entry" data-tags="Family|Rice field|Rice|Seedling trays|Sprouting|Tractor">
+  <div class="entry-meta"><time>May 23, 2026 (Sat)</time><div class="tags"><span>Family</span><span>Rice field</span><span>Rice</span><span>Seedling trays</span><span>Sprouting</span><span>Tractor</span></div></div>
+  <p class="diary-text">The rice fields have effectively been inherited by my elder brother, but we still receive part of the harvested rice, and helping with rice work as a family remains our tradition. These days, unlike the past, rice planting itself is mechanized, so there is not much for us to do. The only real help is sowing seeds and tractor cultivation. Last Saturday was seed sowing. Seeds were sown in nursery trays, and the seedlings are now growing well.</p>
+  <div class="memo"><strong>Reflection</strong><p>Rice feels like something very special in Japan and across Asia.</p></div>
+  <div class="gallery"><a href="assets/image124.jpg" target="_blank"><img src="assets/image124.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+</article>
+
+<article class="entry" data-tags="Well digging|Pump|Well casing|Oats|Pepper|Leaf lettuce|Harvest|Watering|Field">
+  <div class="entry-meta"><time>May 22, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Pump</span><span>Well casing</span><span>Oats</span><span>Pepper</span><span>Leaf lettuce</span><span>Harvest</span><span>Watering</span><span>Field</span></div></div>
+  <p class="diary-text">Today I did not need to water the field, and the soil was too wet to work, but I went to take a quick look anyway. The peppers transplanted yesterday seem to have rooted well. The plants are growing so quickly that it almost feels overwhelming. As for the well, after yesterday’s first experience of running out of water, I tried pumping again today and it ran dry almost immediately. I still do not know whether the pipe is clogged, whether there is not enough water, or whether the pump itself is the issue.</p>
+  <div class="memo"><strong>Reflection</strong><p>Watching plants grow vigorously is very encouraging. It makes me feel deeply that they are alive, and it also makes me think about what it means to live.</p></div>
+  <div class="gallery"><a href="assets/image114.jpg" target="_blank"><img src="assets/image114.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image115.jpg" target="_blank"><img src="assets/image115.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image116.jpg" target="_blank"><img src="assets/image116.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image117.jpg" target="_blank"><img src="assets/image117.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image118.jpg" target="_blank"><img src="assets/image118.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image119.jpg" target="_blank"><img src="assets/image119.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image120.jpg" target="_blank"><img src="assets/image120.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image121.jpg" target="_blank"><img src="assets/image121.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image122.jpg" target="_blank"><img src="assets/image122.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image123.jpg" target="_blank"><img src="assets/image123.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+</article>
+
 <article class="entry" data-tags="Rain|Watering can|Field">
-<div class="entry-meta"><time>May 21, 2026 (Thu)</time><div class="tags"><span>Rain</span><span>Watering can</span><span>Field</span></div></div>
-<p class="diary-text">It rained all day, so there was no field work at all. Instead, I bought a watering can at the home center. It holds 10 liters, so it should be convenient to use in the field.</p>
-<div class="memo"><strong>Reflection</strong><p>Since I started the field, I have gone there every day, even on Saturdays, Sundays, and during Golden Week. I did not work today, but I still went to the field.</p></div>
-<p class="story-text">Since I started the field, I have gone there every day, even on Saturdays, Sundays, and during Golden Week. I did not work today, but I still went to the field.</p>
-<div class="gallery"><a href="assets/image113.jpg" target="_blank"><img src="assets/image113.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 21, 2026 (Thu)</time><div class="tags"><span>Rain</span><span>Watering can</span><span>Field</span></div></div>
+  <p class="diary-text">It rained all day, so there was no field work at all. Instead, I bought a watering can at the home center. It holds 10 liters, so it should be convenient to use in the field.</p>
+  <div class="memo"><strong>Reflection</strong><p>Since I started the field, I have gone there every day, even on Saturdays, Sundays, and during Golden Week. I did not work today, but I still went to the field.</p></div>
+  <div class="gallery"><a href="assets/image113.jpg" target="_blank"><img src="assets/image113.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Sunflower|Pepper|Edamame|Field">
-<div class="entry-meta"><time>May 20, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Sunflower</span><span>Pepper</span><span>Edamame</span><span>Field</span></div></div>
-<p class="diary-text">I found small flower buds on the pepper seedlings, so I transplanted them into the field today. I also gave them Rikidas and hope they will root strongly. The edamame and other plants are growing well. Today I pumped a lot of water and experienced the well running dry for the first time.</p>
-<div class="memo"><strong>Reflection</strong><p>Today I noticed for the first time that sunflowers face the sun even before they have flowers. They looked cute, almost as if they were all saluting the morning sun.</p></div>
-<p class="story-text">Today I noticed for the first time that sunflowers face the sun even before they have flowers. They looked cute, almost as if they were all saluting the morning sun.</p>
-<div class="gallery"><a href="assets/image110.jpg" target="_blank"><img src="assets/image110.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image111.jpg" target="_blank"><img src="assets/image111.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image112.jpg" target="_blank"><img src="assets/image112.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 20, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Sunflower</span><span>Pepper</span><span>Edamame</span><span>Field</span></div></div>
+  <p class="diary-text">I found small flower buds on the pepper seedlings, so I transplanted them into the field today. I also gave them Rikidas and hope they will root strongly. The edamame and other plants are growing well. The well area is also getting closer to the final form. Today I pumped a lot of water and experienced the well running dry for the first time. I did not measure it exactly, but it felt like I had pumped around 100 liters.</p>
+  <div class="memo"><strong>Reflection</strong><p>Today I noticed for the first time that sunflowers face the sun even before they have flowers. They looked cute, almost as if they were all saluting the morning sun.</p></div>
+  <div class="gallery"><a href="assets/image110.jpg" target="_blank"><img src="assets/image110.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image111.jpg" target="_blank"><img src="assets/image111.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image112.jpg" target="_blank"><img src="assets/image112.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Pump|Well casing|Baby leaf|Harvest">
-<div class="entry-meta"><time>May 19, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Pump</span><span>Well casing</span><span>Baby leaf</span><span>Harvest</span></div></div>
-<p class="diary-text">Today I cut the casing pipe to 5.5 meters, temporarily installed the pump on top of it, and placed a sink nearby, so the final image of the well area became much clearer. The baby leaves had reached the thinning stage, so I thinned them. That became my first harvest.</p>
-<div class="memo"><strong>Reflection</strong><p>After returning home, I ate the baby leaves with ponzu. Rather than delicious, my first impression was super fresh.</p></div>
-<p class="story-text">After returning home, I ate the baby leaves with ponzu. Rather than delicious, my first impression was super fresh.</p>
-<div class="gallery"><a href="assets/image105.jpg" target="_blank"><img src="assets/image105.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image106.jpg" target="_blank"><img src="assets/image106.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image107.jpg" target="_blank"><img src="assets/image107.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image108.jpg" target="_blank"><img src="assets/image108.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image109.jpg" target="_blank"><img src="assets/image109.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 19, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Pump</span><span>Well casing</span><span>Baby leaf</span><span>Harvest</span></div></div>
+  <p class="diary-text">Today I cut the casing pipe to 5.5 meters, temporarily installed the pump on top of it, and placed a sink nearby, so the final image of the well area became much clearer. I arranged fourteen concrete tiles and began to see what the finished space might look like. The water is still muddy, but I expect that much clearer water will eventually be available. The baby leaves had reached the thinning stage, so I thinned them. That became my first harvest.</p>
+  <div class="memo"><strong>Reflection</strong><p>After returning home, I ate the baby leaves with ponzu. Rather than delicious, my first impression was super fresh. Of course it was — I had just harvested them.</p></div>
+  <div class="gallery"><a href="assets/image105.jpg" target="_blank"><img src="assets/image105.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image106.jpg" target="_blank"><img src="assets/image106.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image107.jpg" target="_blank"><img src="assets/image107.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image108.jpg" target="_blank"><img src="assets/image108.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image109.jpg" target="_blank"><img src="assets/image109.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
-<article class="entry" data-tags="Well digging|Pump|Well casing|Brush cutter|Shredder blade|Hairy vetch|Tractor|Harvest|Field">
-<div class="entry-meta"><time>May 18, 2026 (Mon)</time><div class="tags"><span>Well digging</span><span>Pump</span><span>Well casing</span><span>Brush cutter</span><span>Shredder blade</span><span>Hairy vetch</span><span>Tractor</span><span>Harvest</span><span>Field</span></div></div>
-<p class="diary-text">First thing in the morning, I replaced the brush-cutter blade with a shredder blade and chopped the hairy vetch. It cut even better than expected. After letting it dry for a few days, I plan to incorporate it into the soil.</p>
-<div class="memo"><strong>Reflection</strong><p>About three months have passed since I started working on the field. At first I did not know what to do, but now it is beginning to feel like my own field.</p></div>
-<p class="story-text">About three months have passed since I started working on the field. At first I did not know what to do, but now it is beginning to feel like my own field.</p>
-<div class="gallery"><a href="assets/image101.jpg" target="_blank"><img src="assets/image101.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image102.jpg" target="_blank"><img src="assets/image102.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image103.jpg" target="_blank"><img src="assets/image103.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image104.jpg" target="_blank"><img src="assets/image104.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+
+<article class="entry" data-tags="Well digging|Pump|Well casing|Brush cutter|Shredder blade|Hairy vetch|Harvest|Tractor|Field">
+  <div class="entry-meta"><time>May 18, 2026 (Mon)</time><div class="tags"><span>Well digging</span><span>Pump</span><span>Well casing</span><span>Brush cutter</span><span>Shredder blade</span><span>Hairy vetch</span><span>Harvest</span><span>Tractor</span><span>Field</span></div></div>
+  <p class="diary-text">First thing in the morning, I replaced the brush-cutter blade with a shredder blade and chopped the hairy vetch. It cut even better than expected, which made me very satisfied. After letting it dry for a few days, I plan to incorporate it into the soil. I also reconsidered the well plan. The important points are the pump height and drainage, rather than simply chasing more depth.</p>
+  <div class="memo"><strong>Reflection</strong><p>About three months have passed since I started working on the field. At first I did not know what to do, but now it is beginning to feel like my own field.</p></div>
+  <div class="gallery"><a href="assets/image101.jpg" target="_blank"><img src="assets/image101.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image102.jpg" target="_blank"><img src="assets/image102.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image103.jpg" target="_blank"><img src="assets/image103.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image104.jpg" target="_blank"><img src="assets/image104.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Brush cutter|Shredder blade|Hairy vetch|Incorporation|AI">
-<div class="entry-meta"><time>May 17, 2026 (Sun)</time><div class="tags"><span>Brush cutter</span><span>Shredder blade</span><span>Hairy vetch</span><span>Incorporation</span><span>AI</span></div></div>
-<p class="diary-text">To prepare for incorporating the hairy vetch, I needed to attach a shredder blade to one of the two brush cutters. By showing photos to GPT and Gemini, they recognized the model numbers and helped me choose compatible blades.</p>
-<div class="memo"><strong>Reflection</strong><p>It is amazing that information in so many fields is now this easy to access. Maybe the real IT age has finally arrived.</p></div>
-<p class="story-text">It is amazing that information in so many fields is now this easy to access. Maybe the real IT age has finally arrived.</p>
-<div class="gallery"><a href="assets/image99.jpg" target="_blank"><img src="assets/image99.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image100.jpg" target="_blank"><img src="assets/image100.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 17, 2026 (Sun)</time><div class="tags"><span>Brush cutter</span><span>Shredder blade</span><span>Hairy vetch</span><span>Incorporation</span><span>AI</span></div></div>
+  <p class="diary-text">To prepare for incorporating the hairy vetch, I needed to attach a shredder blade to one of the two brush cutters. I first had to identify which blade would fit. By showing photos of the machines to GPT and Gemini, they recognized the model numbers and helped me choose compatible blades. It seems ordinary brush-cutter blades will fit.</p>
+  <div class="memo"><strong>Reflection</strong><p>As usual, if I show photos to GPT or Gemini, they recognize the model numbers and even guide me to compatible blades. It is incredibly convenient.</p></div>
+  <div class="gallery"><a href="assets/image99.jpg" target="_blank"><img src="assets/image99.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image100.jpg" target="_blank"><img src="assets/image100.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Hand pump|Pump|Suiko|Well casing|Clay|Brush cutter|Hairy vetch|Incorporation">
-<div class="entry-meta"><time>May 16, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Suiko</span><span>Well casing</span><span>Clay</span><span>Brush cutter</span><span>Hairy vetch</span><span>Incorporation</span></div></div>
-<p class="diary-text">My first harvest will probably be baby leaves, with mini tomatoes likely following after that. Harvesting was not the original purpose, but once something begins to grow, I naturally start looking forward to it.</p>
-<div class="memo"><strong>Reflection</strong><p>Today we sowed seeds in nursery trays for rice planting. This year my mother only watched. It is sad, but it cannot be helped.</p></div>
-<p class="story-text">Today we sowed seeds in nursery trays for rice planting. This year my mother only watched. It is sad, but it cannot be helped.</p>
-<div class="gallery"><a href="assets/image93.jpg" target="_blank"><img src="assets/image93.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image94.jpg" target="_blank"><img src="assets/image94.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image95.jpg" target="_blank"><img src="assets/image95.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image96.jpg" target="_blank"><img src="assets/image96.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image97.jpg" target="_blank"><img src="assets/image97.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image98.jpg" target="_blank"><img src="assets/image98.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 16, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Suiko</span><span>Well casing</span><span>Clay</span><span>Brush cutter</span><span>Hairy vetch</span><span>Incorporation</span></div></div>
+  <p class="diary-text">My first harvest will probably be baby leaves, with mini tomatoes likely following after that. Harvesting was not the original purpose, but once something begins to grow, I naturally start looking forward to it. As for the well, I decided to change the plan slightly. At that point, I will cut the casing pipe and install the hand pump directly on top of it.</p>
+  <div class="memo"><strong>Reflection</strong><p>Today we sowed seeds in nursery trays for rice planting. We do this as a family every year, but this year my mother only watched. It is sad, but it cannot be helped.</p></div>
+  <div class="gallery"><a href="assets/image93.jpg" target="_blank"><img src="assets/image93.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image94.jpg" target="_blank"><img src="assets/image94.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image95.jpg" target="_blank"><img src="assets/image95.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image96.jpg" target="_blank"><img src="assets/image96.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image97.jpg" target="_blank"><img src="assets/image97.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image98.jpg" target="_blank"><img src="assets/image98.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Hand pump|Pump|Well casing|Strawberry|Nebaristar|Pepper|Mini tomato|Tomato">
-<div class="entry-meta"><time>May 15, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Well casing</span><span>Strawberry</span><span>Nebaristar</span><span>Pepper</span><span>Mini tomato</span><span>Tomato</span></div></div>
-<p class="diary-text">I have a clear target for how deep to dig the well. The current depth is just under 5 meters, and I calculated the goal as 5.22 meters. The plan is to cut the 6-meter casing pipe to 5.5 meters and place the hand pump directly on top.</p>
-<div class="memo"><strong>Reflection</strong><p>I am happy that the goal of well digging is finally coming into view. At the same time, I feel a little sad that the digging itself may soon be over.</p></div>
-<p class="story-text">I am happy that the goal of well digging is finally coming into view. At the same time, I feel a little sad that the digging itself may soon be over.</p>
-<div class="gallery"><a href="assets/image88.jpg" target="_blank"><img src="assets/image88.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image89.jpg" target="_blank"><img src="assets/image89.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image90.jpg" target="_blank"><img src="assets/image90.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image91.jpg" target="_blank"><img src="assets/image91.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image92.jpg" target="_blank"><img src="assets/image92.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 15, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Well casing</span><span>Strawberry</span><span>Nebaristar</span><span>Pepper</span><span>Mini tomato</span><span>Tomato</span></div></div>
+  <p class="diary-text">I have a clear target for how deep to dig the well. The current depth is just under 5 meters, and I calculated the goal as 5.22 meters. The plan is to cut the 6-meter casing pipe to 5.5 meters, leave 28 cm above ground, and place the hand pump directly on top. Since the hand pump has started to bring up clearer water, the goal now feels much more concrete.</p>
+  <div class="memo"><strong>Reflection</strong><p>I am happy that the goal of well digging is finally coming into view. At the same time, I feel a little sad that the digging itself may soon be over. It is strange how that works.</p></div>
+  <div class="gallery"><a href="assets/image88.jpg" target="_blank"><img src="assets/image88.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image89.jpg" target="_blank"><img src="assets/image89.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image90.jpg" target="_blank"><img src="assets/image90.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image91.jpg" target="_blank"><img src="assets/image91.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image92.jpg" target="_blank"><img src="assets/image92.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Hand pump|Pump|Suiko|Well casing|Sand and gravel|DIY|Family|Mother">
-<div class="entry-meta"><time>May 14, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Suiko</span><span>Well casing</span><span>Sand and gravel</span><span>DIY</span><span>Family</span><span>Mother</span></div></div>
-<p class="diary-text">I added nuts to the hand-pump mounting area to make the pump easier to use. Today, for the first time, the water was close to clear rather than muddy.</p>
-<div class="memo"><strong>Reflection</strong><p>The strawberry seedlings are increasing, but the first one did not look healthy. I suspect fertilizer burn. I hope it recovers.</p></div>
-<p class="story-text">The strawberry seedlings are increasing, but the first one did not look healthy. I suspect fertilizer burn. I hope it recovers.</p>
-
+  <div class="entry-meta"><time>May 14, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Suiko</span><span>Well casing</span><span>Sand and gravel</span><span>DIY</span><span>Family</span><span>Mother</span></div></div>
+  <p class="diary-text">I added nuts to the hand-pump mounting area to make the pump easier to use. Because it rained last night for the first time in a while, watering the field was unnecessary. I started well digging right away. Today, for the first time, the water was close to clear rather than muddy.</p>
+  <div class="memo"><strong>Reflection</strong><p>The strawberry seedlings are increasing, but the first one did not look healthy. I suspect fertilizer burn. I hope it recovers.</p></div>
+  
 </article>
+
 <article class="entry" data-tags="Well digging|Hand pump|Pump|Suiko|Hairy vetch|Family|Mother|Strawberry|Nebaristar">
-<div class="entry-meta"><time>May 13, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Suiko</span><span>Hairy vetch</span><span>Family</span><span>Mother</span><span>Strawberry</span><span>Nebaristar</span></div></div>
-<p class="diary-text">My stance with well digging is to move forward little by little every day with patience, but the introduction of the hand pump has made the work more efficient.</p>
-<div class="memo"><strong>Reflection</strong><p>The strawberry seedling found among the hairy vetch is growing well. Is this becoming a strawberry field?</p></div>
-<p class="story-text">The strawberry seedling found among the hairy vetch is growing well. Is this becoming a strawberry field?</p>
-<div class="gallery"><a href="assets/image83.jpg" target="_blank"><img src="assets/image83.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image84.jpg" target="_blank"><img src="assets/image84.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image85.jpg" target="_blank"><img src="assets/image85.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image86.jpg" target="_blank"><img src="assets/image86.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image87.jpg" target="_blank"><img src="assets/image87.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 13, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span><span>Suiko</span><span>Hairy vetch</span><span>Family</span><span>Mother</span><span>Strawberry</span><span>Nebaristar</span></div></div>
+  <p class="diary-text">My stance with well digging is to move forward little by little every day with patience, but the introduction of the hand pump has made the work more efficient. I now use the suiko mainly to loosen the bottom of the well, while the hand pump removes muddy water.</p>
+  <div class="memo"><strong>Reflection</strong><p>The strawberry seedling found among the hairy vetch is growing well. In addition, my mother brought more strawberry seedlings from somewhere.</p></div>
+  <div class="gallery"><a href="assets/image83.jpg" target="_blank"><img src="assets/image83.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image84.jpg" target="_blank"><img src="assets/image84.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image85.jpg" target="_blank"><img src="assets/image85.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image86.jpg" target="_blank"><img src="assets/image86.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image87.jpg" target="_blank"><img src="assets/image87.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Hand pump|Pump">
-<div class="entry-meta"><time>May 12, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span></div></div>
-<p class="diary-text">The hand pump I ordered had arrived. Today I tried pumping water from the actual well. I was able to pump muddy water, but once air entered the pump and the water flow broke, it was difficult to restart.</p>
-<div class="memo"><strong>Reflection</strong><p>We have finally reached the stage of pumping water with a pump. Well digging will continue a little longer.</p></div>
-<p class="story-text">We have finally reached the stage of pumping water with a pump. Well digging will continue a little longer.</p>
-<div class="gallery"><a href="assets/image79.jpg" target="_blank"><img src="assets/image79.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image80.jpg" target="_blank"><img src="assets/image80.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image81.jpg" target="_blank"><img src="assets/image81.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image82.jpg" target="_blank"><img src="assets/image82.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 12, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Hand pump</span><span>Pump</span></div></div>
+  <p class="diary-text">When I got home yesterday, the hand pump I ordered some time ago had arrived. I opened it, assembled it, and tested it. Today I tried pumping water from the actual well. I was able to pump muddy water, but once air entered the pump and the water flow broke, it was difficult to restart.</p>
+  <div class="memo"><strong>Reflection</strong><p>We have finally reached the stage of pumping water with a pump. I want to dig about one more meter, so well digging will continue a little longer.</p></div>
+  <div class="gallery"><a href="assets/image79.jpg" target="_blank"><img src="assets/image79.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image80.jpg" target="_blank"><img src="assets/image80.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image81.jpg" target="_blank"><img src="assets/image81.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image82.jpg" target="_blank"><img src="assets/image82.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|Well casing|Sunflower|Professional farm|Field">
-<div class="entry-meta"><time>May 11, 2026 (Mon)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Sunflower</span><span>Professional farm</span><span>Field</span></div></div>
-<p class="diary-text">After inserting the casing pipe, well digging with the suiko had not been going very smoothly, but today I felt a breakthrough. The key is to patiently loosen the bottom of the well.</p>
-<div class="memo"><strong>Reflection</strong><p>The nearby professional farmer’s field was so serious and beautiful that just looking at it conveyed the owner’s dedication.</p></div>
-<p class="story-text">The nearby professional farmer’s field was so serious and beautiful that just looking at it conveyed the owner’s dedication.</p>
-<div class="gallery"><a href="assets/image76.jpg" target="_blank"><img src="assets/image76.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image77.jpg" target="_blank"><img src="assets/image77.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image78.jpg" target="_blank"><img src="assets/image78.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 11, 2026 (Mon)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Sunflower</span><span>Professional farm</span><span>Field</span></div></div>
+  <p class="diary-text">After inserting the casing pipe, well digging with the suiko had not been going very smoothly, but today I felt a breakthrough. The key is to patiently loosen the bottom of the well with the jagged tip of the suiko.</p>
+  <div class="memo"><strong>Reflection</strong><p>The last photo shows a field that seems to belong to a nearby professional farmer. It was so serious and beautiful that just looking at it conveyed the owner’s dedication.</p></div>
+  <div class="gallery"><a href="assets/image76.jpg" target="_blank"><img src="assets/image76.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image77.jpg" target="_blank"><img src="assets/image77.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image78.jpg" target="_blank"><img src="assets/image78.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|DIY|Mother's Day|Family|Mother|Rapeseed flowers">
-<div class="entry-meta"><time>May 10, 2026 (Sun)</time><div class="tags"><span>Well digging</span><span>DIY</span><span>Mother's Day</span><span>Family</span><span>Mother</span><span>Rapeseed flowers</span></div></div>
-<p class="diary-text">The rapeseed plants growing near the well had begun to set seed, so I cut them and spread them along the western bank. I hope the bank will be full of yellow flowers next year.</p>
-<div class="memo"><strong>Reflection</strong><p>Today was Mother’s Day, so I invited my mother to a sushi restaurant. Watching her grow older every year is not exactly pleasant, but that is life.</p></div>
-<p class="story-text">Today was Mother’s Day, so I invited my mother to a sushi restaurant. Watching her grow older every year is not exactly pleasant, but that is life.</p>
-<div class="gallery"><a href="assets/image73.jpg" target="_blank"><img src="assets/image73.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image74.jpg" target="_blank"><img src="assets/image74.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image75.jpg" target="_blank"><img src="assets/image75.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 10, 2026 (Sun)</time><div class="tags"><span>Well digging</span><span>DIY</span><span>Mother's Day</span><span>Family</span><span>Mother</span><span>Rapeseed flowers</span></div></div>
+  <p class="diary-text">The rapeseed plants growing near the well had begun to set seed, so I cut them and spread them along the western bank. I hope the bank will be full of yellow flowers next year. For the well, installing the processed board made the area around my feet much cleaner.</p>
+  <div class="memo"><strong>Reflection</strong><p>Today was Mother’s Day, so I invited my mother to a sushi restaurant. Watching her grow older every year is not exactly pleasant, but that is life.</p></div>
+  <div class="gallery"><a href="assets/image73.jpg" target="_blank"><img src="assets/image73.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image74.jpg" target="_blank"><img src="assets/image74.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image75.jpg" target="_blank"><img src="assets/image75.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Well casing|DIY|Tools|Jigsaw|Cucumber|Field">
-<div class="entry-meta"><time>May 9, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Well casing</span><span>DIY</span><span>Tools</span><span>Jigsaw</span><span>Cucumber</span><span>Field</span></div></div>
-<p class="diary-text">I stopped by the field and removed the yellowing lower leaves from the cucumbers. After returning home I processed a board to prevent things from falling into the space around the casing pipe.</p>
-<div class="memo"><strong>Reflection</strong><p>Adding a jigsaw to my tools may expand what I can do.</p></div>
-<p class="story-text">Adding a jigsaw to my tools may expand what I can do.</p>
-<div class="gallery"><a href="assets/image71.jpg" target="_blank"><img src="assets/image71.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image72.jpg" target="_blank"><img src="assets/image72.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 9, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Well casing</span><span>DIY</span><span>Tools</span><span>Jigsaw</span><span>Cucumber</span><span>Field</span></div></div>
+  <p class="diary-text">I stopped by the field and removed the yellowing lower leaves from the cucumbers. I took a break from well digging, but after returning home I processed a board to prevent things from falling into the space around the casing pipe.</p>
+  <div class="memo"><strong>Reflection</strong><p>I do not have a specific future use for the jigsaw I bought, but since it was inexpensive, I thought buying it might be better than renting one.</p></div>
+  <div class="gallery"><a href="assets/image71.jpg" target="_blank"><img src="assets/image71.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image72.jpg" target="_blank"><img src="assets/image72.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Clay|Cucumber|Mini tomato|Tomato|Eggplant|Sowing|Field">
-<div class="entry-meta"><time>May 8, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Cucumber</span><span>Mini tomato</span><span>Tomato</span><span>Eggplant</span><span>Sowing</span><span>Field</span></div></div>
-<p class="diary-text">The phrase “Flower Friday” no longer means much to me, but the end of the week still feels nice. I checked the crops and continued well digging.</p>
-<div class="memo"><strong>Reflection</strong><p>It has been about two months since I started working on the field. The scenery has changed completely.</p></div>
-<p class="story-text">It has been about two months since I started working on the field. The scenery has changed completely.</p>
-<div class="gallery"><a href="assets/image66.jpg" target="_blank"><img src="assets/image66.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image67.jpg" target="_blank"><img src="assets/image67.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image68.jpg" target="_blank"><img src="assets/image68.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image69.jpg" target="_blank"><img src="assets/image69.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image70.jpg" target="_blank"><img src="assets/image70.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 8, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Cucumber</span><span>Mini tomato</span><span>Tomato</span><span>Eggplant</span><span>Sowing</span><span>Field</span></div></div>
+  <p class="diary-text">The phrase “Flower Friday” no longer means much to me, but the end of the week still feels nice. I went to the field a little later than usual, checked the crops, removed side shoots from the eggplant after flowers appeared, and continued well digging.</p>
+  <div class="memo"><strong>Reflection</strong><p>It has been about two months since I started working on the field. The scenery has changed completely, and I want to make it a place I like even more.</p></div>
+  <div class="gallery"><a href="assets/image66.jpg" target="_blank"><img src="assets/image66.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image67.jpg" target="_blank"><img src="assets/image67.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image68.jpg" target="_blank"><img src="assets/image68.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image69.jpg" target="_blank"><img src="assets/image69.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image70.jpg" target="_blank"><img src="assets/image70.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|Well casing|Tools|Jigsaw|Dog|Daily life">
-<div class="entry-meta"><time>May 7, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Tools</span><span>Jigsaw</span><span>Dog</span><span>Daily life</span></div></div>
-<p class="diary-text">Golden Week ended, and daily life returned. At the field, the casing pipe had brought well digging into a new stage.</p>
-
-<p class="story-text">Golden Week ended, and daily life returned. At the field, the casing pipe had brought well digging into a new stage.</p>
-<div class="gallery"><a href="assets/image62.jpg" target="_blank"><img src="assets/image62.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image63.jpg" target="_blank"><img src="assets/image63.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image64.jpg" target="_blank"><img src="assets/image64.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image65.jpg" target="_blank"><img src="assets/image65.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 7, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Tools</span><span>Jigsaw</span><span>Dog</span><span>Daily life</span></div></div>
+  <p class="diary-text">Golden Week ended, and daily life returned. During my morning dog walk, I saw children heading to school again. At the field, the casing pipe had brought well digging into a new stage.</p>
+  
+  <div class="gallery"><a href="assets/image62.jpg" target="_blank"><img src="assets/image62.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image63.jpg" target="_blank"><img src="assets/image63.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image64.jpg" target="_blank"><img src="assets/image64.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image65.jpg" target="_blank"><img src="assets/image65.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|Well casing|Sand and gravel|Water level">
-<div class="entry-meta"><time>May 6, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Sand and gravel</span><span>Water level</span></div></div>
-<p class="diary-text">I measured the water level and the bottom depth of the well accurately. The water surface was about 2.2 meters underground, and the bottom was 4.4 meters deep.</p>
-
-<p class="story-text">I measured the water level and the bottom depth of the well accurately. The water surface was about 2.2 meters underground, and the bottom was 4.4 meters deep.</p>
-<div class="gallery"><a href="assets/image57.jpg" target="_blank"><img src="assets/image57.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image58.jpg" target="_blank"><img src="assets/image58.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image59.jpg" target="_blank"><img src="assets/image59.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image60.jpg" target="_blank"><img src="assets/image60.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image61.jpg" target="_blank"><img src="assets/image61.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 6, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Sand and gravel</span><span>Water level</span></div></div>
+  <p class="diary-text">I measured the water level and the bottom depth of the well accurately. The water surface was about 2.2 meters underground, and the bottom was 4.4 meters deep.</p>
+  
+  <div class="gallery"><a href="assets/image57.jpg" target="_blank"><img src="assets/image57.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image58.jpg" target="_blank"><img src="assets/image58.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image59.jpg" target="_blank"><img src="assets/image59.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image60.jpg" target="_blank"><img src="assets/image60.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image61.jpg" target="_blank"><img src="assets/image61.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|Well casing|Hairy vetch|Dog|Field">
-<div class="entry-meta"><time>May 5, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Hairy vetch</span><span>Dog</span><span>Field</span></div></div>
-<p class="diary-text">Even in the middle of Golden Week, after walking the dog and having breakfast, I found myself wanting to go to the field.</p>
-
-<p class="story-text">Even in the middle of Golden Week, after walking the dog and having breakfast, I found myself wanting to go to the field.</p>
-<div class="gallery"><a href="assets/image54.jpg" target="_blank"><img src="assets/image54.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image55.jpg" target="_blank"><img src="assets/image55.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image56.jpg" target="_blank"><img src="assets/image56.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 5, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Hairy vetch</span><span>Dog</span><span>Field</span></div></div>
+  <p class="diary-text">Even in the middle of Golden Week, after walking the dog and having breakfast, I found myself wanting to go to the field. I continued preparing for the casing pipe and tried to dig a bit more.</p>
+  
+  <div class="gallery"><a href="assets/image54.jpg" target="_blank"><img src="assets/image54.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image55.jpg" target="_blank"><img src="assets/image55.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image56.jpg" target="_blank"><img src="assets/image56.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|Well casing|Hairy vetch|Sunflower|Strawberry|Sprouting|Transplanting|Field">
-<div class="entry-meta"><time>May 4, 2026 (Mon)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Hairy vetch</span><span>Sunflower</span><span>Strawberry</span><span>Sprouting</span><span>Transplanting</span><span>Field</span></div></div>
-<p class="diary-text">The mini sunflowers I had sown in my home garden sprouted too densely, so I divided them and planted some in the field. I also met the owner of the neighboring field.</p>
-
-<p class="story-text">The mini sunflowers I had sown in my home garden sprouted too densely, so I divided them and planted some in the field. I also met the owner of the neighboring field.</p>
-<div class="gallery"><a href="assets/image50.jpg" target="_blank"><img src="assets/image50.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image51.jpg" target="_blank"><img src="assets/image51.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image52.jpg" target="_blank"><img src="assets/image52.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image53.jpg" target="_blank"><img src="assets/image53.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 4, 2026 (Mon)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Well casing</span><span>Hairy vetch</span><span>Sunflower</span><span>Strawberry</span><span>Sprouting</span><span>Transplanting</span><span>Field</span></div></div>
+  <p class="diary-text">The mini sunflowers I had sown in my home garden sprouted too densely, so I divided them and planted some in the field. I also met the owner of the neighboring field, a cousin I had not seen for decades.</p>
+  
+  <div class="gallery"><a href="assets/image50.jpg" target="_blank"><img src="assets/image50.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image51.jpg" target="_blank"><img src="assets/image51.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image52.jpg" target="_blank"><img src="assets/image52.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image53.jpg" target="_blank"><img src="assets/image53.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Suiko|Well casing|Clay|Sand and gravel|Field">
-<div class="entry-meta"><time>May 3, 2026 (Sun)</time><div class="tags"><span>Suiko</span><span>Well casing</span><span>Clay</span><span>Sand and gravel</span><span>Field</span></div></div>
-<p class="diary-text">I took the modified suiko to the field and used it instead of the auger. The sticky clay layer appears to have ended.</p>
-
-<p class="story-text">I took the modified suiko to the field and used it instead of the auger. The sticky clay layer appears to have ended.</p>
-<div class="gallery"><a href="assets/image47.jpg" target="_blank"><img src="assets/image47.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image48.jpg" target="_blank"><img src="assets/image48.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image49.jpg" target="_blank"><img src="assets/image49.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 3, 2026 (Sun)</time><div class="tags"><span>Suiko</span><span>Well casing</span><span>Clay</span><span>Sand and gravel</span><span>Field</span></div></div>
+  <p class="diary-text">I took the modified suiko to the field and used it instead of the auger. The sticky clay layer appears to have ended, and I may have entered a sand-and-gravel layer.</p>
+  
+  <div class="gallery"><a href="assets/image47.jpg" target="_blank"><img src="assets/image47.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image48.jpg" target="_blank"><img src="assets/image48.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image49.jpg" target="_blank"><img src="assets/image49.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Clay|Hairy vetch|Family|Mother|Father|Dog|Strawberry|Transplanting">
-<div class="entry-meta"><time>May 2, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Hairy vetch</span><span>Family</span><span>Mother</span><span>Father</span><span>Dog</span><span>Strawberry</span><span>Transplanting</span></div></div>
-<p class="diary-text">Among the hairy vetch planted as green manure, I found strawberry plants. Since they already had fruit, I transplanted them to a ridge.</p>
-
-<p class="story-text">Among the hairy vetch planted as green manure, I found strawberry plants. Since they already had fruit, I transplanted them to a ridge.</p>
-<div class="gallery"><a href="assets/image42.jpg" target="_blank"><img src="assets/image42.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image43.jpg" target="_blank"><img src="assets/image43.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image44.jpg" target="_blank"><img src="assets/image44.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image45.jpg" target="_blank"><img src="assets/image45.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image46.jpg" target="_blank"><img src="assets/image46.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 2, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Hairy vetch</span><span>Family</span><span>Mother</span><span>Father</span><span>Dog</span><span>Strawberry</span><span>Transplanting</span></div></div>
+  <p class="diary-text">Among the hairy vetch planted as green manure, I found strawberry plants. They seem to be leftovers from what my mother grew last year. Since they already had fruit, I transplanted them to a ridge.</p>
+  
+  <div class="gallery"><a href="assets/image42.jpg" target="_blank"><img src="assets/image42.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image43.jpg" target="_blank"><img src="assets/image43.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image44.jpg" target="_blank"><img src="assets/image44.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image45.jpg" target="_blank"><img src="assets/image45.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image46.jpg" target="_blank"><img src="assets/image46.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Well casing|Clay|Sand and gravel|Cucumber|Pepper|Mini tomato|Tomato|AI">
-<div class="entry-meta"><time>May 1, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Well casing</span><span>Clay</span><span>Sand and gravel</span><span>Cucumber</span><span>Pepper</span><span>Mini tomato</span><span>Tomato</span><span>AI</span></div></div>
-<p class="diary-text">Yesterday I planted mini tomatoes, but I was unsure when to transplant the peppers and cucumbers, so I asked Gemini for advice.</p>
-
-<p class="story-text">Yesterday I planted mini tomatoes, but I was unsure when to transplant the peppers and cucumbers, so I asked Gemini for advice.</p>
-<div class="gallery"><a href="assets/image41.jpg" target="_blank"><img src="assets/image41.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>May 1, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Well casing</span><span>Clay</span><span>Sand and gravel</span><span>Cucumber</span><span>Pepper</span><span>Mini tomato</span><span>Tomato</span><span>AI</span></div></div>
+  <p class="diary-text">Yesterday I planted mini tomatoes, but I was unsure when to transplant the peppers and cucumbers I had bought at the same time. So I showed photos to Gemini. It said the cucumbers could be planted right away, while the peppers should be grown for about another week.</p>
+  
+  <div class="gallery"><a href="assets/image41.jpg" target="_blank"><img src="assets/image41.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
-<article class="entry" data-tags="Well digging|Suiko|Clay|Hairy vetch|Family|Mother|Mini tomato|Tomato|Ridge making">
-<div class="entry-meta"><time>April 30, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Clay</span><span>Hairy vetch</span><span>Family</span><span>Mother</span><span>Mini tomato</span><span>Tomato</span><span>Ridge making</span></div></div>
-<p class="diary-text">Today I made ridges requested by my mother, finished the suiko, and tested it. The small cultivator worked well.</p>
 
-<p class="story-text">Today I made ridges requested by my mother, finished the suiko, and tested it. The small cultivator worked well.</p>
-<div class="gallery"><a href="assets/image37.jpg" target="_blank"><img src="assets/image37.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image38.jpg" target="_blank"><img src="assets/image38.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image39.jpg" target="_blank"><img src="assets/image39.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image40.jpg" target="_blank"><img src="assets/image40.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+<article class="entry" data-tags="Well digging|Suiko|Clay|Hairy vetch|Oats|Barley|Family|Mother|Mini tomato">
+  <div class="entry-meta"><time>April 30, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Clay</span><span>Hairy vetch</span><span>Oats</span><span>Barley</span><span>Family</span><span>Mother</span><span>Mini tomato</span></div></div>
+  <p class="diary-text">Today I made ridges requested by my mother, finished the suiko, and tested it. The small cultivator I bought this year worked well.</p>
+  
+  <div class="gallery"><a href="assets/image37.jpg" target="_blank"><img src="assets/image37.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image38.jpg" target="_blank"><img src="assets/image38.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image39.jpg" target="_blank"><img src="assets/image39.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image40.jpg" target="_blank"><img src="assets/image40.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|Clay|DIY|Field">
-<div class="entry-meta"><time>April 29, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Clay</span><span>DIY</span><span>Field</span></div></div>
-<p class="diary-text">Today I continued digging through the sticky clay layer and reached a depth of about 4 meters. In the afternoon, I drilled many holes in the well casing.</p>
-
-<p class="story-text">Today I continued digging through the sticky clay layer and reached a depth of about 4 meters. In the afternoon, I drilled many holes in the well casing.</p>
-<div class="gallery"><a href="assets/image33.jpg" target="_blank"><img src="assets/image33.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image34.jpg" target="_blank"><img src="assets/image34.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image35.jpg" target="_blank"><img src="assets/image35.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image36.jpg" target="_blank"><img src="assets/image36.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 29, 2026 (Wed)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Clay</span><span>DIY</span><span>Field</span></div></div>
+  <p class="diary-text">Today was the first day of Golden Week, but it no longer means much to me, so I went to the field as usual. I continued digging through the sticky clay layer and reached a depth of about 4 meters.</p>
+  
+  <div class="gallery"><a href="assets/image33.jpg" target="_blank"><img src="assets/image33.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image34.jpg" target="_blank"><img src="assets/image34.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image35.jpg" target="_blank"><img src="assets/image35.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image36.jpg" target="_blank"><img src="assets/image36.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Clay|Field">
-<div class="entry-meta"><time>April 28, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Field</span></div></div>
-<p class="diary-text">Today I disposed of branches and then continued well digging with the auger from about 3.5 meters.</p>
-
-<p class="story-text">Today I disposed of branches and then continued well digging with the auger from about 3.5 meters.</p>
-<div class="gallery"><a href="assets/image31.jpg" target="_blank"><img src="assets/image31.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image32.jpg" target="_blank"><img src="assets/image32.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 28, 2026 (Tue)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Field</span></div></div>
+  <p class="diary-text">Today I went to the recycling center to dispose of branches from the garden and field. After that, I used the final joint and continued well digging with the auger from about 3.5 meters.</p>
+  
+  <div class="gallery"><a href="assets/image31.jpg" target="_blank"><img src="assets/image31.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image32.jpg" target="_blank"><img src="assets/image32.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Suiko|DIY|Rain|Field">
-<div class="entry-meta"><time>April 27, 2026 (Mon)</time><div class="tags"><span>Suiko</span><span>DIY</span><span>Rain</span><span>Field</span></div></div>
-<p class="diary-text">Because of the rain, there was no field work today. I continued making the suiko because I will eventually need it.</p>
-
-<p class="story-text">Because of the rain, there was no field work today. I continued making the suiko because I will eventually need it.</p>
-<div class="gallery"><a href="assets/image30.jpg" target="_blank"><img src="assets/image30.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 27, 2026 (Mon)</time><div class="tags"><span>Suiko</span><span>DIY</span><span>Rain</span><span>Field</span></div></div>
+  <p class="diary-text">Because of the rain, there was no field work today. I do not need the suiko yet, but I continued making it because I will eventually need it.</p>
+  
+  <div class="gallery"><a href="assets/image30.jpg" target="_blank"><img src="assets/image30.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|DIY|Tools|Family|Mother|Field">
-<div class="entry-meta"><time>April 26, 2026 (Sun)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>DIY</span><span>Tools</span><span>Family</span><span>Mother</span><span>Field</span></div></div>
-<p class="diary-text">It was Sunday, so I did not go to the field, but I went to my mother’s house to cut trees in the garden.</p>
-
-<p class="story-text">It was Sunday, so I did not go to the field, but I went to my mother’s house to cut trees in the garden.</p>
-<div class="gallery"><a href="assets/image28.jpg" target="_blank"><img src="assets/image28.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image29.jpg" target="_blank"><img src="assets/image29.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 26, 2026 (Sun)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>DIY</span><span>Tools</span><span>Family</span><span>Mother</span><span>Field</span></div></div>
+  <p class="diary-text">It was Sunday, so I did not go to the field, but I went to my mother’s house to cut trees in the garden. Since I found usable PVC pipe in the garage, I decided to make a suiko myself.</p>
+  
+  <div class="gallery"><a href="assets/image28.jpg" target="_blank"><img src="assets/image28.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image29.jpg" target="_blank"><img src="assets/image29.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Tools|Family|Mother|Father|Field">
-<div class="entry-meta"><time>April 25, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Tools</span><span>Family</span><span>Mother</span><span>Father</span><span>Field</span></div></div>
-<p class="diary-text">Today was soba day with my mother. I also checked the tools and materials my father had left in the garage.</p>
-
-<p class="story-text">Today was soba day with my mother. I also checked the tools and materials my father had left in the garage.</p>
-<div class="gallery"><a href="assets/image27.jpg" target="_blank"><img src="assets/image27.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 25, 2026 (Sat)</time><div class="tags"><span>Well digging</span><span>Tools</span><span>Family</span><span>Mother</span><span>Father</span><span>Field</span></div></div>
+  <p class="diary-text">Today was soba day. For more than five years, every other week has been a day to eat soba with my mother. I also checked tools and materials my father had left in the garage.</p>
+  
+  <div class="gallery"><a href="assets/image27.jpg" target="_blank"><img src="assets/image27.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
-<article class="entry" data-tags="Well digging|Clay|Sand and gravel|Hairy vetch|Family|Mother|Nagaimo yam|Eggplant|Edamame">
-<div class="entry-meta"><time>April 24, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Sand and gravel</span><span>Hairy vetch</span><span>Family</span><span>Mother</span><span>Nagaimo yam</span><span>Eggplant</span><span>Edamame</span></div></div>
-<p class="diary-text">The hairy vetch, oats, and barley planted as green manure are growing well. On the third day of well digging, I reached about 3.5 meters.</p>
 
-<p class="story-text">The hairy vetch, oats, and barley planted as green manure are growing well. On the third day of well digging, I reached about 3.5 meters.</p>
-<div class="gallery"><a href="assets/image20.jpg" target="_blank"><img src="assets/image20.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image21.jpg" target="_blank"><img src="assets/image21.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image22.jpg" target="_blank"><img src="assets/image22.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image23.jpg" target="_blank"><img src="assets/image23.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image24.jpg" target="_blank"><img src="assets/image24.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image25.jpg" target="_blank"><img src="assets/image25.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image26.jpg" target="_blank"><img src="assets/image26.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+<article class="entry" data-tags="Well digging|Clay|Sand and gravel|Hairy vetch|Oats|Barley|Family|Mother|Nagaimo yam">
+  <div class="entry-meta"><time>April 24, 2026 (Fri)</time><div class="tags"><span>Well digging</span><span>Clay</span><span>Sand and gravel</span><span>Hairy vetch</span><span>Oats</span><span>Barley</span><span>Family</span><span>Mother</span><span>Nagaimo yam</span></div></div>
+  <p class="diary-text">The hairy vetch, oats, and barley planted as green manure are growing well. The asparagus transplanted from Grandma’s garden has also sent up several shoots. On the third day of well digging, I reached about 3.5 meters.</p>
+  
+  <div class="gallery"><a href="assets/image20.jpg" target="_blank"><img src="assets/image20.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image21.jpg" target="_blank"><img src="assets/image21.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image22.jpg" target="_blank"><img src="assets/image22.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image23.jpg" target="_blank"><img src="assets/image23.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image24.jpg" target="_blank"><img src="assets/image24.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image25.jpg" target="_blank"><img src="assets/image25.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image26.jpg" target="_blank"><img src="assets/image26.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging|Suiko|Water level|Family|Mother|Eggplant|Rain">
-<div class="entry-meta"><time>April 23, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Water level</span><span>Family</span><span>Mother</span><span>Eggplant</span><span>Rain</span></div></div>
-<p class="diary-text">Started work a little after 6 a.m. I made protective shields for the eggplants and continued the second round of well digging.</p>
-
-<p class="story-text">Started work a little after 6 a.m. I made protective shields for the eggplants and continued the second round of well digging.</p>
-<div class="gallery"><a href="assets/image14.jpg" target="_blank"><img src="assets/image14.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image15.jpg" target="_blank"><img src="assets/image15.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image16.jpg" target="_blank"><img src="assets/image16.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image17.jpg" target="_blank"><img src="assets/image17.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image18.jpg" target="_blank"><img src="assets/image18.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image19.jpg" target="_blank"><img src="assets/image19.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 23, 2026 (Thu)</time><div class="tags"><span>Well digging</span><span>Suiko</span><span>Water level</span><span>Family</span><span>Mother</span><span>Eggplant</span><span>Rain</span></div></div>
+  <p class="diary-text">Started work a little after 6 a.m. I made protective shields for the eggplants and then continued the second round of well digging. At about 2.5 meters, I could see the water surface.</p>
+  
+  <div class="gallery"><a href="assets/image14.jpg" target="_blank"><img src="assets/image14.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image15.jpg" target="_blank"><img src="assets/image15.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image16.jpg" target="_blank"><img src="assets/image16.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image17.jpg" target="_blank"><img src="assets/image17.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image18.jpg" target="_blank"><img src="assets/image18.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image19.jpg" target="_blank"><img src="assets/image19.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Family|Mother|Eggplant|Field">
-<div class="entry-meta"><time>April 22, 2026 (Wed)</time><div class="tags"><span>Family</span><span>Mother</span><span>Eggplant</span><span>Field</span></div></div>
-<p class="diary-text">Yesterday’s strong wind seems to have blown away the small plastic tunnel over the eggplants. My mother made a new one using fertilizer bags.</p>
-
-<p class="story-text">Yesterday’s strong wind seems to have blown away the small plastic tunnel over the eggplants. My mother made a new one using fertilizer bags.</p>
-
+  <div class="entry-meta"><time>April 22, 2026 (Wed)</time><div class="tags"><span>Family</span><span>Mother</span><span>Eggplant</span><span>Field</span></div></div>
+  <p class="diary-text">It seems yesterday’s strong wind blew away the small plastic tunnel over the eggplants. My mother made a new one using fertilizer bags.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Tools|Family|Mother|Father|Leaf lettuce|Sprouting|Rain|Field">
-<div class="entry-meta"><time>April 21, 2026 (Tue)</time><div class="tags"><span>Tools</span><span>Family</span><span>Mother</span><span>Father</span><span>Leaf lettuce</span><span>Sprouting</span><span>Rain</span><span>Field</span></div></div>
-<p class="diary-text">When I went to the field, it was raining, so I searched for treasures in the garage. It reminded me of my father.</p>
-
-<p class="story-text">When I went to the field, it was raining, so I searched for treasures in the garage. It reminded me of my father.</p>
-<div class="gallery"><a href="assets/image7.jpg" target="_blank"><img src="assets/image7.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image8.jpg" target="_blank"><img src="assets/image8.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image9.jpg" target="_blank"><img src="assets/image9.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image10.jpg" target="_blank"><img src="assets/image10.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image11.jpg" target="_blank"><img src="assets/image11.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image12.jpg" target="_blank"><img src="assets/image12.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image13.jpg" target="_blank"><img src="assets/image13.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 21, 2026 (Tue)</time><div class="tags"><span>Tools</span><span>Family</span><span>Mother</span><span>Father</span><span>Leaf lettuce</span><span>Sprouting</span><span>Rain</span><span>Field</span></div></div>
+  <p class="diary-text">When I went to the field, it was raining, so I searched for treasures in the garage. It reminded me of my father. I also confirmed that the lettuce mix had sprouted.</p>
+  
+  <div class="gallery"><a href="assets/image7.jpg" target="_blank"><img src="assets/image7.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image8.jpg" target="_blank"><img src="assets/image8.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image9.jpg" target="_blank"><img src="assets/image9.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image10.jpg" target="_blank"><img src="assets/image10.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image11.jpg" target="_blank"><img src="assets/image11.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image12.jpg" target="_blank"><img src="assets/image12.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image13.jpg" target="_blank"><img src="assets/image13.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Tractor">
-<div class="entry-meta"><time>April 20, 2026 (Mon)</time><div class="tags"><span>Tractor</span></div></div>
-<p class="diary-text">Improved the small plastic greenhouse. Replacement rotary tiller blades for the tractor arrived.</p>
-
-<p class="story-text">Improved the small plastic greenhouse. Replacement rotary tiller blades for the tractor arrived.</p>
-
+  <div class="entry-meta"><time>April 20, 2026 (Mon)</time><div class="tags"><span>Tractor</span></div></div>
+  <p class="diary-text">Improved the small plastic greenhouse. Replacement rotary tiller blades for the tractor arrived.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Transplanting|Field">
-<div class="entry-meta"><time>April 19, 2026 (Sun)</time><div class="tags"><span>Transplanting</span><span>Field</span></div></div>
-<p class="diary-text">Transplanted two long eggplant seedlings into the field.</p>
-
-<p class="story-text">Transplanted two long eggplant seedlings into the field.</p>
-<div class="gallery"><a href="assets/image4.jpg" target="_blank"><img src="assets/image4.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image5.jpg" target="_blank"><img src="assets/image5.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image6.jpg" target="_blank"><img src="assets/image6.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 19, 2026 (Sun)</time><div class="tags"><span>Transplanting</span><span>Field</span></div></div>
+  <p class="diary-text">Transplanted two long eggplant seedlings into the field. After planting, I used Rikidas and set up a small plastic greenhouse.</p>
+  
+  <div class="gallery"><a href="assets/image4.jpg" target="_blank"><img src="assets/image4.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image5.jpg" target="_blank"><img src="assets/image5.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image6.jpg" target="_blank"><img src="assets/image6.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Well digging">
-<div class="entry-meta"><time>April 17, 2026 (Fri)</time><div class="tags"><span>Well digging</span></div></div>
-<p class="diary-text">First day of well digging. I chose the location and started digging about one meter with a shovel.</p>
-
-<p class="story-text">First day of well digging. I chose the location and started digging about one meter with a shovel.</p>
-<div class="gallery"><a href="assets/image2.jpg" target="_blank"><img src="assets/image2.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image3.jpg" target="_blank"><img src="assets/image3.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 17, 2026 (Fri)</time><div class="tags"><span>Well digging</span></div></div>
+  <p class="diary-text">First day of well digging. I chose the location and started digging about one meter with a shovel. I had already ordered an auger and bought a two-meter VU100 PVC pipe.</p>
+  
+  <div class="gallery"><a href="assets/image2.jpg" target="_blank"><img src="assets/image2.jpg" alt="Farm diary photo" loading="lazy"></a><a href="assets/image3.jpg" target="_blank"><img src="assets/image3.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Nebaristar|Nagaimo yam|Planting">
-<div class="entry-meta"><time>April 14, 2026 (Tue)</time><div class="tags"><span>Nebaristar</span><span>Nagaimo yam</span><span>Planting</span></div></div>
-<p class="diary-text">Planted two Nagaimo yam “Nebaristar” seed pieces.</p>
-
-<p class="story-text">Planted two Nagaimo yam “Nebaristar” seed pieces.</p>
-
+  <div class="entry-meta"><time>April 14, 2026 (Tue)</time><div class="tags"><span>Nebaristar</span><span>Nagaimo yam</span><span>Planting</span></div></div>
+  <p class="diary-text">Planted two Nagaimo yam “Nebaristar” seed pieces.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Sprouting">
-<div class="entry-meta"><time>April 11, 2026 (Sat)</time><div class="tags"><span>Sprouting</span></div></div>
-<p class="diary-text">Edamame “Yugari Musume” sprouted.</p>
-
-<p class="story-text">Edamame “Yugari Musume” sprouted.</p>
-<div class="gallery"><a href="assets/image1.jpg" target="_blank"><img src="assets/image1.jpg" alt="Farm diary photo" loading="lazy"></a></div>
+  <div class="entry-meta"><time>April 11, 2026 (Sat)</time><div class="tags"><span>Sprouting</span></div></div>
+  <p class="diary-text">Edamame “Yugari Musume” sprouted.</p>
+  
+  <div class="gallery"><a href="assets/image1.jpg" target="_blank"><img src="assets/image1.jpg" alt="Farm diary photo" loading="lazy"></a></div>
 </article>
+
 <article class="entry" data-tags="Leaf lettuce|Sowing">
-<div class="entry-meta"><time>April 10, 2026 (Fri)</time><div class="tags"><span>Leaf lettuce</span><span>Sowing</span></div></div>
-<p class="diary-text">Sowed leaf lettuce.</p>
-
-<p class="story-text">Sowed leaf lettuce.</p>
-
+  <div class="entry-meta"><time>April 10, 2026 (Fri)</time><div class="tags"><span>Leaf lettuce</span><span>Sowing</span></div></div>
+  <p class="diary-text">Sowed leaf lettuce.</p>
+  
+  
 </article>
-<article class="entry" data-tags="Sprouting">
-<div class="entry-meta"><time>April 7, 2026 (Tue)</time><div class="tags"><span>Sprouting</span></div></div>
-<p class="diary-text">The barley sprouted.</p>
 
-<p class="story-text">The barley sprouted.</p>
-
+<article class="entry" data-tags="Barley|Sprouting">
+  <div class="entry-meta"><time>April 7, 2026 (Tue)</time><div class="tags"><span>Barley</span><span>Sprouting</span></div></div>
+  <p class="diary-text">The barley sprouted.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Asparagus|Transplanting">
-<div class="entry-meta"><time>April 6, 2026 (Mon)</time><div class="tags"><span>Asparagus</span><span>Transplanting</span></div></div>
-<p class="diary-text">Transplanted two additional asparagus plants.</p>
-
-<p class="story-text">Transplanted two additional asparagus plants.</p>
-
+  <div class="entry-meta"><time>April 6, 2026 (Mon)</time><div class="tags"><span>Asparagus</span><span>Transplanting</span></div></div>
+  <p class="diary-text">Transplanted two additional asparagus plants.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Asparagus|Transplanting">
-<div class="entry-meta"><time>April 3, 2026 (Fri)</time><div class="tags"><span>Asparagus</span><span>Transplanting</span></div></div>
-<p class="diary-text">Transplanted two asparagus plants.</p>
-
-<p class="story-text">Transplanted two asparagus plants.</p>
-
+  <div class="entry-meta"><time>April 3, 2026 (Fri)</time><div class="tags"><span>Asparagus</span><span>Transplanting</span></div></div>
+  <p class="diary-text">Transplanted two asparagus plants.</p>
+  
+  
 </article>
-<article class="entry" data-tags="Sowing|Sprouting">
-<div class="entry-meta"><time>April 1, 2026 (Wed)</time><div class="tags"><span>Sowing</span><span>Sprouting</span></div></div>
-<p class="diary-text">The oats sprouted, and I sowed barley.</p>
 
-<p class="story-text">The oats sprouted, and I sowed barley.</p>
-
+<article class="entry" data-tags="Oats|Barley|Sowing|Sprouting">
+  <div class="entry-meta"><time>April 1, 2026 (Wed)</time><div class="tags"><span>Oats</span><span>Barley</span><span>Sowing</span><span>Sprouting</span></div></div>
+  <p class="diary-text">The oats sprouted, and I sowed barley.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Edamame|Sowing">
-<div class="entry-meta"><time>March 31, 2026 (Tue)</time><div class="tags"><span>Edamame</span><span>Sowing</span></div></div>
-<p class="diary-text">Sowed edamame.</p>
-
-<p class="story-text">Sowed edamame.</p>
-
+  <div class="entry-meta"><time>March 31, 2026 (Tue)</time><div class="tags"><span>Edamame</span><span>Sowing</span></div></div>
+  <p class="diary-text">Sowed edamame.</p>
+  
+  
 </article>
-<article class="entry" data-tags="Sowing">
-<div class="entry-meta"><time>March 25, 2026 (Wed)</time><div class="tags"><span>Sowing</span></div></div>
-<p class="diary-text">Sowed oats.</p>
 
-<p class="story-text">Sowed oats.</p>
-
+<article class="entry" data-tags="Oats|Sowing">
+  <div class="entry-meta"><time>March 25, 2026 (Wed)</time><div class="tags"><span>Oats</span><span>Sowing</span></div></div>
+  <p class="diary-text">Sowed oats.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Hairy vetch|Sprouting">
-<div class="entry-meta"><time>March 24, 2026 (Tue)</time><div class="tags"><span>Hairy vetch</span><span>Sprouting</span></div></div>
-<p class="diary-text">The hairy vetch sprouted.</p>
-
-<p class="story-text">The hairy vetch sprouted.</p>
-
+  <div class="entry-meta"><time>March 24, 2026 (Tue)</time><div class="tags"><span>Hairy vetch</span><span>Sprouting</span></div></div>
+  <p class="diary-text">The hairy vetch sprouted.</p>
+  
+  
 </article>
+
 <article class="entry" data-tags="Hairy vetch|Sowing|Harvest|Field">
-<div class="entry-meta"><time>March 9, 2026 (Mon)</time><div class="tags"><span>Hairy vetch</span><span>Sowing</span><span>Harvest</span><span>Field</span></div></div>
-<p class="diary-text">Sowed hairy vetch. I started by growing green manure that does not require harvesting.</p>
-
-<p class="story-text">Sowed hairy vetch. I started by growing green manure that does not require harvesting.</p>
-
-</article>
-</section>
-</main>
-<footer>Generated from Hatake Diary.xlsx</footer>
-<script>
-const filterButtons=document.querySelectorAll('.filter');
-const entries=document.querySelectorAll('.entry');
-function applyFilter(tag){
-  filterButtons.forEach(b=>b.classList.toggle('active',b.dataset.tag===tag));
-  entries.forEach(e=>{
-    const tags=(e.dataset.tags||'').split('|');
-    e.style.display=(tag==='all'||tags.includes(tag))?'':'none';
-  });
-}
-filterButtons.forEach(btn=>btn.addEventListener('click',()=>applyFilter(btn.dataset.tag)));
-document.querySelectorAll('.tags span').forEach(span=>span.addEventListener('click',()=>{
-  applyFilter(span.textContent.trim());
-  window.scrollTo({top:0,behavior:'smooth'});
-}));
-document.querySelectorAll('.view-tab').forEach(tab=>tab.addEventListener('click',()=>{
-  document.querySelectorAll('.view-tab').forEach(t=>t.classList.remove('active'));
-  tab.classList.add('active');
-  document.body.classList.toggle('story-mode',tab.dataset.view==='story');
-}));
-</script>
-</body>
-</html>
+  <div class="entry-meta"><time>March 9, 2026 (Mon)</time><div class="tags"><span>Hairy vetch</span><span>Sowing</span><span>Harvest</span><span>Field</span></div></div>
+  <p class="diary-text">Sowed hairy vetch. I had decided to take responsibility for managing the field, but I was not sure where to begin, so I started by growing green manure.</p>
+  
+  
+</article></section></main><footer>Generated from Hatake Diary.xlsx</footer><script>
+const filterButtons=document.querySelectorAll('.filter');const entries=document.querySelectorAll('.entry');function applyFilter(tag){filterButtons.forEach(b=>b.classList.toggle('active',b.dataset.tag===tag));entries.forEach(e=>{const tags=(e.dataset.tags||'').split('|');e.style.display=(tag==='all'||tags.includes(tag))?'':'none';});}filterButtons.forEach(btn=>btn.addEventListener('click',()=>applyFilter(btn.dataset.tag)));document.querySelectorAll('.tags span').forEach(span=>span.addEventListener('click',()=>{applyFilter(span.textContent.trim());window.scrollTo({top:0,behavior:'smooth'});}));
+</script></body></html>
