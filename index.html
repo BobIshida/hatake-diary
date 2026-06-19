@@ -1,704 +1,620 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bob's Farm Diary</title>
-
-<style>
-:root{--card:#fffdf8;--ink:#253026;--muted:#6f766f;--green:#47734d;--green2:#e4efe2;--line:#e2ddcf}
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#eef6eb 0,#f7f4ec 260px);color:var(--ink);line-height:1.75}
-html[lang="en"] body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-header{max-width:1100px;margin:0 auto;padding:56px 22px 28px}
-.hero{background:rgba(255,253,248,.88);border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 18px 50px rgba(42,54,38,.08);position:relative}
-.lang-toggle{text-decoration:none;display:inline-block;position:absolute;right:24px;top:24px;border:1px solid #cddbc9;background:#fff;color:#315c35;border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:700}
-h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:.04em;padding-right:120px}
-.lead{max-width:760px;color:var(--muted);font-size:18px;margin:12px 0 0}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
-.stat strong{display:block;font-size:24px;color:var(--green);line-height:1.35}
-main{max-width:1100px;margin:0 auto;padding:0 22px 70px}
-.toolbar{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);background:rgba(247,244,236,.88);padding:12px 0}
-.filters{display:flex;gap:10px;flex-wrap:wrap}
-.filter{border:1px solid #cddbc9;background:#fff;color:#315c35;border-radius:999px;padding:9px 14px;cursor:pointer;font-size:14px;font-weight:700}
-.filter.active{background:var(--green);color:#fff;border-color:var(--green)}
-.timeline{display:grid;gap:22px;margin-top:20px}
-.entry{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 12px 30px rgba(42,54,38,.06)}
-.entry-meta{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}
-time{color:var(--green);font-weight:700}
-.tags{display:flex;gap:8px;flex-wrap:wrap}
-.tags span{background:var(--green2);color:#37603b;border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer}
-.entry p{margin:10px 0 0;font-size:17px;white-space:pre-wrap}
-.memo{margin-top:16px;padding:14px 16px;border-left:4px solid #9abf8f;border-radius:14px;background:#f6fbf4;color:#314733}
-.memo strong{color:#24502b}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:18px}
-.gallery a{display:block;overflow:hidden;border-radius:16px;background:#eee;aspect-ratio:4/3;border:1px solid var(--line)}
-.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}
-.gallery a:hover img{transform:scale(1.04)}
-footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--line)}
-@media(max-width:720px){.hero{padding:24px}.lang-toggle{position:static;margin-bottom:16px}h1{padding-right:0}.stats{grid-template-columns:1fr}.entry{padding:18px;border-radius:18px}}
-</style>
-
-</head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bob’s Farm Diary｜畑日記</title><meta name="description" content="Excelから生成した畑日記。新しい日付が上に表示されます。"><link rel="stylesheet" href="assets/style.css"></head>
 <body>
-<header>
-<section class="hero">
-<a class="lang-toggle" href="index_en.html">English</a>
-<h1>Bob's Farm Diary</h1>
-<p class="lead">Excelに記録された畑仕事のメモと写真を、日付順に読める小さなウェブ日記にしました。</p>
-<div class="stats">
-<div class="stat"><strong>62</strong>記録数</div>
-<div class="stat"><strong>176</strong>写真</div>
-<div class="stat"><strong>2026年3月9日（月）〜<br>2026年6月12日（金）</strong>期間</div>
-</div>
-</section>
-</header>
-<main>
-<div class="toolbar">
-<div class="filters"><button class="filter active" data-tag="all">すべて</button><button class="filter" data-tag="井戸掘り">井戸掘り <small>31</small></button><button class="filter" data-tag="畑">畑 <small>28</small></button><button class="filter" data-tag="家族">家族 <small>16</small></button><button class="filter" data-tag="スイコ">スイコ <small>16</small></button><button class="filter" data-tag="母">母 <small>15</small></button><button class="filter" data-tag="さや管">さや管 <small>15</small></button><button class="filter" data-tag="ヘアリーベッチ">ヘアリーベッチ <small>12</small></button><button class="filter" data-tag="収穫">収穫 <small>10</small></button><button class="filter" data-tag="粘土">粘土 <small>9</small></button><button class="filter" data-tag="リーフレタス">リーフレタス <small>8</small></button><button class="filter" data-tag="ポンプ">ポンプ <small>8</small></button><button class="filter" data-tag="エン麦">エン麦 <small>7</small></button><button class="filter" data-tag="イチゴ">イチゴ <small>7</small></button><button class="filter" data-tag="ミニトマト">ミニトマト <small>7</small></button><button class="filter" data-tag="雨">雨 <small>7</small></button><button class="filter" data-tag="発芽">発芽 <small>7</small></button><button class="filter" data-tag="ひまわり">ひまわり <small>6</small></button><button class="filter" data-tag="キュウリ">キュウリ <small>6</small></button><button class="filter" data-tag="トマト">トマト <small>6</small></button><button class="filter" data-tag="茄子">茄子 <small>6</small></button><button class="filter" data-tag="DIY">DIY <small>6</small></button><button class="filter" data-tag="播種">播種 <small>6</small></button><button class="filter" data-tag="移植">移植 <small>5</small></button><button class="filter" data-tag="ネバリスター">ネバリスター <small>5</small></button><button class="filter" data-tag="トラクター">トラクター <small>5</small></button><button class="filter" data-tag="ピーマン">ピーマン <small>5</small></button><button class="filter" data-tag="大麦">大麦 <small>5</small></button><button class="filter" data-tag="手動ポンプ">手動ポンプ <small>5</small></button><button class="filter" data-tag="砂礫層">砂礫層 <small>5</small></button><button class="filter" data-tag="工具">工具 <small>5</small></button><button class="filter" data-tag="枝豆">枝豆 <small>4</small></button><button class="filter" data-tag="アスパラガス">アスパラガス <small>4</small></button><button class="filter" data-tag="漉き込み">漉き込み <small>4</small></button><button class="filter" data-tag="ショウガ">ショウガ <small>3</small></button><button class="filter" data-tag="梅雨">梅雨 <small>3</small></button><button class="filter" data-tag="水やり">水やり <small>3</small></button><button class="filter" data-tag="草刈り機">草刈り機 <small>3</small></button><button class="filter" data-tag="犬">犬 <small>3</small></button><button class="filter" data-tag="父">父 <small>3</small></button><button class="filter" data-tag="南高梅">南高梅 <small>2</small></button><button class="filter" data-tag="畝立て">畝立て <small>2</small></button><button class="filter" data-tag="ジャガイモ">ジャガイモ <small>2</small></button><button class="filter" data-tag="台風">台風 <small>2</small></button><button class="filter" data-tag="梅">梅 <small>2</small></button><button class="filter" data-tag="植付">植付 <small>2</small></button><button class="filter" data-tag="シュレッダー刃">シュレッダー刃 <small>2</small></button><button class="filter" data-tag="AI">AI <small>2</small></button><button class="filter" data-tag="ジグソー">ジグソー <small>2</small></button><button class="filter" data-tag="水位">水位 <small>2</small></button><button class="filter" data-tag="長いも">長いも <small>2</small></button><button class="filter" data-tag="玉レタス">玉レタス <small>1</small></button><button class="filter" data-tag="敷き藁">敷き藁 <small>1</small></button><button class="filter" data-tag="菖蒲園">菖蒲園 <small>1</small></button><button class="filter" data-tag="四十肩">四十肩 <small>1</small></button><button class="filter" data-tag="青少推">青少推 <small>1</small></button><button class="filter" data-tag="フット弁">フット弁 <small>1</small></button><button class="filter" data-tag="摘果">摘果 <small>1</small></button><button class="filter" data-tag="レーキ">レーキ <small>1</small></button><button class="filter" data-tag="鳥">鳥 <small>1</small></button><button class="filter" data-tag="田んぼ">田んぼ <small>1</small></button><button class="filter" data-tag="米">米 <small>1</small></button><button class="filter" data-tag="苗床">苗床 <small>1</small></button><button class="filter" data-tag="ジョウロ">ジョウロ <small>1</small></button><button class="filter" data-tag="ベビーリーフ">ベビーリーフ <small>1</small></button><button class="filter" data-tag="農家">農家 <small>1</small></button><button class="filter" data-tag="母の日">母の日 <small>1</small></button><button class="filter" data-tag="菜の花">菜の花 <small>1</small></button><button class="filter" data-tag="日常">日常 <small>1</small></button></div>
-</div>
-<section class="timeline">
-
-<article class="entry" data-tags="井戸掘り|ひまわり|玉レタス|リーフレタス|移植|畑">
-  <div class="entry-meta">
-    <time>2026年6月12日（金）</time>
-    <div class="tags"><span>井戸掘り</span><span>ひまわり</span><span>玉レタス</span><span>リーフレタス</span><span>移植</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">自宅で育苗中の玉レタスの成長がみられないので、6株だけひとまず畑に定植してみた。うまく成長してくれるか見守りたい。畑に移植したミニヒマワリが急激に花をつけて賑やかになった。予想以上に株が大きくなって込み合っていたので、一部を井戸周りに移植した。ちょっといい感じ。</p>
-  
-  <div class="gallery"><a href="assets/image175.jpg" target="_blank"><img src="assets/image175.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image176.jpg" target="_blank"><img src="assets/image176.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="エン麦|敷き藁|家族|母|南高梅|ショウガ|キュウリ|収穫|畝立て">
-  <div class="entry-meta">
-    <time>2026年6月11日（木）</time>
-    <div class="tags"><span>エン麦</span><span>敷き藁</span><span>家族</span><span>母</span><span>南高梅</span><span>ショウガ</span><span>キュウリ</span><span>収穫</span><span>畝立て</span></div>
-  </div>
-  <p class="diary-text">畑で畝の整備をしていたら母親がヒョッコリ現れた。いつもは夕方に畑に来るのだが、今日は違った。タップリと収穫した南高梅を分けてもらった。２Kg以上ある。種取用に残したエン麦を少し敷き藁用に刈ってみた。母親がキュウリの下に使いたいという事だ。私の方のキュウリはイボだけで上に伸ばしているので敷き藁は不要と思われるが、いずれショウガ用に使う必要が出てくるかも。</p>
-  <div class="memo"><strong>一言メモ</strong><p>ちなみに昨年南高梅は不作であまり多く収穫できなかったそうだ。</p></div>
-  <div class="gallery"><a href="assets/image174.jpg" target="_blank"><img src="assets/image174.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="イチゴ|梅雨|ネバリスター|キュウリ|ミニトマト|トマト|枝豆|アスパラガス|リーフレタス">
-  <div class="entry-meta">
-    <time>2026年6月10日（水）</time>
-    <div class="tags"><span>イチゴ</span><span>梅雨</span><span>ネバリスター</span><span>キュウリ</span><span>ミニトマト</span><span>トマト</span><span>枝豆</span><span>アスパラガス</span><span>リーフレタス</span></div>
-  </div>
-  <p class="diary-text">3日ぶりに畑に行くと、みんな元気そうだ。梅雨に入ったので水やりは不要。今日はアスパラの畝の雑草取りとレタスの最終収穫と後処理を行った。キュウリやナスもミニトマトに遅れて実を付け始めた。枝豆は葉っぱが多い茂っている。ネバリスターも旺盛だ。北側のイチゴの様子はあまりよくないが、南側のは元気そう。</p>
-  <div class="memo"><strong>一言メモ</strong><p>レタスは一株だけ残してこの後の成長を見届けることとした。</p></div>
-  <div class="gallery"><a href="assets/image164.jpg" target="_blank"><img src="assets/image164.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image165.jpg" target="_blank"><img src="assets/image165.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image166.jpg" target="_blank"><img src="assets/image166.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image167.jpg" target="_blank"><img src="assets/image167.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image168.jpg" target="_blank"><img src="assets/image168.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image169.jpg" target="_blank"><img src="assets/image169.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image170.jpg" target="_blank"><img src="assets/image170.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image171.jpg" target="_blank"><img src="assets/image171.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image172.jpg" target="_blank"><img src="assets/image172.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image173.jpg" target="_blank"><img src="assets/image173.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="ひまわり|梅雨|リーフレタス|収穫|雨|畑">
-  <div class="entry-meta">
-    <time>2026年6月9日（火）</time>
-    <div class="tags"><span>ひまわり</span><span>梅雨</span><span>リーフレタス</span><span>収穫</span><span>雨</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">先日梅雨入りして雨模様が続いているので、ここ２日は畑に行っていない。畑のヒマワリに続いて、自宅の庭のヒマワリも咲き始めた。</p>
-  <div class="memo"><strong>一言メモ</strong><p>明日の朝、雨でなければ畑に行こう。リーフレタスの最後の収穫をすることになりそう。</p></div>
-  <div class="gallery"><a href="assets/image163.jpg" target="_blank"><img src="assets/image163.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="家族|母|ジャガイモ|収穫|畑">
-  <div class="entry-meta">
-    <time>2026年6月7日（日）</time>
-    <div class="tags"><span>家族</span><span>母</span><span>ジャガイモ</span><span>収穫</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">母親が91歳の誕生日を迎えたのでお祝いを渡してきた。その後、畑の様子を見にいっていたら、母親がジャガイモの収穫に来た。手伝おうというと、自分で出来ると言う。まだまだ元気だが、否決は畑仕事にあるのかもしれない。</p>
-  <div class="memo"><strong>一言メモ</strong><p>取り組む仕事があるのは、とても楽しい事なのだと思う。</p></div>
-  
-</article>
-
-<article class="entry" data-tags="リーフレタス|収穫|畑">
-  <div class="entry-meta">
-    <time>2026年6月6日（土）</time>
-    <div class="tags"><span>リーフレタス</span><span>収穫</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日はリーフレタスの4回目？の収穫をした。畑の様子をザっと見て今日は特に作業なし。</p>
-  
-  <div class="gallery"><a href="assets/image162.jpg" target="_blank"><img src="assets/image162.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="ひまわり|イチゴ|台風|梅雨|菖蒲園|雨|畑">
-  <div class="entry-meta">
-    <time>2026年6月5日（金）</time>
-    <div class="tags"><span>ひまわり</span><span>イチゴ</span><span>台風</span><span>梅雨</span><span>菖蒲園</span><span>雨</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">台風６号で２日間畑には行かなかったが、今日は朝からいい天気で気持ちがいい。畑に行ってみるとミニヒマワリが開花していた。同じ種を自宅の庭にも植えてあるが、はやり畑の方が環境が良いようだ。その他の植物も元気に成長していることが確認できた。ただイチゴの株が一部調子がよくないようだ。イチゴと言えばポット受けで来年用の苗を作成することにした。今日は10ポットを設置した。</p>
-  <div class="memo"><strong>一言メモ</strong><p>畑の近くにある菖蒲園もオープンして段々と梅雨入りの気配を感じる。</p></div>
-  <div class="gallery"><a href="assets/image151.jpg" target="_blank"><img src="assets/image151.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image152.jpg" target="_blank"><img src="assets/image152.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image153.jpg" target="_blank"><img src="assets/image153.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image154.jpg" target="_blank"><img src="assets/image154.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image155.jpg" target="_blank"><img src="assets/image155.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image156.jpg" target="_blank"><img src="assets/image156.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image157.jpg" target="_blank"><img src="assets/image157.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image158.jpg" target="_blank"><img src="assets/image158.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image159.jpg" target="_blank"><img src="assets/image159.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image160.jpg" target="_blank"><img src="assets/image160.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image161.jpg" target="_blank"><img src="assets/image161.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="イチゴ|台風|四十肩|青少推|ミニトマト|トマト|茄子|雨|水やり">
-  <div class="entry-meta">
-    <time>2026年6月2日（火）</time>
-    <div class="tags"><span>イチゴ</span><span>台風</span><span>四十肩</span><span>青少推</span><span>ミニトマト</span><span>トマト</span><span>茄子</span><span>雨</span><span>水やり</span></div>
-  </div>
-  <p class="diary-text">今日の夕方から台風による風雨ということで、風で物が飛ばないように手当を行った。ミニトマトの脇芽が1本大きくなっていたのを欠いてきた。ミニトマトは２本仕立て、茄子は３本仕立て。イチゴの一部の葉っぱが茶色くなっている。病気かもしれない。なお、イチゴのポット受けは台風が過ぎてから行う事とした。雨が降るのが分っているので、水やりは軽めに行った。</p>
-  <div class="memo"><strong>一言メモ</strong><p>早くも６月。今年のしょっぱなは四十肩で大変だったが、回復後はすべてが快調。青少推の退任と兼業農家のデビューでかなり生活パターンが変った気がする。</p></div>
-  <div class="gallery"><a href="assets/image150.jpg" target="_blank"><img src="assets/image150.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="スイコ|梅|ショウガ|植付|収穫|畝立て|畑">
-  <div class="entry-meta">
-    <time>2026年6月1日（月）</time>
-    <div class="tags"><span>スイコ</span><span>梅</span><span>ショウガ</span><span>植付</span><span>収穫</span><span>畝立て</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日は軽トラックを借りて先日収穫した小梅の木をチェーンソーで始末してきた。ついでにショウガの植付に備えて畝の一部を耕しておく。軽トラックを借りたついでにスイコを畑から持ち帰った。</p>
-  <div class="memo"><strong>一言メモ</strong><p>ショウガは畑に直接植えてもいいらしいが、自宅で芽出しなるものを行う事とした。ここで芽を出しておけば、畑に植えた時も安心ということらしい。</p></div>
-  <div class="gallery"><a href="assets/image148.jpg" target="_blank"><img src="assets/image148.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image149.jpg" target="_blank"><img src="assets/image149.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="ショウガ">
-  <div class="entry-meta">
-    <time>2026年5月31日（日）</time>
-    <div class="tags"><span>ショウガ</span></div>
-  </div>
-  <p class="diary-text">ホームセンターに行くと夏野菜の苗が沢山売っている。中には在庫処分で30円とか50円とかで投げ売りされているが、当然ながら苗の状態は良くないので購入はしない。とは言うものの見ていると色々と欲しくなるもので、今回は種ショウガを購入した。</p>
-  
-  <div class="gallery"><a href="assets/image147.jpg" target="_blank"><img src="assets/image147.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|フット弁|スイコ|さや管|家族|母|ジャガイモ|茄子|摘果">
-  <div class="entry-meta">
-    <time>2026年5月29日（金）</time>
-    <div class="tags"><span>井戸掘り</span><span>フット弁</span><span>スイコ</span><span>さや管</span><span>家族</span><span>母</span><span>ジャガイモ</span><span>茄子</span><span>摘果</span></div>
-  </div>
-  <p class="diary-text">Geminiのアドバイスに従って茄子2株の３番花までを摘果した。さらに強固な苗に成長してくれることを祈る。母親が育てているジャガイモの初収穫を一部頂いた。早速今日の味噌汁の具になった。井戸の方はフット弁を装着するついでに寸法を確認した。さや管5.5ｍに、ホース5ｍを差し込んでいる状態なので、底から50cmあたりが給水地点となっている。</p>
-  <div class="memo"><strong>一言メモ</strong><p>久しぶりにスイコを挿入して底を突いたので濃い泥水が汲み上げられた。</p></div>
-  <div class="gallery"><a href="assets/image145.jpg" target="_blank"><img src="assets/image145.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image146.jpg" target="_blank"><img src="assets/image146.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|レーキ|トラクター|鳥|畑">
-  <div class="entry-meta">
-    <time>2026年5月28日（木）</time>
-    <div class="tags"><span>井戸掘り</span><span>レーキ</span><span>トラクター</span><span>鳥</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">かねてから欲しかったレーキを購入。井戸周りの整地と、先日トラクターで耕うんした際に畑に起伏を作ってしまったのを修正するのに使用した。</p>
-  <div class="memo"><strong>一言メモ</strong><p>井戸周りの整地をしていた時、どこからともなく綺麗な鳥がやってきた。土を掘り起こしたので虫が目当てだと思うが、良く観察しているなあと思う。</p></div>
-  <div class="gallery"><a href="assets/image139.jpg" target="_blank"><img src="assets/image139.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image140.jpg" target="_blank"><img src="assets/image140.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image141.jpg" target="_blank"><img src="assets/image141.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image142.jpg" target="_blank"><img src="assets/image142.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image143.jpg" target="_blank"><img src="assets/image143.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image144.jpg" target="_blank"><img src="assets/image144.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="ネバリスター|キュウリ|ピーマン|ミニトマト|トマト|茄子|枝豆|アスパラガス|リーフレタス">
-  <div class="entry-meta">
-    <time>2026年5月27日（水）</time>
-    <div class="tags"><span>ネバリスター</span><span>キュウリ</span><span>ピーマン</span><span>ミニトマト</span><span>トマト</span><span>茄子</span><span>枝豆</span><span>アスパラガス</span><span>リーフレタス</span></div>
-  </div>
-  <p class="diary-text">当初は何かを栽培するようなことはあまり考えていなかったのだが、気がつけば、茄子、ミニトマト、ピーマン、キュウリ、リーフレタス、枝豆、アスパラガス、ネバリスターと随分と多くの苗が植えられている。リーフレタスに至っては先日初の間引き＆収穫を迎えた。開始から僅か3か月、物凄い飛躍だ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>リーフレタス３回目の間引き＆収穫。まだまだ当面収穫できそうだ。</p></div>
-  <div class="gallery"><a href="assets/image130.jpg" target="_blank"><img src="assets/image130.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image131.jpg" target="_blank"><img src="assets/image131.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image132.jpg" target="_blank"><img src="assets/image132.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image133.jpg" target="_blank"><img src="assets/image133.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image134.jpg" target="_blank"><img src="assets/image134.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image135.jpg" target="_blank"><img src="assets/image135.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image136.jpg" target="_blank"><img src="assets/image136.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image137.jpg" target="_blank"><img src="assets/image137.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image138.jpg" target="_blank"><img src="assets/image138.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|漉き込み|家族|母|梅|収穫|水やり|畑">
-  <div class="entry-meta">
-    <time>2026年5月26日（火）</time>
-    <div class="tags"><span>井戸掘り</span><span>漉き込み</span><span>家族</span><span>母</span><span>梅</span><span>収穫</span><span>水やり</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">昨日は緑肥の漉き込みを行ったのでひと段落。植物に水やりをした後は井戸周りの整地をしていると母親が軽トラックで畑にある小梅の収穫に来た。収穫した梅の半分以上を分けてもらい自宅に持参。どう調理するかは奥様にお願いしておいた。</p>
-  
-  <div class="gallery"><a href="assets/image129.jpg" target="_blank"><img src="assets/image129.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="ヘアリーベッチ|エン麦|大麦|漉き込み|トラクター|畑">
-  <div class="entry-meta">
-    <time>2026年5月25日（月）</time>
-    <div class="tags"><span>ヘアリーベッチ</span><span>エン麦</span><span>大麦</span><span>漉き込み</span><span>トラクター</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">エン麦に穂が付き始めたので、裁断して漉き込みを行った。大麦はまだ早いものの、一緒に裁断している。エン麦も大麦も根元がしっかりしていて、ヘアリーベッチに比べると裁断が大変だ。一週間前に裁断したヘアリーベッチも今回漉き込みを行い、畑の景観が一変。今日の主役はもちろんトラクター。やはり機械のパワーは素晴らしい。１ヵ月くらいこのまま放置して、何か作物を植えてみようと思う。</p>
-  <div class="memo"><strong>一言メモ</strong><p>今日は５時前に起床したので、畑仕事を５時半から行った。朝早くから農作業をする自分を見ている自分が居て、不思議な感じ。</p></div>
-  <div class="gallery"><a href="assets/image125.jpg" target="_blank"><img src="assets/image125.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image126.jpg" target="_blank"><img src="assets/image126.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image127.jpg" target="_blank"><img src="assets/image127.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image128.jpg" target="_blank"><img src="assets/image128.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="家族|田んぼ|米|苗床|発芽|トラクター">
-  <div class="entry-meta">
-    <time>2026年5月23日（土）</time>
-    <div class="tags"><span>家族</span><span>田んぼ</span><span>米</span><span>苗床</span><span>発芽</span><span>トラクター</span></div>
-  </div>
-  <p class="diary-text">田んぼは兄が相続した形になっているが、出来上がるお米は分けてもらっていて稲作に関しては昔ながらに家族総出で手伝いをするのが恒例となっている。とは言え昔とは違って田植え自体は機械化が進んでいて出る幕はないのだ。唯一の手伝いと言えば、種まきとトラクターでの耕運くらいだ。そして先週の土曜日が種まき。苗床に土を入れてコメの種をばらまいて、土で被せて完了。あとはブルーシートに包んで一週間で写真のように発芽した。日に当ててなかったのでモヤシ状態だが、日に当たれば直ぐに綺麗な緑色に変身するはずだ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>お米は日本そしてアジアでは極めて特別なものだと感じる。</p></div>
-  <div class="gallery"><a href="assets/image124.jpg" target="_blank"><img src="assets/image124.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|ポンプ|さや管|エン麦|ピーマン|リーフレタス|収穫|水やり|畑">
-  <div class="entry-meta">
-    <time>2026年5月22日（金）</time>
-    <div class="tags"><span>井戸掘り</span><span>ポンプ</span><span>さや管</span><span>エン麦</span><span>ピーマン</span><span>リーフレタス</span><span>収穫</span><span>水やり</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日は水やりは不要だし、土を触る仕事はできないが畑の様子をザっと見に行ってきた。昨日定植したピーマンも元気に根付いていた感じだ。緑肥として植えたエン麦が一部穂をつけ始めたようなので、天気が回復し次第、刈り込みを行う予定。リーフレタスの2回目の間引き＆収穫をした。食べるのが大変なくらいどんどん成長する。昨日枯渇を経験した井戸だが、本日汲み上げてみるとすぐに枯渇してしまった。何が問題なのか追及していくつもりだが、さや管に開けた５㎜の穴が目詰まりしているのか、そもそも水がないのか、あるいはポンプの方に問題があるのか分からないので、ひとつづつ可能性を潰す必要がある。</p>
-  <div class="memo"><strong>一言メモ</strong><p>植物がスクスクと成長する様子を見るのはとても勇気づけられる。みんな生きているんだなあと、しみじみ感じる。そして生きるとは何かについても考えさせてくれる。</p></div>
-  <div class="gallery"><a href="assets/image114.jpg" target="_blank"><img src="assets/image114.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image115.jpg" target="_blank"><img src="assets/image115.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image116.jpg" target="_blank"><img src="assets/image116.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image117.jpg" target="_blank"><img src="assets/image117.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image118.jpg" target="_blank"><img src="assets/image118.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image119.jpg" target="_blank"><img src="assets/image119.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image120.jpg" target="_blank"><img src="assets/image120.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image121.jpg" target="_blank"><img src="assets/image121.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image122.jpg" target="_blank"><img src="assets/image122.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image123.jpg" target="_blank"><img src="assets/image123.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="雨|ジョウロ|畑">
-  <div class="entry-meta">
-    <time>2026年5月21日（木）</time>
-    <div class="tags"><span>雨</span><span>ジョウロ</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日は終日雨ということで畑での作業は一切なし。代わりにホームセンターで上呂を購入した。１０L入る大きめの上呂なので、畑で使いやすそうだ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>畑を始めてから土曜日も日曜日も、はたまたゴールデンウィークも必ず毎日畑に出かけるようになった。今日も作業はしなかったが畑には行ってきた。不思議なもので急遽畑は私の生活の一部となり、スキップする事のできないものになった。まるで睡眠や食事のように。</p></div>
-  <div class="gallery"><a href="assets/image113.jpg" target="_blank"><img src="assets/image113.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|ひまわり|ピーマン|枝豆|畑">
-  <div class="entry-meta">
-    <time>2026年5月20日（水）</time>
-    <div class="tags"><span>井戸掘り</span><span>ひまわり</span><span>ピーマン</span><span>枝豆</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">ピーマンの苗に小さな蕾を確認したので、本日畑に定植した。リキダスも吸わせたので力ずよく根付いてくれることを期待している。枝豆は本葉が5，6枚になっていたので、摘芯＆追肥＆土寄せを行ってきた。まだ仮置き状態だが、井戸はいよいよ最終形に近い。今日はタップリ汲みだしたので初めて枯渇を経験した。ちゃんと計測していないが100Lくらいは汲みだせている感じ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>ヒマワリは花がなくても太陽の方を向いていることに、今日初めて気付いた。朝日に向かってみな敬礼しているようで可愛らしい。</p></div>
-  <div class="gallery"><a href="assets/image110.jpg" target="_blank"><img src="assets/image110.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image111.jpg" target="_blank"><img src="assets/image111.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image112.jpg" target="_blank"><img src="assets/image112.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|ポンプ|さや管|ベビーリーフ|収穫">
-  <div class="entry-meta">
-    <time>2026年5月19日（火）</time>
-    <div class="tags"><span>井戸掘り</span><span>ポンプ</span><span>さや管</span><span>ベビーリーフ</span><span>収穫</span></div>
-  </div>
-  <p class="diary-text">本日、さや管を5.5mで切断してその上にポンプを仮設置、流し台も配置して最終イメージが具体化してきた。14枚のコンクリートタイルは井戸の部分に設置予定だが、その前に整地が必要だ。そして整地は地味だが手が掛かる。地道に進めよう。まだ濁りが強いが、井戸洗いを毎日少しずつ行う事で、将来的にはかなり透明な水が手に入るものと期待している。ベビーリーフが間引きの時期を迎えたので間引きをしてみた。そしてこれが初の収穫ということになった。あの小さな種がこんな立派なベビーリーフに育つのを目の当たりにするのは不思議な気もする。これは間違いなく生命の神秘だ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>自宅に戻りベビーリーフにポン酢を欠けて食べてみた。美味しいというより、超新鮮というのが第一印象。それはそのはず、今収穫したばかりなんだからね。</p></div>
-  <div class="gallery"><a href="assets/image105.jpg" target="_blank"><img src="assets/image105.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image106.jpg" target="_blank"><img src="assets/image106.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image107.jpg" target="_blank"><img src="assets/image107.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image108.jpg" target="_blank"><img src="assets/image108.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image109.jpg" target="_blank"><img src="assets/image109.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|ポンプ|さや管|草刈り機|シュレッダー刃|ヘアリーベッチ|収穫|トラクター|畑">
-  <div class="entry-meta">
-    <time>2026年5月18日（月）</time>
-    <div class="tags"><span>井戸掘り</span><span>ポンプ</span><span>さや管</span><span>草刈り機</span><span>シュレッダー刃</span><span>ヘアリーベッチ</span><span>収穫</span><span>トラクター</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">朝一で草刈り機の刃をシュレッダー刃に交換して、ヘアリーベッチの裁断を行った。期待以上に気持ちよく裁断されていて大満足。数日天日に当てておいてトラクターで幸運することになる。井戸の方は、深度5ｍジャストまで掘り進めようとしていたが、考えてみるとあまり深度5ｍにこだわる必要がない事に気付いた。気にしなければいけないのは、ポンプの設置高さや排水の事だ。ということで、再度作戦変更でこれ以上深度を追う事はやめて現状の4.95mでストップする。現在のアイデアではブロック３段の上に板をおいて、そこにポンプを設置。さや管は5.5mで切断。これはポンプを使いやすい高さに設置することを優先した選択だ。なお、井戸の周りはコンクリートのタイルを14枚設置するつもりだ。写真はイメージを沸かせるために、本来の設置位置の横に仮置きしたもの。排水については、屋外用の流しをブロックの上に置いて、排水そのものはさや管の外側の空間に流してしまう計画だ。基本的に水は畑に撒かれるので、排水はほとんど出ないと考えている。この辺りは実際に運用しながら必要に応じて対応する事とする。</p>
-  <div class="memo"><strong>一言メモ</strong><p>畑に取り組み始めて、約3か月が過ぎた。何をどうしていいか分からない状態からなんとなく自分の畑らしく感じられるようになったのが嬉しい。まだ、何も収穫してはいないが、そもそも収穫は目的ではない。井戸周りのイメージが固まってきたのも嬉しい。</p></div>
-  <div class="gallery"><a href="assets/image101.jpg" target="_blank"><img src="assets/image101.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image102.jpg" target="_blank"><img src="assets/image102.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image103.jpg" target="_blank"><img src="assets/image103.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image104.jpg" target="_blank"><img src="assets/image104.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="草刈り機|シュレッダー刃|ヘアリーベッチ|漉き込み|AI">
-  <div class="entry-meta">
-    <time>2026年5月17日（日）</time>
-    <div class="tags"><span>草刈り機</span><span>シュレッダー刃</span><span>ヘアリーベッチ</span><span>漉き込み</span><span>AI</span></div>
-  </div>
-  <p class="diary-text">ヘアリーベッチの漉き込みに備えて、草刈り機にシュレッダー刃を装着して裁断を行うのだが、2台ある草刈り機に適合する刃を選ばなければならない。と思って調べたところ、ほぼ規格が統一されているのでほぼどの草刈り機の刃も適合するようだ。早速アマゾンに注文。本日届くらしいので、明日はヘアリーベッチのシュレッダーを行うことができる。</p>
-  <div class="memo"><strong>一言メモ</strong><p>例によって写真をGPTなりGeminiに見せれば、型番まで認識してくれて、適合する刃まで指南してくれる。こりゃ便利でたまらない。すべての分野に関してこれほど手軽に情報が入手できるのは驚きだ。本当のIT時代が来たのかもしれない。</p></div>
-  <div class="gallery"><a href="assets/image99.jpg" target="_blank"><img src="assets/image99.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image100.jpg" target="_blank"><img src="assets/image100.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|手動ポンプ|ポンプ|スイコ|さや管|粘土|草刈り機|ヘアリーベッチ|漉き込み">
-  <div class="entry-meta">
-    <time>2026年5月16日（土）</time>
-    <div class="tags"><span>井戸掘り</span><span>手動ポンプ</span><span>ポンプ</span><span>スイコ</span><span>さや管</span><span>粘土</span><span>草刈り機</span><span>ヘアリーベッチ</span><span>漉き込み</span></div>
-  </div>
-  <p class="diary-text">初めての収穫は多分ベビーリーフになりそう。ミニトマトがそのあとに続く感じ。そもそも収穫を目的にしている訳ではないけれど、収穫はひとつの結果として嬉しいものに違いない。緑肥のヘアリーベッチが開花しはじめたので、近いうちに草刈り機で裁断の上、トラクターのロータリーで漉き込みを行う予定。井戸掘りの方は、本日スイコを引き上げて付着している土砂を見た結果、粘土質が強くなってきているようなので、目標値を深度5ｍジャストに変更する事とした。その時点でさや管をカットして手動ポンプをさや管の上部に設置する方法で考えている。さー、間もなく次の段階に入る。</p>
-  <div class="memo"><strong>一言メモ</strong><p>今日は田植え用の苗床に種まきをした。毎年家族で行っているが流石に母親は今年見学に回っている。哀しいことではあるが、致し方無い事である。</p></div>
-  <div class="gallery"><a href="assets/image93.jpg" target="_blank"><img src="assets/image93.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image94.jpg" target="_blank"><img src="assets/image94.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image95.jpg" target="_blank"><img src="assets/image95.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image96.jpg" target="_blank"><img src="assets/image96.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image97.jpg" target="_blank"><img src="assets/image97.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image98.jpg" target="_blank"><img src="assets/image98.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|手動ポンプ|ポンプ|さや管|イチゴ|ネバリスター|ピーマン|ミニトマト|トマト">
-  <div class="entry-meta">
-    <time>2026年5月15日（金）</time>
-    <div class="tags"><span>井戸掘り</span><span>手動ポンプ</span><span>ポンプ</span><span>さや管</span><span>イチゴ</span><span>ネバリスター</span><span>ピーマン</span><span>ミニトマト</span><span>トマト</span></div>
-  </div>
-  <p class="diary-text">どの深さまで井戸を掘るかの目途が立った。現在５ｍ弱の深さだが、目標値を5.22ｍと算出した。これは現在6ｍあるさや管を5.5mで切断して、地上から28㎝突出した状態にて、その上に手動ポンプを真上に載せるという計画だ。さや管5.5mで吸出しホースが5ｍだから井戸の底から50cm上のところで給水するというイメージだ。あくまで概算だが、悪くない案だと思っている。畑の方は茄子、ミニトマト、ベビーリーフ、イチゴ、枝豆、アスパラガス、ネバリスターが元気に成長を見せてくれている。もう少ししたら自宅にあるピーマンを定植する予定だ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>井戸掘りのゴール地点が見えてきて嬉しいことは嬉しいのだが、反面井戸掘りが終わってしまう寂しさも感じる。不思議なものだ。</p></div>
-  <div class="gallery"><a href="assets/image88.jpg" target="_blank"><img src="assets/image88.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image89.jpg" target="_blank"><img src="assets/image89.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image90.jpg" target="_blank"><img src="assets/image90.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image91.jpg" target="_blank"><img src="assets/image91.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image92.jpg" target="_blank"><img src="assets/image92.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|手動ポンプ|ポンプ|スイコ|さや管|砂礫層|DIY|家族|母">
-  <div class="entry-meta">
-    <time>2026年5月14日（木）</time>
-    <div class="tags"><span>井戸掘り</span><span>手動ポンプ</span><span>ポンプ</span><span>スイコ</span><span>さや管</span><span>砂礫層</span><span>DIY</span><span>家族</span><span>母</span></div>
-  </div>
-  <p class="diary-text">手動ポンプの取り付け部にナットを追加して、ポンプを使いやすくした。昨晩久しぶりの雨があったので畑への水やりは必要ない。早速井戸掘りに取り掛かる。まずは手動ポンプで泥水を排出するのだが、今日は初めて泥水ではなく透明に近い水が出てきた。実質的に井戸洗いをしていることになっているのだろう。今日は特に写真は取らなかったが、井戸掘りのスピードは一日5cmくらいだと思う。間もなくさや管が５ｍ埋まるところまで来た。スイコの先端に異常が無いかをみるために、スイコを引き上げてみたが、堅牢に製作されていて大丈夫なようだ。ちなみにスイコに砂礫は入っていない。砂っぽい泥水が付着している感じ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>イチゴの苗が増えているが、最初のイチゴが元気がなかった。母親が多めに化成肥料を与えていたのが気になったが、どうやら肥料焼けという状態だと思われる。回復してくれるといいが。。。</p></div>
-  
-</article>
-
-<article class="entry" data-tags="井戸掘り|手動ポンプ|ポンプ|スイコ|ヘアリーベッチ|家族|母|イチゴ|ネバリスター">
-  <div class="entry-meta">
-    <time>2026年5月13日（水）</time>
-    <div class="tags"><span>井戸掘り</span><span>手動ポンプ</span><span>ポンプ</span><span>スイコ</span><span>ヘアリーベッチ</span><span>家族</span><span>母</span><span>イチゴ</span><span>ネバリスター</span></div>
-  </div>
-  <p class="diary-text">井戸掘りの方は、根気よく毎日少しずつ前進するというスタンスだが、手動ポンプの導入により作業が効率化したと思う。具体的にはスイコは引き上げることなく底面を突いて削っていくことのためにだけ使用して、泥水のくみ出しは手動ポンプで行うという流れだ。これだと泥だらけになることもなく、スマートに作業ができる。おまけに汲み上げた泥水は植物に与えられる。深度5mが射程に入ってきた。深度5mから5.5mの間のどこかで掘るのを終了とする予定である。さて、畑の方は1か月前に植えたネバリスターの芽らしいものが出てきた。GPTに聞いてみると、ネバリスターである可能性が高いということだ。でも、2つ植えたのに出てきたのは1個だけ。もうしばらく様子を見よう。</p>
-  <div class="memo"><strong>一言メモ</strong><p>ヘアリーベッチの中から見つかったイチゴの苗は元気に成長している。それに加えて母親がどこからともなくイチゴの苗を持ってきて、そばに定植し始めた。もしかしてイチゴ畑になるのか？</p></div>
-  <div class="gallery"><a href="assets/image83.jpg" target="_blank"><img src="assets/image83.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image84.jpg" target="_blank"><img src="assets/image84.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image85.jpg" target="_blank"><img src="assets/image85.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image86.jpg" target="_blank"><img src="assets/image86.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image87.jpg" target="_blank"><img src="assets/image87.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|手動ポンプ|ポンプ">
-  <div class="entry-meta">
-    <time>2026年5月12日（火）</time>
-    <div class="tags"><span>井戸掘り</span><span>手動ポンプ</span><span>ポンプ</span></div>
-  </div>
-  <p class="diary-text">昨日自宅に帰ると、だいぶ前に注文しておいた手動ポンプが到着していた。早速、開封、組み立て、動作テストを行って特に問題はが無いことを確認。本日実際の井戸で水をくみ出してみた。何とか泥水を排出できたが、一度水が切れて空気が入ると、復旧が大変そうだ。ま、今日のところはテストなのでOKとしよう。日が高くなり暑さが増してきたので、今日は早めに終了とした。</p>
-  <div class="memo"><strong>一言メモ</strong><p>とうとうポンプで水を汲み上げる段階に入った。あと1ｍ堀勧めたいと思っているので、今しばらく井戸掘りは続く予定。</p></div>
-  <div class="gallery"><a href="assets/image79.jpg" target="_blank"><img src="assets/image79.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image80.jpg" target="_blank"><img src="assets/image80.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image81.jpg" target="_blank"><img src="assets/image81.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image82.jpg" target="_blank"><img src="assets/image82.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|さや管|ひまわり|農家|畑">
-  <div class="entry-meta">
-    <time>2026年5月11日（月）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>さや管</span><span>ひまわり</span><span>農家</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">さや管を入れてからのスイコでの井戸掘りは今一つうまく行っていなかったが、今日ブレークスルーを感じた。要はスイコの先端のギザギザで井戸の底を根気よくほぐしていけば、さや管は確実に沈下でけいるということだ。そして今日、実際にさや管を回転させたところ10cm程度沈下した。これはひとえに昨日までスイコで井戸底を砕いていたことによる。つまりスイコを引き上げることなく、単に井戸底をつついて底を砕くことが重要だという事だ。これは素晴らしいことだ。なぜならスイコを引き上げなければ泥だらけになることがないからだ。毎回全身泥だらけになって洗濯が大変だったけど、もうそれ程泥だらけになることはなさそうだ。畑の方は特に作業はしていないが、引き続き自宅の庭からミニひまわりの苗を移転している。</p>
-  <div class="memo"><strong>一言メモ</strong><p>最後の写真は、近所のプロ農家と思われる畑の風景だ。流石という言葉がピッタリで見るだけでも本気度が伝わってくる。そして美しい。今日、たまたま通りかかったときにオーナーと思われる方に許可を頂いて写真を取らせてもらった。今後もここの畑はチェックしておきたい。</p></div>
-  <div class="gallery"><a href="assets/image76.jpg" target="_blank"><img src="assets/image76.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image77.jpg" target="_blank"><img src="assets/image77.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image78.jpg" target="_blank"><img src="assets/image78.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|DIY|母の日|家族|母|菜の花">
-  <div class="entry-meta">
-    <time>2026年5月10日（日）</time>
-    <div class="tags"><span>井戸掘り</span><span>DIY</span><span>母の日</span><span>家族</span><span>母</span><span>菜の花</span></div>
-  </div>
-  <p class="diary-text">井戸近辺に自生していた菜の花の種が出来てきたので、刈り取って西側の土手の部分に敷き詰めておいた。来年、西側の土手が菜の花で一杯になることを期待。井戸掘りの方は、機能加工した板を設置したことで、足元がスッキリした。また、4.5mまでの切削で活躍したオーガを片づけた。今後使用する機会があるかどうかは不明だが、ひとまずはガレージに収納。</p>
-  <div class="memo"><strong>一言メモ</strong><p>今日は母の日だったので、母親を誘って寿司屋に行ってきた。年々年を取る母親を見るのは嬉しい事ではないが、こればかりは仕方ない。そういう自分も同じように年をとっていることを忘れずに。</p></div>
-  <div class="gallery"><a href="assets/image73.jpg" target="_blank"><img src="assets/image73.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image74.jpg" target="_blank"><img src="assets/image74.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image75.jpg" target="_blank"><img src="assets/image75.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|さや管|DIY|工具|ジグソー|キュウリ|畑">
-  <div class="entry-meta">
-    <time>2026年5月9日（土）</time>
-    <div class="tags"><span>井戸掘り</span><span>さや管</span><span>DIY</span><span>工具</span><span>ジグソー</span><span>キュウリ</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">畑にちょっと寄って、色が変わっていたキュウリの下葉を切除した。井戸掘りは休みとしたが、自宅に戻ってからさや管の周りの空間に物が落ちるのを防ぐため、そしてさや管を垂直に保つために一枚の板を加工した。なお今回、円形に板をくり抜くための工具ジグソーをこのためにヤフオクで中古を入手した。</p>
-  <div class="memo"><strong>一言メモ</strong><p>今回入手したジグソーを今後使う予定がある訳ではないが、価格も安いのでレンタルするよりいいかもしれないと思った。車のDIYである程度工具が揃っているので、ジグソーの追加でDIYの幅が広がることを期待している。</p></div>
-  <div class="gallery"><a href="assets/image71.jpg" target="_blank"><img src="assets/image71.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image72.jpg" target="_blank"><img src="assets/image72.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|粘土|キュウリ|ミニトマト|トマト|茄子|播種|畑">
-  <div class="entry-meta">
-    <time>2026年5月8日（金）</time>
-    <div class="tags"><span>井戸掘り</span><span>粘土</span><span>キュウリ</span><span>ミニトマト</span><span>トマト</span><span>茄子</span><span>播種</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">花の金曜日という言葉はあまり意味を成さなくなってしまったが、それでもなんとなく週の区切りが来た感じで嬉しい。今日は井戸掘り以外に特段の作業予定がないので少し遅めに畑にいって、作物の様子を確認した。茄子は花が咲いたので、脇芽を欠いた。ミニトマトは元気に成長しているので、つっかえ棒を追加しておいた。最近定植したキュウリも生長点辺りは元気だが、下の葉の様子がおかしい。GPTに写真を見せたところ、まだ致命的でないようなので、後日下の葉を切り落として様子を見る事とした。井戸掘りの方は一日10cmの目標が高すぎることを実感した。強力な粘土層とはまた違った難しさを体験中。鉄槍で底を少しずつほぐしていく感じで進めようと思う。気長にね。</p>
-  <div class="memo"><strong>一言メモ</strong><p>畑に取り組み始めて、約２か月が過ぎた。後片づけから始まって緑肥の播種、苗の定植など、すべて新鮮な体験だ。畑の景色もスッカリ変わった。これからもっと気に入る場所にしていきたい。</p></div>
-  <div class="gallery"><a href="assets/image66.jpg" target="_blank"><img src="assets/image66.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image67.jpg" target="_blank"><img src="assets/image67.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image68.jpg" target="_blank"><img src="assets/image68.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image69.jpg" target="_blank"><img src="assets/image69.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image70.jpg" target="_blank"><img src="assets/image70.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|さや管|工具|ジグソー|犬|日常">
-  <div class="entry-meta">
-    <time>2026年5月7日（木）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>さや管</span><span>工具</span><span>ジグソー</span><span>犬</span><span>日常</span></div>
-  </div>
-  <p class="diary-text">ゴールデンウィークも終わり、社会が平常運転に戻った。朝、犬の散歩をしていると小学生たちが近くの学校に続々と登校してきた。休日も良いが、日常の営みがやっぱり大切な気がする。さて、井戸掘りの方はさや管が入ったことで新しいステージに入った。現在深度4.4ｍに6mのさや管が入っている状態なので、脚立を使ってのスイコでの作業となる。ここから１m程度掘り進める予定だ。さや管を入れたことで井戸の壁の崩落のリスクは無くなった。気長に最後の井戸掘りに取り組むことになる。目標は一日10cm、つまり10日で1ｍ。頑張るぞー！</p>
-  <div class="memo"><strong>一言メモ</strong><p>さや管は入ったけれど、土砂の埋め戻しはまだしていない。さや管回りのすき間に物が落ちないように、また作業しやすいように円形にくり抜いた板を作成予定。当初はジグソーという工具をレンタルしようと思ったがヤフオクで中古を入手することにした。無事落札できたので近日中に作業ができそうだ。</p></div>
-  <div class="gallery"><a href="assets/image62.jpg" target="_blank"><img src="assets/image62.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image63.jpg" target="_blank"><img src="assets/image63.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image64.jpg" target="_blank"><img src="assets/image64.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image65.jpg" target="_blank"><img src="assets/image65.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|さや管|砂礫層|水位">
-  <div class="entry-meta">
-    <time>2026年5月6日（水）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>さや管</span><span>砂礫層</span><span>水位</span></div>
-  </div>
-  <p class="diary-text">今日は水面の位置と、井戸の底までの深度を正確に計測しｔみた。水面は地下2.2ｍの位置で、井戸の底までの深度は4.4mだった。昨日まで大まかな見積りで4.6ｍ程度だと考えていたので、ちょっと後戻りした気分だ。もちろん実際には後戻りしている訳ではない。勘違いしていただけである。オーガでは地面への食い込みがなくなったし、重くなったのでスイコに切り替えて作業を進めている。しかし、あまり砂礫をキャッチ出来ている訳ではなく、泥水をくみ出しているだけな感じ。切削を進めるために、鉄の槍をロープに結んで自由落下で井戸の底をほぐすという方法も併用しているが、なかなか進まない。おまけにスイコの柄が長いので、上下に動かすときに井戸の壁を打ちつけて土砂が若干崩れる感じになった。掘っているのか埋めているのか分からなくなってしまうので、さや管を挿入することにした。本当は今度の日曜日に助手を手配していたのだが、一人でやることにした。幸いスムーズに4mの塩ビパイプが通り、それに2ｍの塩ビパイプを連結して、都合６ｍのさや管が刺さった。これで壁の崩落は心配しなくてよくなった。</p>
-  <div class="memo"><strong>一言メモ</strong><p>見よう見まねで始めた井戸掘りだが、大きな石等にはほとんど遭遇せずにここまで来た。ゴールは近い。だが油断はできない。</p></div>
-  <div class="gallery"><a href="assets/image57.jpg" target="_blank"><img src="assets/image57.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image58.jpg" target="_blank"><img src="assets/image58.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image59.jpg" target="_blank"><img src="assets/image59.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image60.jpg" target="_blank"><img src="assets/image60.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image61.jpg" target="_blank"><img src="assets/image61.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|さや管|ヘアリーベッチ|犬|畑">
-  <div class="entry-meta">
-    <time>2026年5月5日（火）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>さや管</span><span>ヘアリーベッチ</span><span>犬</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">ゴールデンウィーク真っ只中だが、朝起きて犬の散歩と軽い朝食の後は、畑に行きたくなる。井戸のさや管を今度の日曜日に挿入する予定だが、それまでに数十センチ掘り下げておきたい。一日一時間、10cm程度が惚れる感じだ。掘るというか、井戸の底をスイコでつついて、削れた土砂がとけこんだ水を引き上げるという感じだ。５月に入り陽気もだいぶ暖かくなったので、井戸掘り後は汗が滲む。幸いにも畑の隣はセブンイレブン。今日は井戸掘り後にセブンでガリガリ君をゲットしてクールダウン。有難いことだ。そういえば最近はセブンでダイソーの製品が買えるのはすばらしい。グローブを１点ついでに購入した。</p>
-  <div class="memo"><strong>一言メモ</strong><p>そろそろ自分で畑を管理しようと思った時、最初のアイデアはドッグランとして使う事だった。しかし勝手に農地をドッグランにすることもできないらしい。でも今日は愛犬を畑に連れてきてみたら、ヘアリーベッチの上を喜んでウサギのように飛び跳ねながら走り回っていた。緑肥を植えておけばちょっとしたプライベートドッグランとして使えそうだ。</p></div>
-  <div class="gallery"><a href="assets/image54.jpg" target="_blank"><img src="assets/image54.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image55.jpg" target="_blank"><img src="assets/image55.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image56.jpg" target="_blank"><img src="assets/image56.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|さや管|ヘアリーベッチ|ひまわり|イチゴ|発芽|移植|畑">
-  <div class="entry-meta">
-    <time>2026年5月4日（月）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>さや管</span><span>ヘアリーベッチ</span><span>ひまわり</span><span>イチゴ</span><span>発芽</span><span>移植</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">自宅の庭に種を撒いておいたミニひまわりが発芽したが、種の撒き方が原因で密集して発芽していた。込み合い過ぎているので株分けして、畑に植える事にした。とりあえず今日は８本のミニひまわりを自宅の庭から畑に引っ越し。そういえば先日ヘアリーベッチの中から見つかったイチゴ苗は、移植してちゃんと根付きそうだ。井戸掘りの方は地層の変化に応じてオーガからスイコに道具を切り替えた。スイコにパイプを延長して現在は全長6.4ｍとなった。井戸の深さは現在4.6ｍといったところ。ここでさや管を入れると計算上は1.4m地上に出る計算になるが、あと20センチから30センチ掘ってからさや管を入れたい所だ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>今日は隣の畑の所有者に会った。隣の畑の所有者はいとこにあたる人物で、子供の頃はよく顔を合わせる機会があったが、ここ数十年は顔を合わせる機会がなかった。不思議なもので面影があるのですぐいとこであることは確信した。お互い年を取ったものだが、この年になって再会した感じだ。</p></div>
-  <div class="gallery"><a href="assets/image50.jpg" target="_blank"><img src="assets/image50.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image51.jpg" target="_blank"><img src="assets/image51.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image52.jpg" target="_blank"><img src="assets/image52.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image53.jpg" target="_blank"><img src="assets/image53.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="スイコ|さや管|粘土|砂礫層|畑">
-  <div class="entry-meta">
-    <time>2026年5月3日（日）</time>
-    <div class="tags"><span>スイコ</span><span>さや管</span><span>粘土</span><span>砂礫層</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">試運転で判明した不具合を修正したスイコを畑に持ち込んでオーガに替えて切削を進める。ねっとり粘土の層は終わりを告げており感触からも砂礫層に移行していると考えられる。深度が4.3ｍでスイコの長さを延長する必要がある。VP20の塩ビパイプをVP13で1.8ｍ弱延長することとする。VP13にした理由、長さが1.8ｍなのは、それがガレージにあったからだ。兄貴に応援を頼んで近々に塩ビのさや管を挿入する予定。まずは4mを入れて様子を見ながら2ｍを連結する。地上に出る分が長すぎて作業性が落ちるようなら、一旦切断して短くする予定。さて、どうなるかは、やってみないとわからない。</p>
-  <div class="memo"><strong>一言メモ</strong><p>がちがちの粘土層をいつ突破できるか気を揉んでいたが、あっさりと突破したようで少し肩透かしを食らった感じがしないでもない。いやいや安心は禁物、油断はできない。そして未来の不確定性こそが魅力なのかもしれないと感じる。もし未来が確実なら面白くはないだろう。</p></div>
-  <div class="gallery"><a href="assets/image47.jpg" target="_blank"><img src="assets/image47.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image48.jpg" target="_blank"><img src="assets/image48.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image49.jpg" target="_blank"><img src="assets/image49.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|粘土|ヘアリーベッチ|家族|母|父|犬|イチゴ|南高梅">
-  <div class="entry-meta">
-    <time>2026年5月2日（土）</time>
-    <div class="tags"><span>井戸掘り</span><span>粘土</span><span>ヘアリーベッチ</span><span>家族</span><span>母</span><span>父</span><span>犬</span><span>イチゴ</span><span>南高梅</span></div>
-  </div>
-  <p class="diary-text">緑肥として植えたヘアリーベッチの中に、イチゴの株を発見。母親が昨年栽培したものが雑草化したもののようだ。既に実も付けているので、掘り起こして畝の方に移植しておいた。そういえば畑には何本か木も植わっているが、梅の実がだいぶ大きくなってきたようだ。母親によるとこれは南高梅らしい。気がつけば畑にあるアヤメも満開となっている。井戸掘りの方は青灰色の粘土層が終わりになったようだ。オーガが粘土に食い込んでいく感触から、オーガを回転しても食い込まない、何か硬い層に入りかけている感じだ。この時点の深度は4.3ｍといったところ。井戸枠の挿入のタイミング化どうか、今少し様子を見ようと思う。畑仕事のあと、畑の近所を犬と散歩した。近くには沼がありその傍らに墓地がある。父親や親戚が埋葬されている墓地だが、そこにある墓石のほとんどは石田家と書かれている。随分と古い墓石もあってかなり前から石田一族がこのあたりで生活をしていた事がうかがわれる。自分のルーツを垣間見た気がした。</p>
-  <div class="memo"><strong>一言メモ</strong><p>代々続いてきたであろう石田一族の一員として先祖が長い間してきたこと（農業）に自分が今取り組んでいるのが不思議だ。ゴールデンウイークに畑にいる自分がいるのもこれまた不思議だけれど。</p></div>
-  <div class="gallery"><a href="assets/image42.jpg" target="_blank"><img src="assets/image42.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image43.jpg" target="_blank"><img src="assets/image43.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image44.jpg" target="_blank"><img src="assets/image44.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image45.jpg" target="_blank"><img src="assets/image45.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image46.jpg" target="_blank"><img src="assets/image46.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|さや管|粘土|砂礫層|キュウリ|ピーマン|ミニトマト|トマト|AI">
-  <div class="entry-meta">
-    <time>2026年5月1日（金）</time>
-    <div class="tags"><span>井戸掘り</span><span>さや管</span><span>粘土</span><span>砂礫層</span><span>キュウリ</span><span>ピーマン</span><span>ミニトマト</span><span>トマト</span><span>AI</span></div>
-  </div>
-  <p class="diary-text">昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでGeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。AIは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>ChatGPTやらGeminiやらは驚くべき進化を遂げていて、今後の社会のインフラに成長するのだろうと感じる。ソフトバンクの孫さんがAIに全振りしているのが分かる気がする。</p></div>
-  <div class="gallery"><a href="assets/image41.jpg" target="_blank"><img src="assets/image41.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|粘土|ヘアリーベッチ|エン麦|大麦|家族|母|ミニトマト">
-  <div class="entry-meta">
-    <time>2026年4月30日（木）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>粘土</span><span>ヘアリーベッチ</span><span>エン麦</span><span>大麦</span><span>家族</span><span>母</span><span>ミニトマト</span></div>
-  </div>
-  <p class="diary-text">今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。</p>
-  <div class="memo"><strong>一言メモ</strong><p>先日買ってきたミニトマトの苗を畑に定植した。すでに実が一部ついているので、ミニトマトの収穫が一番手になるかもしれない。緑肥として植えたヘアリーベッチ、エン麦、大麦はいずれもすくすくと成長していて畑の大半が緑一面になってきた。</p></div>
-  <div class="gallery"><a href="assets/image37.jpg" target="_blank"><img src="assets/image37.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image38.jpg" target="_blank"><img src="assets/image38.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image39.jpg" target="_blank"><img src="assets/image39.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image40.jpg" target="_blank"><img src="assets/image40.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|粘土|DIY|畑">
-  <div class="entry-meta">
-    <time>2026年4月29日（水）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>粘土</span><span>DIY</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。</p>
-  <div class="memo"><strong>一言メモ</strong><p>井戸枠の穴あけ作業は大変だと聞いていたので心配だったが、親父が使ってたプロ用のドリルを使ったら、思ったより効率的に穴あけができた。流石プロ用という感じ。なんとなく親父が草葉の陰から応援してくれているような気がした。不思議な感じ。</p></div>
-  <div class="gallery"><a href="assets/image33.jpg" target="_blank"><img src="assets/image33.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image34.jpg" target="_blank"><img src="assets/image34.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image35.jpg" target="_blank"><img src="assets/image35.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image36.jpg" target="_blank"><img src="assets/image36.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|粘土|畑">
-  <div class="entry-meta">
-    <time>2026年4月28日（火）</time>
-    <div class="tags"><span>井戸掘り</span><span>粘土</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160Kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。</p>
-  <div class="memo"><strong>一言メモ</strong><p>この粘土層を突破するまで根気が必要になりそうだ。現在オーガの全長は4.5ｍだが、これ以上のジョイントを追加するのは重すぎて厳しそう。現在の粘土層は粘度が極めて高く、そのまま玩具として売れるレベルだ。オーガの先端にねっとりとくっついてくるので、除去するのは手を使う必要がある。</p></div>
-  <div class="gallery"><a href="assets/image31.jpg" target="_blank"><img src="assets/image31.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image32.jpg" target="_blank"><img src="assets/image32.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="スイコ|DIY|雨|畑">
-  <div class="entry-meta">
-    <time>2026年4月27日（月）</time>
-    <div class="tags"><span>スイコ</span><span>DIY</span><span>雨</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。</p>
-  <div class="memo"><strong>一言メモ</strong><p>最近はホームセンター（カインズ）へ毎日通うようになってしまった。今日はスイコの追加部品購入が目的なのだが、つい色々な苗が売っているの買いたくなってしまう。</p></div>
-  <div class="gallery"><a href="assets/image30.jpg" target="_blank"><img src="assets/image30.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|DIY|工具|家族|母|畑">
-  <div class="entry-meta">
-    <time>2026年4月26日（日）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>DIY</span><span>工具</span><span>家族</span><span>母</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>車いじりを始めた2020年から車いじりを始めたのでDIYに必要な工具はある程度揃っている。そんな背景もあり今回スムーズにスイコの製作に入ることができた。</p></div>
-  <div class="gallery"><a href="assets/image28.jpg" target="_blank"><img src="assets/image28.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image29.jpg" target="_blank"><img src="assets/image29.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|工具|家族|母|父|畑">
-  <div class="entry-meta">
-    <time>2026年4月25日（土）</time>
-    <div class="tags"><span>井戸掘り</span><span>工具</span><span>家族</span><span>母</span><span>父</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。</p>
-  <div class="memo"><strong>一言メモ</strong><p>ガレージには父親が悪戦苦闘したであろうことを想像させるいろいろな工具や資材が残っている。父親の死後から約10年、今回畑の管理をすることになって、父親の事を考える良い機会かもしれない。私自身も父親になって初めて自分の父親の気持ちや行動がよく理解できるようになったと思う。</p></div>
-  <div class="gallery"><a href="assets/image27.jpg" target="_blank"><img src="assets/image27.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|粘土|砂礫層|ヘアリーベッチ|エン麦|大麦|家族|母|長いも">
-  <div class="entry-meta">
-    <time>2026年4月24日（金）</time>
-    <div class="tags"><span>井戸掘り</span><span>粘土</span><span>砂礫層</span><span>ヘアリーベッチ</span><span>エン麦</span><span>大麦</span><span>家族</span><span>母</span><span>長いも</span></div>
-  </div>
-  <p class="diary-text">緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。</p>
-  <div class="memo"><strong>一言メモ</strong><p>今年3月に責任者として畑の管理をきちんとしようと思い立ってから約2か月。はじめは伐採した木の後片付けや雑草の処理などが中心だったが、最近は緑肥などの成長が著しくて、畑が畑らしくなってきた。井戸掘りという未体験の経験を泥だらけになりながら楽しんでいる。新しいことをするのはいつも大変だ。しかしその体験こそが喜びの種なんだと今は思う。</p></div>
-  <div class="gallery"><a href="assets/image20.jpg" target="_blank"><img src="assets/image20.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image21.jpg" target="_blank"><img src="assets/image21.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image22.jpg" target="_blank"><img src="assets/image22.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image23.jpg" target="_blank"><img src="assets/image23.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image24.jpg" target="_blank"><img src="assets/image24.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image25.jpg" target="_blank"><img src="assets/image25.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image26.jpg" target="_blank"><img src="assets/image26.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り|スイコ|水位|家族|母|茄子|雨">
-  <div class="entry-meta">
-    <time>2026年4月23日（木）</time>
-    <div class="tags"><span>井戸掘り</span><span>スイコ</span><span>水位</span><span>家族</span><span>母</span><span>茄子</span><span>雨</span></div>
-  </div>
-  <p class="diary-text">6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。</p>
-  <div class="memo"><strong>一言メモ</strong><p>井戸掘りのアイデアはふと思い浮かんだものだが、この未体験ゾーンへの挑戦はワクワクする。水が欲しいから井戸を掘る訳だが、実際には水が欲しいのではなく、井戸掘りという新しい体験が欲しいのだと思う。山登りするひとは頂上を目指している訳だが、頂上に行きたい訳ではなく、山を登るという体験がしたいのと同じなのだろう。</p></div>
-  <div class="gallery"><a href="assets/image14.jpg" target="_blank"><img src="assets/image14.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image15.jpg" target="_blank"><img src="assets/image15.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image16.jpg" target="_blank"><img src="assets/image16.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image17.jpg" target="_blank"><img src="assets/image17.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image18.jpg" target="_blank"><img src="assets/image18.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image19.jpg" target="_blank"><img src="assets/image19.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="家族|母|茄子|畑">
-  <div class="entry-meta">
-    <time>2026年4月22日（水）</time>
-    <div class="tags"><span>家族</span><span>母</span><span>茄子</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。</p>
-  <div class="memo"><strong>一言メモ</strong><p>母親の子供を思う気持ちはいくつになっても変らないのだとつくづく思う。耳も聞き取りにくいようだし、足腰も弱ってきて大変そうだが、私にできることは一緒に畑仕事をする事くらいか。</p></div>
-  
-</article>
-
-<article class="entry" data-tags="工具|家族|母|父|リーフレタス|発芽|雨|畑">
-  <div class="entry-meta">
-    <time>2026年4月21日（火）</time>
-    <div class="tags"><span>工具</span><span>家族</span><span>母</span><span>父</span><span>リーフレタス</span><span>発芽</span><span>雨</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。</p>
-  <div class="memo"><strong>一言メモ</strong><p>兼業農家として生計を立てていた両親が色々と悪戦苦闘してきた歴史が想像される。父親は10年前に他界しているが、埃だらけの工具が何かを語りかけてくる感じがした。母親は今年91歳になるが、今でも畑で野菜を作る。元気と言えば元気なのだが、91歳というのは傍目にみて色々と大変そうだ。</p></div>
-  <div class="gallery"><a href="assets/image7.jpg" target="_blank"><img src="assets/image7.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image8.jpg" target="_blank"><img src="assets/image8.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image9.jpg" target="_blank"><img src="assets/image9.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image10.jpg" target="_blank"><img src="assets/image10.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image11.jpg" target="_blank"><img src="assets/image11.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image12.jpg" target="_blank"><img src="assets/image12.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image13.jpg" target="_blank"><img src="assets/image13.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="トラクター">
-  <div class="entry-meta">
-    <time>2026年4月20日（月）</time>
-    <div class="tags"><span>トラクター</span></div>
-  </div>
-  <p class="diary-text">プチビニールハウス改良・トラクターローター替え刃入荷</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="移植|畑">
-  <div class="entry-meta">
-    <time>2026年4月19日（日）</time>
-    <div class="tags"><span>移植</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。</p>
-  
-  <div class="gallery"><a href="assets/image4.jpg" target="_blank"><img src="assets/image4.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image5.jpg" target="_blank"><img src="assets/image5.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image6.jpg" target="_blank"><img src="assets/image6.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="井戸掘り">
-  <div class="entry-meta">
-    <time>2026年4月17日（金）</time>
-    <div class="tags"><span>井戸掘り</span></div>
-  </div>
-  <p class="diary-text">井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。</p>
-  
-  <div class="gallery"><a href="assets/image2.jpg" target="_blank"><img src="assets/image2.jpg" alt="畑日記写真" loading="lazy"></a><a href="assets/image3.jpg" target="_blank"><img src="assets/image3.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="ネバリスター|長いも|植付">
-  <div class="entry-meta">
-    <time>2026年4月14日（火）</time>
-    <div class="tags"><span>ネバリスター</span><span>長いも</span><span>植付</span></div>
-  </div>
-  <p class="diary-text">長いも（ネバリスター）２本植付</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="発芽">
-  <div class="entry-meta">
-    <time>2026年4月11日（土）</time>
-    <div class="tags"><span>発芽</span></div>
-  </div>
-  <p class="diary-text">えだまめ（湯上り娘）発芽</p>
-  
-  <div class="gallery"><a href="assets/image1.jpg" target="_blank"><img src="assets/image1.jpg" alt="畑日記写真" loading="lazy"></a></div>
-</article>
-
-<article class="entry" data-tags="リーフレタス|播種">
-  <div class="entry-meta">
-    <time>2026年4月10日（金）</time>
-    <div class="tags"><span>リーフレタス</span><span>播種</span></div>
-  </div>
-  <p class="diary-text">リーフレタス播種</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="大麦|発芽">
-  <div class="entry-meta">
-    <time>2026年4月7日（火）</time>
-    <div class="tags"><span>大麦</span><span>発芽</span></div>
-  </div>
-  <p class="diary-text">大麦発芽</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="アスパラガス|移植">
-  <div class="entry-meta">
-    <time>2026年4月6日（月）</time>
-    <div class="tags"><span>アスパラガス</span><span>移植</span></div>
-  </div>
-  <p class="diary-text">アスパラガス２株追加移植</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="アスパラガス|移植">
-  <div class="entry-meta">
-    <time>2026年4月3日（金）</time>
-    <div class="tags"><span>アスパラガス</span><span>移植</span></div>
-  </div>
-  <p class="diary-text">アスパラガス２株移植</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="エン麦|大麦|播種|発芽">
-  <div class="entry-meta">
-    <time>2026年4月1日（水）</time>
-    <div class="tags"><span>エン麦</span><span>大麦</span><span>播種</span><span>発芽</span></div>
-  </div>
-  <p class="diary-text">エン麦発芽・大麦播種</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="枝豆|播種">
-  <div class="entry-meta">
-    <time>2026年3月31日（火）</time>
-    <div class="tags"><span>枝豆</span><span>播種</span></div>
-  </div>
-  <p class="diary-text">枝豆播種</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="エン麦|播種">
-  <div class="entry-meta">
-    <time>2026年3月25日（水）</time>
-    <div class="tags"><span>エン麦</span><span>播種</span></div>
-  </div>
-  <p class="diary-text">エン麦播種</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="ヘアリーベッチ|発芽">
-  <div class="entry-meta">
-    <time>2026年3月24日（火）</time>
-    <div class="tags"><span>ヘアリーベッチ</span><span>発芽</span></div>
-  </div>
-  <p class="diary-text">ヘアリーベッチ発芽</p>
-  
-  
-</article>
-
-<article class="entry" data-tags="ヘアリーベッチ|播種|収穫|畑">
-  <div class="entry-meta">
-    <time>2026年3月9日（月）</time>
-    <div class="tags"><span>ヘアリーベッチ</span><span>播種</span><span>収穫</span><span>畑</span></div>
-  </div>
-  <p class="diary-text">ヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。</p>
-  
-  
-</article>
-</section>
-</main>
-<footer>Generated from 畑日記.xlsx</footer>
-
-<script>
-const filterButtons=document.querySelectorAll('.filter');
-const entries=document.querySelectorAll('.entry');
-function applyFilter(tag){
-  filterButtons.forEach(b=>b.classList.toggle('active',b.dataset.tag===tag));
-  entries.forEach(e=>{
-    const tags=(e.dataset.tags||'').split('|');
-    e.style.display=(tag==='all'||tags.includes(tag))?'':'none';
-  });
-}
-filterButtons.forEach(btn=>btn.addEventListener('click',()=>applyFilter(btn.dataset.tag)));
-document.querySelectorAll('.tags span').forEach(span=>span.addEventListener('click',()=>{
-  applyFilter(span.textContent.trim());
-  window.scrollTo({top:0,behavior:'smooth'});
-}));
-</script>
-
-</body>
-</html>
+<section class="hero"><div class="hero-inner"><div class="eyebrow">Farm Diary</div><h1>Bob’s Farm Diary</h1><p class="subtitle">Excelから生成した畑日記。新しい日付が上に表示されます。</p><div class="stats"><div class="stat"><b>68</b>日記数</div><div class="stat"><b>206</b>写真</div><div class="stat"><b>2026-03-09 → 2026-06-19</b>期間</div></div></div></section>
+<div class="toolbar"><div class="toolbar-inner"><input id="search" class="search" placeholder="日記を検索…"><div class="lang"><span>日本語</span> <a href="index_en.html">English</a></div></div></div>
+<main class="container"><h2>キーワードで絞り込み</h2><div class="chips"><button class="chip" data-keyword="井戸">井戸 <span>32</span></button><button class="chip" data-keyword="母親">母親 <span>17</span></button><button class="chip" data-keyword="トマト">トマト <span>11</span></button><button class="chip" data-keyword="麦">麦 <span>11</span></button><button class="chip" data-keyword="ミニトマト">ミニトマト <span>10</span></button><button class="chip" data-keyword="緑肥">緑肥 <span>10</span></button><button class="chip" data-keyword="茄子">茄子 <span>10</span></button><button class="chip" data-keyword="イチゴ">イチゴ <span>9</span></button><button class="chip" data-keyword="トラクター">トラクター <span>8</span></button><button class="chip" data-keyword="レタス">レタス <span>8</span></button><button class="chip" data-keyword="アスパラ">アスパラ <span>7</span></button><button class="chip" data-keyword="キュウリ">キュウリ <span>7</span></button><button class="chip" data-keyword="ピーマン">ピーマン <span>7</span></button><button class="chip" data-keyword="枝豆">枝豆 <span>6</span></button><button class="chip" data-keyword="カラス">カラス <span>3</span></button><button class="chip" data-keyword="田んぼ">田んぼ <span>3</span></button><button class="chip" data-keyword="長いも">長いも <span>2</span></button><button class="chip" data-keyword="なす">なす <span>1</span></button><button class="chip" data-keyword="ハクセキレイ">ハクセキレイ <span>1</span></button></div>
+    <article class="entry" data-text="畑につくとオレンジ色の網のようなものがミニトマトに掛かっている。その奥には傘を差した苗が見える。もちろん母親の仕業だ。ミニトマトがカラスに食べられるので対策をしてくれたようだ。さて、今日はカミさんが育苗中のトマトを定植することにした。ポットでの成長が思わしくないからだ。6株を定植したが、どうなるか見守りたい。アスパラガスの畝に敷き藁を敷いた。これで真夏の暑さからアスパラガスが守られる事を期待しよう。 井戸の周りの整備を少ししたが、はやり地面を転圧しないとカッコよくはならない感じ。時間をかけて整備をしていく必要がある。">
+      <header>
+        <div><time datetime="2026-06-19">2026.6.19</time><span class="weekday">金曜日</span></div>
+        <p class="lead">畑につくとオレンジ色の網のようなものがミニトマトに掛かっている。</p>
+      </header>
+      <p class="diary">畑につくとオレンジ色の網のようなものがミニトマトに掛かっている。その奥には傘を差した苗が見える。もちろん母親の仕業だ。ミニトマトがカラスに食べられるので対策をしてくれたようだ。さて、今日はカミさんが育苗中のトマトを定植することにした。ポットでの成長が思わしくないからだ。6株を定植したが、どうなるか見守りたい。アスパラガスの畝に敷き藁を敷いた。これで真夏の暑さからアスパラガスが守られる事を期待しよう。</p>
+      <div class="memo"><span>一言メモ</span><p>井戸の周りの整備を少ししたが、はやり地面を転圧しないとカッコよくはならない感じ。時間をかけて整備をしていく必要がある。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_199.jpg" target="_blank"><img loading="lazy" src="assets/images/img_199.jpg" alt="2026.6.19の畑写真"></a><a class="photo" href="assets/images/img_200.jpg" target="_blank"><img loading="lazy" src="assets/images/img_200.jpg" alt="2026.6.19の畑写真"></a><a class="photo" href="assets/images/img_201.jpg" target="_blank"><img loading="lazy" src="assets/images/img_201.jpg" alt="2026.6.19の畑写真"></a><a class="photo" href="assets/images/img_202.jpg" target="_blank"><img loading="lazy" src="assets/images/img_202.jpg" alt="2026.6.19の畑写真"></a><a class="photo" href="assets/images/img_203.jpg" target="_blank"><img loading="lazy" src="assets/images/img_203.jpg" alt="2026.6.19の畑写真"></a><a class="photo" href="assets/images/img_204.jpg" target="_blank"><img loading="lazy" src="assets/images/img_204.jpg" alt="2026.6.19の畑写真"></a><a class="photo" href="assets/images/img_205.jpg" target="_blank"><img loading="lazy" src="assets/images/img_205.jpg" alt="2026.6.19の畑写真"></a><a class="photo" href="assets/images/img_206.jpg" target="_blank"><img loading="lazy" src="assets/images/img_206.jpg" alt="2026.6.19の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日はイチゴのポット受けを６個追加した。だんだん二郎株が増えてきた。今まで何も手を付けていなかったピーマンの仕立てを行った。4本仕立てになりそうだ。茄子はだいぶ実がついてきた。明日４個の収穫を予定。 忘れ物に気が付いて畑に戻ると、イチゴのポットをひっくり返した犯人を見つけた。２羽のカラスだ。プチトマトを食べているのもどうやらカラスと見て間違いない。">
+      <header>
+        <div><time datetime="2026-06-18">2026.6.18</time><span class="weekday">木曜日</span></div>
+        <p class="lead">今日はイチゴのポット受けを６個追加した。</p>
+      </header>
+      <p class="diary">今日はイチゴのポット受けを６個追加した。だんだん二郎株が増えてきた。今まで何も手を付けていなかったピーマンの仕立てを行った。4本仕立てになりそうだ。茄子はだいぶ実がついてきた。明日４個の収穫を予定。</p>
+      <div class="memo"><span>一言メモ</span><p>忘れ物に気が付いて畑に戻ると、イチゴのポットをひっくり返した犯人を見つけた。２羽のカラスだ。プチトマトを食べているのもどうやらカラスと見て間違いない。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_190.jpg" target="_blank"><img loading="lazy" src="assets/images/img_190.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_191.jpg" target="_blank"><img loading="lazy" src="assets/images/img_191.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_192.jpg" target="_blank"><img loading="lazy" src="assets/images/img_192.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_193.jpg" target="_blank"><img loading="lazy" src="assets/images/img_193.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_194.jpg" target="_blank"><img loading="lazy" src="assets/images/img_194.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_195.jpg" target="_blank"><img loading="lazy" src="assets/images/img_195.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_196.jpg" target="_blank"><img loading="lazy" src="assets/images/img_196.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_197.jpg" target="_blank"><img loading="lazy" src="assets/images/img_197.jpg" alt="2026.6.18の畑写真"></a><a class="photo" href="assets/images/img_198.jpg" target="_blank"><img loading="lazy" src="assets/images/img_198.jpg" alt="2026.6.18の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は田起こし。麦を収穫した後の田んぼを耕うんする作業だ。トラクターを運転するだけだが、暑くなると大変なので朝飯前にやるのが常道。朝４時に家を出て、４時半から作業を開始した。いつも思うのだが、耕うんをしているとどこからともなく鳥が集まってきて、掘り起こされた土にいる虫をついばむ。これを見るのが楽しいが、虫たちには少し申し訳ない気がする。ついでに畑の方も緑肥を漉き込んだ所を耕うんしたが、漉き込みはうまく行ったようだ。 カラスも来るけど、ほとんどはハクセキレイという鳥だったようだ。">
+      <header>
+        <div><time datetime="2026-06-17">2026.6.17</time><span class="weekday">水曜日</span></div>
+        <p class="lead">今日は田起こし。</p>
+      </header>
+      <p class="diary">今日は田起こし。麦を収穫した後の田んぼを耕うんする作業だ。トラクターを運転するだけだが、暑くなると大変なので朝飯前にやるのが常道。朝４時に家を出て、４時半から作業を開始した。いつも思うのだが、耕うんをしているとどこからともなく鳥が集まってきて、掘り起こされた土にいる虫をついばむ。これを見るのが楽しいが、虫たちには少し申し訳ない気がする。ついでに畑の方も緑肥を漉き込んだ所を耕うんしたが、漉き込みはうまく行ったようだ。</p>
+      <div class="memo"><span>一言メモ</span><p>カラスも来るけど、ほとんどはハクセキレイという鳥だったようだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_187.jpg" target="_blank"><img loading="lazy" src="assets/images/img_187.jpg" alt="2026.6.17の畑写真"></a><a class="photo" href="assets/images/img_188.jpg" target="_blank"><img loading="lazy" src="assets/images/img_188.jpg" alt="2026.6.17の畑写真"></a><a class="photo" href="assets/images/img_189.jpg" target="_blank"><img loading="lazy" src="assets/images/img_189.jpg" alt="2026.6.17の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="ふと見るとピーマンが実を付けていた。まだ苗木が小さいので摘果、ついでにキュウリと茄子とミニトマトを記念に収穫した。みな小さくてかわいい。梅雨に入り植物の成長が著しい。先日購入しておいた180cmのイボだけを茄子とトマトとキュウリに当てがって今少し上まで伸ばすことができるようにした。 先日、田んぼの麦が刈り取られたので、明日は田起こしと畑の耕うんでトラクター出動。">
+      <header>
+        <div><time datetime="2026-06-16">2026.6.16</time><span class="weekday">火曜日</span></div>
+        <p class="lead">ふと見るとピーマンが実を付けていた。</p>
+      </header>
+      <p class="diary">ふと見るとピーマンが実を付けていた。まだ苗木が小さいので摘果、ついでにキュウリと茄子とミニトマトを記念に収穫した。みな小さくてかわいい。梅雨に入り植物の成長が著しい。先日購入しておいた180cmのイボだけを茄子とトマトとキュウリに当てがって今少し上まで伸ばすことができるようにした。</p>
+      <div class="memo"><span>一言メモ</span><p>先日、田んぼの麦が刈り取られたので、明日は田起こしと畑の耕うんでトラクター出動。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_178.jpg" target="_blank"><img loading="lazy" src="assets/images/img_178.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_179.jpg" target="_blank"><img loading="lazy" src="assets/images/img_179.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_180.jpg" target="_blank"><img loading="lazy" src="assets/images/img_180.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_181.jpg" target="_blank"><img loading="lazy" src="assets/images/img_181.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_182.jpg" target="_blank"><img loading="lazy" src="assets/images/img_182.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_183.jpg" target="_blank"><img loading="lazy" src="assets/images/img_183.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_184.jpg" target="_blank"><img loading="lazy" src="assets/images/img_184.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_185.jpg" target="_blank"><img loading="lazy" src="assets/images/img_185.jpg" alt="2026.6.16の畑写真"></a><a class="photo" href="assets/images/img_186.jpg" target="_blank"><img loading="lazy" src="assets/images/img_186.jpg" alt="2026.6.16の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は終日雨の予報なので、畑仕事の代わりに鎌を研ぐことにした。５個の鎌の刃を研いだが、多くの鎌は刃こぼれしているので実際に切れ味がどの程度復活するのか疑問が残る。ま、研がないよりマシというレベルかもしれないが、天気が回復したらエン麦を敷き藁ように少し刈り取ってみよう。 ">
+      <header>
+        <div><time datetime="2026-06-15">2026.6.15</time><span class="weekday">月曜日</span></div>
+        <p class="lead">今日は終日雨の予報なので、畑仕事の代わりに鎌を研ぐことにした。</p>
+      </header>
+      <p class="diary">今日は終日雨の予報なので、畑仕事の代わりに鎌を研ぐことにした。５個の鎌の刃を研いだが、多くの鎌は刃こぼれしているので実際に切れ味がどの程度復活するのか疑問が残る。ま、研がないよりマシというレベルかもしれないが、天気が回復したらエン麦を敷き藁ように少し刈り取ってみよう。</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_177.jpg" target="_blank"><img loading="lazy" src="assets/images/img_177.jpg" alt="2026.6.15の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="梅雨時の晴れ間を使って除草剤ラウンドアップを５０倍希釈で畑の雑草に噴霧した。北側の道路に面している部分の雑草の成長が驚くほど早い。電動の噴霧器を借りて作業したので、快適で効率的だ。持つべきものは良い道具という事だろう。 ">
+      <header>
+        <div><time datetime="2026-06-14">2026.6.14</time><span class="weekday">日曜日</span></div>
+        <p class="lead">梅雨時の晴れ間を使って除草剤ラウンドアップを５０倍希釈で畑の雑草に噴霧した。</p>
+      </header>
+      <p class="diary">梅雨時の晴れ間を使って除草剤ラウンドアップを５０倍希釈で畑の雑草に噴霧した。北側の道路に面している部分の雑草の成長が驚くほど早い。電動の噴霧器を借りて作業したので、快適で効率的だ。持つべきものは良い道具という事だろう。</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="自宅で育苗中の玉レタスの成長がみられないので、6株だけひとまず畑に定植してみた。うまく成長してくれるか見守りたい。畑に移植したミニヒマワリが急激に花をつけて賑やかになった。予想以上に株が大きくなって込み合っていたので、一部を井戸周りに移植した。ちょっといい感じ。 ">
+      <header>
+        <div><time datetime="2026-06-12">2026.6.12</time><span class="weekday">金曜日</span></div>
+        <p class="lead">自宅で育苗中の玉レタスの成長がみられないので、6株だけひとまず畑に定植してみた。</p>
+      </header>
+      <p class="diary">自宅で育苗中の玉レタスの成長がみられないので、6株だけひとまず畑に定植してみた。うまく成長してくれるか見守りたい。畑に移植したミニヒマワリが急激に花をつけて賑やかになった。予想以上に株が大きくなって込み合っていたので、一部を井戸周りに移植した。ちょっといい感じ。</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_175.jpg" target="_blank"><img loading="lazy" src="assets/images/img_175.jpg" alt="2026.6.12の畑写真"></a><a class="photo" href="assets/images/img_176.jpg" target="_blank"><img loading="lazy" src="assets/images/img_176.jpg" alt="2026.6.12の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="畑で畝の整備をしていたら母親がヒョッコリ現れた。いつもは夕方に畑に来るのだが、今日は違った。タップリと収穫した南高梅を分けてもらった。２kg以上ある。種取用に残したエン麦を少し敷き藁用に刈ってみた。母親がキュウリの下に使いたいという事だ。私の方のキュウリはイボだけで上に伸ばしているので敷き藁は不要と思われるが、いずれショウガ用に使う必要が出てくるかも。 ちなみに昨年南高梅は不作であまり多く収穫できなかったそうだ。">
+      <header>
+        <div><time datetime="2026-06-11">2026.6.11</time><span class="weekday">木曜日</span></div>
+        <p class="lead">畑で畝の整備をしていたら母親がヒョッコリ現れた。</p>
+      </header>
+      <p class="diary">畑で畝の整備をしていたら母親がヒョッコリ現れた。いつもは夕方に畑に来るのだが、今日は違った。タップリと収穫した南高梅を分けてもらった。２Kg以上ある。種取用に残したエン麦を少し敷き藁用に刈ってみた。母親がキュウリの下に使いたいという事だ。私の方のキュウリはイボだけで上に伸ばしているので敷き藁は不要と思われるが、いずれショウガ用に使う必要が出てくるかも。</p>
+      <div class="memo"><span>一言メモ</span><p>ちなみに昨年南高梅は不作であまり多く収穫できなかったそうだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_174.jpg" target="_blank"><img loading="lazy" src="assets/images/img_174.jpg" alt="2026.6.11の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="3日ぶりに畑に行くと、みんな元気そうだ。梅雨に入ったので水やりは不要。今日はアスパラの畝の雑草取りとレタスの最終収穫と後処理を行った。キュウリやナスもミニトマトに遅れて実を付け始めた。枝豆は葉っぱが多い茂っている。ネバリスターも旺盛だ。北側のイチゴの様子はあまりよくないが、南側のは元気そう。 レタスは一株だけ残してこの後の成長を見届けることとした。">
+      <header>
+        <div><time datetime="2026-06-10">2026.6.10</time><span class="weekday">水曜日</span></div>
+        <p class="lead">3日ぶりに畑に行くと、みんな元気そうだ。</p>
+      </header>
+      <p class="diary">3日ぶりに畑に行くと、みんな元気そうだ。梅雨に入ったので水やりは不要。今日はアスパラの畝の雑草取りとレタスの最終収穫と後処理を行った。キュウリやナスもミニトマトに遅れて実を付け始めた。枝豆は葉っぱが多い茂っている。ネバリスターも旺盛だ。北側のイチゴの様子はあまりよくないが、南側のは元気そう。</p>
+      <div class="memo"><span>一言メモ</span><p>レタスは一株だけ残してこの後の成長を見届けることとした。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_164.jpg" target="_blank"><img loading="lazy" src="assets/images/img_164.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_165.jpg" target="_blank"><img loading="lazy" src="assets/images/img_165.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_166.jpg" target="_blank"><img loading="lazy" src="assets/images/img_166.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_167.jpg" target="_blank"><img loading="lazy" src="assets/images/img_167.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_168.jpg" target="_blank"><img loading="lazy" src="assets/images/img_168.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_169.jpg" target="_blank"><img loading="lazy" src="assets/images/img_169.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_170.jpg" target="_blank"><img loading="lazy" src="assets/images/img_170.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_171.jpg" target="_blank"><img loading="lazy" src="assets/images/img_171.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_172.jpg" target="_blank"><img loading="lazy" src="assets/images/img_172.jpg" alt="2026.6.10の畑写真"></a><a class="photo" href="assets/images/img_173.jpg" target="_blank"><img loading="lazy" src="assets/images/img_173.jpg" alt="2026.6.10の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="先日梅雨入りして雨模様が続いているので、ここ２日は畑に行っていない。畑のヒマワリに続いて、自宅の庭のヒマワリも咲き始めた。 明日の朝、雨でなければ畑に行こう。リーフレタスの最後の収穫をすることになりそう。">
+      <header>
+        <div><time datetime="2026-06-09">2026.6.9</time><span class="weekday">火曜日</span></div>
+        <p class="lead">先日梅雨入りして雨模様が続いているので、ここ２日は畑に行っていない。</p>
+      </header>
+      <p class="diary">先日梅雨入りして雨模様が続いているので、ここ２日は畑に行っていない。畑のヒマワリに続いて、自宅の庭のヒマワリも咲き始めた。</p>
+      <div class="memo"><span>一言メモ</span><p>明日の朝、雨でなければ畑に行こう。リーフレタスの最後の収穫をすることになりそう。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_163.jpg" target="_blank"><img loading="lazy" src="assets/images/img_163.jpg" alt="2026.6.9の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="母親が91歳の誕生日を迎えたのでお祝いを渡してきた。その後、畑の様子を見にいっていたら、母親がジャガイモの収穫に来た。手伝おうというと、自分で出来ると言う。まだまだ元気だが、否決は畑仕事にあるのかもしれない。 取り組む仕事があるのは、とても楽しい事なのだと思う。">
+      <header>
+        <div><time datetime="2026-06-07">2026.6.7</time><span class="weekday">日曜日</span></div>
+        <p class="lead">母親が91歳の誕生日を迎えたのでお祝いを渡してきた。</p>
+      </header>
+      <p class="diary">母親が91歳の誕生日を迎えたのでお祝いを渡してきた。その後、畑の様子を見にいっていたら、母親がジャガイモの収穫に来た。手伝おうというと、自分で出来ると言う。まだまだ元気だが、否決は畑仕事にあるのかもしれない。</p>
+      <div class="memo"><span>一言メモ</span><p>取り組む仕事があるのは、とても楽しい事なのだと思う。</p></div>
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="今日はリーフレタスの4回目？の収穫をした。畑の様子をザっと見て今日は特に作業なし。 ">
+      <header>
+        <div><time datetime="2026-06-06">2026.6.6</time><span class="weekday">土曜日</span></div>
+        <p class="lead">今日はリーフレタスの4回目？の収穫をした。</p>
+      </header>
+      <p class="diary">今日はリーフレタスの4回目？の収穫をした。畑の様子をザっと見て今日は特に作業なし。</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_162.jpg" target="_blank"><img loading="lazy" src="assets/images/img_162.jpg" alt="2026.6.6の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="台風６号で２日間畑には行かなかったが、今日は朝からいい天気で気持ちがいい。畑に行ってみるとミニヒマワリが開花していた。同じ種を自宅の庭にも植えてあるが、はやり畑の方が環境が良いようだ。その他の植物も元気に成長していることが確認できた。ただイチゴの株が一部調子がよくないようだ。イチゴと言えばポット受けで来年用の苗を作成することにした。今日は10ポットを設置した。 畑の近くにある菖蒲園もオープンして段々と梅雨入りの気配を感じる。">
+      <header>
+        <div><time datetime="2026-06-05">2026.6.5</time><span class="weekday">金曜日</span></div>
+        <p class="lead">台風６号で２日間畑には行かなかったが、今日は朝からいい天気で気持ちがいい。</p>
+      </header>
+      <p class="diary">台風６号で２日間畑には行かなかったが、今日は朝からいい天気で気持ちがいい。畑に行ってみるとミニヒマワリが開花していた。同じ種を自宅の庭にも植えてあるが、はやり畑の方が環境が良いようだ。その他の植物も元気に成長していることが確認できた。ただイチゴの株が一部調子がよくないようだ。イチゴと言えばポット受けで来年用の苗を作成することにした。今日は10ポットを設置した。</p>
+      <div class="memo"><span>一言メモ</span><p>畑の近くにある菖蒲園もオープンして段々と梅雨入りの気配を感じる。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_151.jpg" target="_blank"><img loading="lazy" src="assets/images/img_151.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_152.jpg" target="_blank"><img loading="lazy" src="assets/images/img_152.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_153.jpg" target="_blank"><img loading="lazy" src="assets/images/img_153.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_154.jpg" target="_blank"><img loading="lazy" src="assets/images/img_154.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_155.jpg" target="_blank"><img loading="lazy" src="assets/images/img_155.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_156.jpg" target="_blank"><img loading="lazy" src="assets/images/img_156.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_157.jpg" target="_blank"><img loading="lazy" src="assets/images/img_157.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_158.jpg" target="_blank"><img loading="lazy" src="assets/images/img_158.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_159.jpg" target="_blank"><img loading="lazy" src="assets/images/img_159.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_160.jpg" target="_blank"><img loading="lazy" src="assets/images/img_160.jpg" alt="2026.6.5の畑写真"></a><a class="photo" href="assets/images/img_161.jpg" target="_blank"><img loading="lazy" src="assets/images/img_161.jpg" alt="2026.6.5の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日の夕方から台風による風雨ということで、風で物が飛ばないように手当を行った。ミニトマトの脇芽が1本大きくなっていたのを欠いてきた。ミニトマトは２本仕立て、茄子は３本仕立て。イチゴの一部の葉っぱが茶色くなっている。病気かもしれない。なお、イチゴのポット受けは台風が過ぎてから行う事とした。雨が降るのが分っているので、水やりは軽めに行った。 早くも６月。今年のしょっぱなは四十肩で大変だったが、回復後はすべてが快調。青少推の退任と兼業農家のデビューでかなり生活パターンが変った気がする。">
+      <header>
+        <div><time datetime="2026-06-02">2026.6.2</time><span class="weekday">火曜日</span></div>
+        <p class="lead">今日の夕方から台風による風雨ということで、風で物が飛ばないように手当を行った。</p>
+      </header>
+      <p class="diary">今日の夕方から台風による風雨ということで、風で物が飛ばないように手当を行った。ミニトマトの脇芽が1本大きくなっていたのを欠いてきた。ミニトマトは２本仕立て、茄子は３本仕立て。イチゴの一部の葉っぱが茶色くなっている。病気かもしれない。なお、イチゴのポット受けは台風が過ぎてから行う事とした。雨が降るのが分っているので、水やりは軽めに行った。</p>
+      <div class="memo"><span>一言メモ</span><p>早くも６月。今年のしょっぱなは四十肩で大変だったが、回復後はすべてが快調。青少推の退任と兼業農家のデビューでかなり生活パターンが変った気がする。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_150.jpg" target="_blank"><img loading="lazy" src="assets/images/img_150.jpg" alt="2026.6.2の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は軽トラックを借りて先日収穫した小梅の木をチェーンソーで始末してきた。ついでにショウガの植付に備えて畝の一部を耕しておく。軽トラックを借りたついでにスイコを畑から持ち帰った。 ショウガは畑に直接植えてもいいらしいが、自宅で芽出しなるものを行う事とした。ここで芽を出しておけば、畑に植えた時も安心ということらしい。">
+      <header>
+        <div><time datetime="2026-06-01">2026.6.1</time><span class="weekday">月曜日</span></div>
+        <p class="lead">今日は軽トラックを借りて先日収穫した小梅の木をチェーンソーで始末してきた。</p>
+      </header>
+      <p class="diary">今日は軽トラックを借りて先日収穫した小梅の木をチェーンソーで始末してきた。ついでにショウガの植付に備えて畝の一部を耕しておく。軽トラックを借りたついでにスイコを畑から持ち帰った。</p>
+      <div class="memo"><span>一言メモ</span><p>ショウガは畑に直接植えてもいいらしいが、自宅で芽出しなるものを行う事とした。ここで芽を出しておけば、畑に植えた時も安心ということらしい。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_148.jpg" target="_blank"><img loading="lazy" src="assets/images/img_148.jpg" alt="2026.6.1の畑写真"></a><a class="photo" href="assets/images/img_149.jpg" target="_blank"><img loading="lazy" src="assets/images/img_149.jpg" alt="2026.6.1の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="ホームセンターに行くと夏野菜の苗が沢山売っている。中には在庫処分で30円とか50円とかで投げ売りされているが、当然ながら苗の状態は良くないので購入はしない。とは言うものの見ていると色々と欲しくなるもので、今回は種ショウガを購入した。 ">
+      <header>
+        <div><time datetime="2026-05-31">2026.5.31</time><span class="weekday">日曜日</span></div>
+        <p class="lead">ホームセンターに行くと夏野菜の苗が沢山売っている。</p>
+      </header>
+      <p class="diary">ホームセンターに行くと夏野菜の苗が沢山売っている。中には在庫処分で30円とか50円とかで投げ売りされているが、当然ながら苗の状態は良くないので購入はしない。とは言うものの見ていると色々と欲しくなるもので、今回は種ショウガを購入した。</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_147.jpg" target="_blank"><img loading="lazy" src="assets/images/img_147.jpg" alt="2026.5.31の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="geminiのアドバイスに従って茄子2株の３番花までを摘果した。さらに強固な苗に成長してくれることを祈る。母親が育てているジャガイモの初収穫を一部頂いた。早速今日の味噌汁の具になった。井戸の方はフット弁を装着するついでに寸法を確認した。さや管5.5ｍに、ホース5ｍを差し込んでいる状態なので、底から50cmあたりが給水地点となっている。 久しぶりにスイコを挿入して底を突いたので濃い泥水が汲み上げられた。">
+      <header>
+        <div><time datetime="2026-05-29">2026.5.29</time><span class="weekday">金曜日</span></div>
+        <p class="lead">Geminiのアドバイスに従って茄子2株の３番花までを摘果した。</p>
+      </header>
+      <p class="diary">Geminiのアドバイスに従って茄子2株の３番花までを摘果した。さらに強固な苗に成長してくれることを祈る。母親が育てているジャガイモの初収穫を一部頂いた。早速今日の味噌汁の具になった。井戸の方はフット弁を装着するついでに寸法を確認した。さや管5.5ｍに、ホース5ｍを差し込んでいる状態なので、底から50cmあたりが給水地点となっている。</p>
+      <div class="memo"><span>一言メモ</span><p>久しぶりにスイコを挿入して底を突いたので濃い泥水が汲み上げられた。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_145.jpg" target="_blank"><img loading="lazy" src="assets/images/img_145.jpg" alt="2026.5.29の畑写真"></a><a class="photo" href="assets/images/img_146.jpg" target="_blank"><img loading="lazy" src="assets/images/img_146.jpg" alt="2026.5.29の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="かねてから欲しかったレーキを購入。井戸周りの整地と、先日トラクターで耕うんした際に畑に起伏を作ってしまったのを修正するのに使用した。 井戸周りの整地をしていた時、どこからともなく綺麗な鳥がやってきた。土を掘り起こしたので虫が目当てだと思うが、良く観察しているなあと思う。">
+      <header>
+        <div><time datetime="2026-05-28">2026.5.28</time><span class="weekday">木曜日</span></div>
+        <p class="lead">かねてから欲しかったレーキを購入。</p>
+      </header>
+      <p class="diary">かねてから欲しかったレーキを購入。井戸周りの整地と、先日トラクターで耕うんした際に畑に起伏を作ってしまったのを修正するのに使用した。</p>
+      <div class="memo"><span>一言メモ</span><p>井戸周りの整地をしていた時、どこからともなく綺麗な鳥がやってきた。土を掘り起こしたので虫が目当てだと思うが、良く観察しているなあと思う。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_139.jpg" target="_blank"><img loading="lazy" src="assets/images/img_139.jpg" alt="2026.5.28の畑写真"></a><a class="photo" href="assets/images/img_140.jpg" target="_blank"><img loading="lazy" src="assets/images/img_140.jpg" alt="2026.5.28の畑写真"></a><a class="photo" href="assets/images/img_141.jpg" target="_blank"><img loading="lazy" src="assets/images/img_141.jpg" alt="2026.5.28の畑写真"></a><a class="photo" href="assets/images/img_142.jpg" target="_blank"><img loading="lazy" src="assets/images/img_142.jpg" alt="2026.5.28の畑写真"></a><a class="photo" href="assets/images/img_143.jpg" target="_blank"><img loading="lazy" src="assets/images/img_143.jpg" alt="2026.5.28の畑写真"></a><a class="photo" href="assets/images/img_144.jpg" target="_blank"><img loading="lazy" src="assets/images/img_144.jpg" alt="2026.5.28の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="当初は何かを栽培するようなことはあまり考えていなかったのだが、気がつけば、茄子、ミニトマト、ピーマン、キュウリ、リーフレタス、枝豆、アスパラガス、ネバリスターと随分と多くの苗が植えられている。リーフレタスに至っては先日初の間引き＆収穫を迎えた。開始から僅か3か月、物凄い飛躍だ。 リーフレタス３回目の間引き＆収穫。まだまだ当面収穫できそうだ。">
+      <header>
+        <div><time datetime="2026-05-27">2026.5.27</time><span class="weekday">水曜日</span></div>
+        <p class="lead">当初は何かを栽培するようなことはあまり考えていなかったのだが、気がつけば、茄子、ミニトマト、ピーマン、キュウリ、リーフレタス、枝豆、アスパラガス、ネバリスターと…</p>
+      </header>
+      <p class="diary">当初は何かを栽培するようなことはあまり考えていなかったのだが、気がつけば、茄子、ミニトマト、ピーマン、キュウリ、リーフレタス、枝豆、アスパラガス、ネバリスターと随分と多くの苗が植えられている。リーフレタスに至っては先日初の間引き＆収穫を迎えた。開始から僅か3か月、物凄い飛躍だ。</p>
+      <div class="memo"><span>一言メモ</span><p>リーフレタス３回目の間引き＆収穫。まだまだ当面収穫できそうだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_130.jpg" target="_blank"><img loading="lazy" src="assets/images/img_130.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_131.jpg" target="_blank"><img loading="lazy" src="assets/images/img_131.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_132.jpg" target="_blank"><img loading="lazy" src="assets/images/img_132.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_133.jpg" target="_blank"><img loading="lazy" src="assets/images/img_133.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_134.jpg" target="_blank"><img loading="lazy" src="assets/images/img_134.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_135.jpg" target="_blank"><img loading="lazy" src="assets/images/img_135.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_136.jpg" target="_blank"><img loading="lazy" src="assets/images/img_136.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_137.jpg" target="_blank"><img loading="lazy" src="assets/images/img_137.jpg" alt="2026.5.27の畑写真"></a><a class="photo" href="assets/images/img_138.jpg" target="_blank"><img loading="lazy" src="assets/images/img_138.jpg" alt="2026.5.27の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="昨日は緑肥の漉き込みを行ったのでひと段落。植物に水やりをした後は井戸周りの整地をしていると母親が軽トラックで畑にある小梅の収穫に来た。収穫した梅の半分以上を分けてもらい自宅に持参。どう調理するかは奥様にお願いしておいた。 ">
+      <header>
+        <div><time datetime="2026-05-26">2026.5.26</time><span class="weekday">火曜日</span></div>
+        <p class="lead">昨日は緑肥の漉き込みを行ったのでひと段落。</p>
+      </header>
+      <p class="diary">昨日は緑肥の漉き込みを行ったのでひと段落。植物に水やりをした後は井戸周りの整地をしていると母親が軽トラックで畑にある小梅の収穫に来た。収穫した梅の半分以上を分けてもらい自宅に持参。どう調理するかは奥様にお願いしておいた。</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_129.jpg" target="_blank"><img loading="lazy" src="assets/images/img_129.jpg" alt="2026.5.26の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="エン麦に穂が付き始めたので、裁断して漉き込みを行った。大麦はまだ早いものの、一緒に裁断している。エン麦も大麦も根元がしっかりしていて、ヘアリーベッチに比べると裁断が大変だ。一週間前に裁断したヘアリーベッチも今回漉き込みを行い、畑の景観が一変。今日の主役はもちろんトラクター。やはり機械のパワーは素晴らしい。１ヵ月くらいこのまま放置して、何か作物を植えてみようと思う。 今日は５時前に起床したので、畑仕事を５時半から行った。朝早くから農作業をする自分を見ている自分が居て、不思議な感じ。">
+      <header>
+        <div><time datetime="2026-05-25">2026.5.25</time><span class="weekday">月曜日</span></div>
+        <p class="lead">エン麦に穂が付き始めたので、裁断して漉き込みを行った。</p>
+      </header>
+      <p class="diary">エン麦に穂が付き始めたので、裁断して漉き込みを行った。大麦はまだ早いものの、一緒に裁断している。エン麦も大麦も根元がしっかりしていて、ヘアリーベッチに比べると裁断が大変だ。一週間前に裁断したヘアリーベッチも今回漉き込みを行い、畑の景観が一変。今日の主役はもちろんトラクター。やはり機械のパワーは素晴らしい。１ヵ月くらいこのまま放置して、何か作物を植えてみようと思う。</p>
+      <div class="memo"><span>一言メモ</span><p>今日は５時前に起床したので、畑仕事を５時半から行った。朝早くから農作業をする自分を見ている自分が居て、不思議な感じ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_125.jpg" target="_blank"><img loading="lazy" src="assets/images/img_125.jpg" alt="2026.5.25の畑写真"></a><a class="photo" href="assets/images/img_126.jpg" target="_blank"><img loading="lazy" src="assets/images/img_126.jpg" alt="2026.5.25の畑写真"></a><a class="photo" href="assets/images/img_127.jpg" target="_blank"><img loading="lazy" src="assets/images/img_127.jpg" alt="2026.5.25の畑写真"></a><a class="photo" href="assets/images/img_128.jpg" target="_blank"><img loading="lazy" src="assets/images/img_128.jpg" alt="2026.5.25の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="田んぼは兄が相続した形になっているが、出来上がるお米は分けてもらっていて稲作に関しては昔ながらに家族総出で手伝いをするのが恒例となっている。とは言え昔とは違って田植え自体は機械化が進んでいて出る幕はないのだ。唯一の手伝いと言えば、種まきとトラクターでの耕運くらいだ。そして先週の土曜日が種まき。苗床に土を入れてコメの種をばらまいて、土で被せて完了。あとはブルーシートに包んで一週間で写真のように発芽した。日に当ててなかったのでモヤシ状態だが、日に当たれば直ぐに綺麗な緑色に変身するはずだ。 お米は日本そしてアジアでは極めて特別なものだと感じる。">
+      <header>
+        <div><time datetime="2026-05-23">2026.5.23</time><span class="weekday">土曜日</span></div>
+        <p class="lead">田んぼは兄が相続した形になっているが、出来上がるお米は分けてもらっていて稲作に関しては昔ながらに家族総出で手伝いをするのが恒例となっている。とは言え昔とは違って…</p>
+      </header>
+      <p class="diary">田んぼは兄が相続した形になっているが、出来上がるお米は分けてもらっていて稲作に関しては昔ながらに家族総出で手伝いをするのが恒例となっている。とは言え昔とは違って田植え自体は機械化が進んでいて出る幕はないのだ。唯一の手伝いと言えば、種まきとトラクターでの耕運くらいだ。そして先週の土曜日が種まき。苗床に土を入れてコメの種をばらまいて、土で被せて完了。あとはブルーシートに包んで一週間で写真のように発芽した。日に当ててなかったのでモヤシ状態だが、日に当たれば直ぐに綺麗な緑色に変身するはずだ。</p>
+      <div class="memo"><span>一言メモ</span><p>お米は日本そしてアジアでは極めて特別なものだと感じる。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_124.jpg" target="_blank"><img loading="lazy" src="assets/images/img_124.jpg" alt="2026.5.23の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は水やりは不要だし、土を触る仕事はできないが畑の様子をザっと見に行ってきた。昨日定植したピーマンも元気に根付いていた感じだ。緑肥として植えたエン麦が一部穂をつけ始めたようなので、天気が回復し次第、刈り込みを行う予定。リーフレタスの2回目の間引き＆収穫をした。食べるのが大変なくらいどんどん成長する。昨日枯渇を経験した井戸だが、本日汲み上げてみるとすぐに枯渇してしまった。何が問題なのか追及していくつもりだが、さや管に開けた５㎜の穴が目詰まりしているのか、そもそも水がないのか、あるいはポンプの方に問題があるのか分からないので、ひとつづつ可能性を潰す必要がある。 植物がスクスクと成長する様子を見るのはとても勇気づけられる。みんな生きているんだなあと、しみじみ感じる。そして生きるとは何かについても考えさせてくれる。">
+      <header>
+        <div><time datetime="2026-05-22">2026.5.22</time><span class="weekday">金曜日</span></div>
+        <p class="lead">今日は水やりは不要だし、土を触る仕事はできないが畑の様子をザっと見に行ってきた。</p>
+      </header>
+      <p class="diary">今日は水やりは不要だし、土を触る仕事はできないが畑の様子をザっと見に行ってきた。昨日定植したピーマンも元気に根付いていた感じだ。緑肥として植えたエン麦が一部穂をつけ始めたようなので、天気が回復し次第、刈り込みを行う予定。リーフレタスの2回目の間引き＆収穫をした。食べるのが大変なくらいどんどん成長する。昨日枯渇を経験した井戸だが、本日汲み上げてみるとすぐに枯渇してしまった。何が問題なのか追及していくつもりだが、さや管に開けた５㎜の穴が目詰まりしているのか、そもそも水がないのか、あるいはポンプの方に問題があるのか分からないので、ひとつづつ可能性を潰す必要がある。</p>
+      <div class="memo"><span>一言メモ</span><p>植物がスクスクと成長する様子を見るのはとても勇気づけられる。みんな生きているんだなあと、しみじみ感じる。そして生きるとは何かについても考えさせてくれる。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_114.jpg" target="_blank"><img loading="lazy" src="assets/images/img_114.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_115.jpg" target="_blank"><img loading="lazy" src="assets/images/img_115.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_116.jpg" target="_blank"><img loading="lazy" src="assets/images/img_116.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_117.jpg" target="_blank"><img loading="lazy" src="assets/images/img_117.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_118.jpg" target="_blank"><img loading="lazy" src="assets/images/img_118.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_119.jpg" target="_blank"><img loading="lazy" src="assets/images/img_119.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_120.jpg" target="_blank"><img loading="lazy" src="assets/images/img_120.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_121.jpg" target="_blank"><img loading="lazy" src="assets/images/img_121.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_122.jpg" target="_blank"><img loading="lazy" src="assets/images/img_122.jpg" alt="2026.5.22の畑写真"></a><a class="photo" href="assets/images/img_123.jpg" target="_blank"><img loading="lazy" src="assets/images/img_123.jpg" alt="2026.5.22の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は終日雨ということで畑での作業は一切なし。代わりにホームセンターで上呂を購入した。１０l入る大きめの上呂なので、畑で使いやすそうだ。 畑を始めてから土曜日も日曜日も、はたまたゴールデンウィークも必ず毎日畑に出かけるようになった。今日も作業はしなかったが畑には行ってきた。不思議なもので急遽畑は私の生活の一部となり、スキップする事のできないものになった。まるで睡眠や食事のように。">
+      <header>
+        <div><time datetime="2026-05-21">2026.5.21</time><span class="weekday">木曜日</span></div>
+        <p class="lead">今日は終日雨ということで畑での作業は一切なし。</p>
+      </header>
+      <p class="diary">今日は終日雨ということで畑での作業は一切なし。代わりにホームセンターで上呂を購入した。１０L入る大きめの上呂なので、畑で使いやすそうだ。</p>
+      <div class="memo"><span>一言メモ</span><p>畑を始めてから土曜日も日曜日も、はたまたゴールデンウィークも必ず毎日畑に出かけるようになった。今日も作業はしなかったが畑には行ってきた。不思議なもので急遽畑は私の生活の一部となり、スキップする事のできないものになった。まるで睡眠や食事のように。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_113.jpg" target="_blank"><img loading="lazy" src="assets/images/img_113.jpg" alt="2026.5.21の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="ピーマンの苗に小さな蕾を確認したので、本日畑に定植した。リキダスも吸わせたので力ずよく根付いてくれることを期待している。枝豆は本葉が5，6枚になっていたので、摘芯＆追肥＆土寄せを行ってきた。まだ仮置き状態だが、井戸はいよいよ最終形に近い。今日はタップリ汲みだしたので初めて枯渇を経験した。ちゃんと計測していないが100lくらいは汲みだせている感じ。 ヒマワリは花がなくても太陽の方を向いていることに、今日初めて気付いた。朝日に向かってみな敬礼しているようで可愛らしい。">
+      <header>
+        <div><time datetime="2026-05-20">2026.5.20</time><span class="weekday">水曜日</span></div>
+        <p class="lead">ピーマンの苗に小さな蕾を確認したので、本日畑に定植した。</p>
+      </header>
+      <p class="diary">ピーマンの苗に小さな蕾を確認したので、本日畑に定植した。リキダスも吸わせたので力ずよく根付いてくれることを期待している。枝豆は本葉が5，6枚になっていたので、摘芯＆追肥＆土寄せを行ってきた。まだ仮置き状態だが、井戸はいよいよ最終形に近い。今日はタップリ汲みだしたので初めて枯渇を経験した。ちゃんと計測していないが100Lくらいは汲みだせている感じ。</p>
+      <div class="memo"><span>一言メモ</span><p>ヒマワリは花がなくても太陽の方を向いていることに、今日初めて気付いた。朝日に向かってみな敬礼しているようで可愛らしい。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_110.jpg" target="_blank"><img loading="lazy" src="assets/images/img_110.jpg" alt="2026.5.20の畑写真"></a><a class="photo" href="assets/images/img_111.jpg" target="_blank"><img loading="lazy" src="assets/images/img_111.jpg" alt="2026.5.20の畑写真"></a><a class="photo" href="assets/images/img_112.jpg" target="_blank"><img loading="lazy" src="assets/images/img_112.jpg" alt="2026.5.20の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="本日、さや管を5.5mで切断してその上にポンプを仮設置、流し台も配置して最終イメージが具体化してきた。14枚のコンクリートタイルは井戸の部分に設置予定だが、その前に整地が必要だ。そして整地は地味だが手が掛かる。地道に進めよう。まだ濁りが強いが、井戸洗いを毎日少しずつ行う事で、将来的にはかなり透明な水が手に入るものと期待している。ベビーリーフが間引きの時期を迎えたので間引きをしてみた。そしてこれが初の収穫ということになった。あの小さな種がこんな立派なベビーリーフに育つのを目の当たりにするのは不思議な気もする。これは間違いなく生命の神秘だ。 自宅に戻りベビーリーフにポン酢を欠けて食べてみた。美味しいというより、超新鮮というのが第一印象。それはそのはず、今収穫したばかりなんだからね。">
+      <header>
+        <div><time datetime="2026-05-19">2026.5.19</time><span class="weekday">火曜日</span></div>
+        <p class="lead">本日、さや管を5.5mで切断してその上にポンプを仮設置、流し台も配置して最終イメージが具体化してきた。</p>
+      </header>
+      <p class="diary">本日、さや管を5.5mで切断してその上にポンプを仮設置、流し台も配置して最終イメージが具体化してきた。14枚のコンクリートタイルは井戸の部分に設置予定だが、その前に整地が必要だ。そして整地は地味だが手が掛かる。地道に進めよう。まだ濁りが強いが、井戸洗いを毎日少しずつ行う事で、将来的にはかなり透明な水が手に入るものと期待している。ベビーリーフが間引きの時期を迎えたので間引きをしてみた。そしてこれが初の収穫ということになった。あの小さな種がこんな立派なベビーリーフに育つのを目の当たりにするのは不思議な気もする。これは間違いなく生命の神秘だ。</p>
+      <div class="memo"><span>一言メモ</span><p>自宅に戻りベビーリーフにポン酢を欠けて食べてみた。美味しいというより、超新鮮というのが第一印象。それはそのはず、今収穫したばかりなんだからね。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_105.jpg" target="_blank"><img loading="lazy" src="assets/images/img_105.jpg" alt="2026.5.19の畑写真"></a><a class="photo" href="assets/images/img_106.jpg" target="_blank"><img loading="lazy" src="assets/images/img_106.jpg" alt="2026.5.19の畑写真"></a><a class="photo" href="assets/images/img_107.jpg" target="_blank"><img loading="lazy" src="assets/images/img_107.jpg" alt="2026.5.19の畑写真"></a><a class="photo" href="assets/images/img_108.jpg" target="_blank"><img loading="lazy" src="assets/images/img_108.jpg" alt="2026.5.19の畑写真"></a><a class="photo" href="assets/images/img_109.jpg" target="_blank"><img loading="lazy" src="assets/images/img_109.jpg" alt="2026.5.19の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="朝一で草刈り機の刃をシュレッダー刃に交換して、ヘアリーベッチの裁断を行った。期待以上に気持ちよく裁断されていて大満足。数日天日に当てておいてトラクターで幸運することになる。井戸の方は、深度5ｍジャストまで掘り進めようとしていたが、考えてみるとあまり深度5ｍにこだわる必要がない事に気付いた。気にしなければいけないのは、ポンプの設置高さや排水の事だ。ということで、再度作戦変更でこれ以上深度を追う事はやめて現状の4.95mでストップする。現在のアイデアではブロック３段の上に板をおいて、そこにポンプを設置。さや管は5.5mで切断。これはポンプを使いやすい高さに設置することを優先した選択だ。なお、井戸の周りはコンクリートのタイルを14枚設置するつもりだ。写真はイメージを沸かせるために、本来の設置位置の横に仮置きしたもの。排水については、屋外用の流しをブロックの上に置いて、排水そのものはさや管の外側の空間に流してしまう計画だ。基本的に水は畑に撒かれるので、排水はほとんど出ないと考えている。この辺りは実際に運用しながら必要に応じて対応する事とする。 畑に取り組み始めて、約3か月が過ぎた。何をどうしていいか分からない状態からなんとなく自分の畑らしく感じられるようになったのが嬉しい。まだ、何も収穫してはいないが、そもそも収穫は目的ではない。井戸周りのイメージが固まってきたのも嬉しい。">
+      <header>
+        <div><time datetime="2026-05-18">2026.5.18</time><span class="weekday">月曜日</span></div>
+        <p class="lead">朝一で草刈り機の刃をシュレッダー刃に交換して、ヘアリーベッチの裁断を行った。</p>
+      </header>
+      <p class="diary">朝一で草刈り機の刃をシュレッダー刃に交換して、ヘアリーベッチの裁断を行った。期待以上に気持ちよく裁断されていて大満足。数日天日に当てておいてトラクターで幸運することになる。井戸の方は、深度5ｍジャストまで掘り進めようとしていたが、考えてみるとあまり深度5ｍにこだわる必要がない事に気付いた。気にしなければいけないのは、ポンプの設置高さや排水の事だ。ということで、再度作戦変更でこれ以上深度を追う事はやめて現状の4.95mでストップする。現在のアイデアではブロック３段の上に板をおいて、そこにポンプを設置。さや管は5.5mで切断。これはポンプを使いやすい高さに設置することを優先した選択だ。なお、井戸の周りはコンクリートのタイルを14枚設置するつもりだ。写真はイメージを沸かせるために、本来の設置位置の横に仮置きしたもの。排水については、屋外用の流しをブロックの上に置いて、排水そのものはさや管の外側の空間に流してしまう計画だ。基本的に水は畑に撒かれるので、排水はほとんど出ないと考えている。この辺りは実際に運用しながら必要に応じて対応する事とする。</p>
+      <div class="memo"><span>一言メモ</span><p>畑に取り組み始めて、約3か月が過ぎた。何をどうしていいか分からない状態からなんとなく自分の畑らしく感じられるようになったのが嬉しい。まだ、何も収穫してはいないが、そもそも収穫は目的ではない。井戸周りのイメージが固まってきたのも嬉しい。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_101.jpg" target="_blank"><img loading="lazy" src="assets/images/img_101.jpg" alt="2026.5.18の畑写真"></a><a class="photo" href="assets/images/img_102.jpg" target="_blank"><img loading="lazy" src="assets/images/img_102.jpg" alt="2026.5.18の畑写真"></a><a class="photo" href="assets/images/img_103.jpg" target="_blank"><img loading="lazy" src="assets/images/img_103.jpg" alt="2026.5.18の畑写真"></a><a class="photo" href="assets/images/img_104.jpg" target="_blank"><img loading="lazy" src="assets/images/img_104.jpg" alt="2026.5.18の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="ヘアリーベッチの漉き込みに備えて、草刈り機にシュレッダー刃を装着して裁断を行うのだが、2台ある草刈り機に適合する刃を選ばなければならない。と思って調べたところ、ほぼ規格が統一されているのでほぼどの草刈り機の刃も適合するようだ。早速アマゾンに注文。本日届くらしいので、明日はヘアリーベッチのシュレッダーを行うことができる。 例によって写真をgptなりgeminiに見せれば、型番まで認識してくれて、適合する刃まで指南してくれる。こりゃ便利でたまらない。すべての分野に関してこれほど手軽に情報が入手できるのは驚きだ。本当のit時代が来たのかもしれない。">
+      <header>
+        <div><time datetime="2026-05-17">2026.5.17</time><span class="weekday">日曜日</span></div>
+        <p class="lead">ヘアリーベッチの漉き込みに備えて、草刈り機にシュレッダー刃を装着して裁断を行うのだが、2台ある草刈り機に適合する刃を選ばなければならない。と思って調べたところ、…</p>
+      </header>
+      <p class="diary">ヘアリーベッチの漉き込みに備えて、草刈り機にシュレッダー刃を装着して裁断を行うのだが、2台ある草刈り機に適合する刃を選ばなければならない。と思って調べたところ、ほぼ規格が統一されているのでほぼどの草刈り機の刃も適合するようだ。早速アマゾンに注文。本日届くらしいので、明日はヘアリーベッチのシュレッダーを行うことができる。</p>
+      <div class="memo"><span>一言メモ</span><p>例によって写真をGPTなりGeminiに見せれば、型番まで認識してくれて、適合する刃まで指南してくれる。こりゃ便利でたまらない。すべての分野に関してこれほど手軽に情報が入手できるのは驚きだ。本当のIT時代が来たのかもしれない。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_099.jpg" target="_blank"><img loading="lazy" src="assets/images/img_099.jpg" alt="2026.5.17の畑写真"></a><a class="photo" href="assets/images/img_100.jpg" target="_blank"><img loading="lazy" src="assets/images/img_100.jpg" alt="2026.5.17の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="初めての収穫は多分ベビーリーフになりそう。ミニトマトがそのあとに続く感じ。そもそも収穫を目的にしている訳ではないけれど、収穫はひとつの結果として嬉しいものに違いない。緑肥のヘアリーベッチが開花しはじめたので、近いうちに草刈り機で裁断の上、トラクターのロータリーで漉き込みを行う予定。井戸掘りの方は、本日スイコを引き上げて付着している土砂を見た結果、粘土質が強くなってきているようなので、目標値を深度5ｍジャストに変更する事とした。その時点でさや管をカットして手動ポンプをさや管の上部に設置する方法で考えている。さー、間もなく次の段階に入る。 今日は田植え用の苗床に種まきをした。毎年家族で行っているが流石に母親は今年見学に回っている。哀しいことではあるが、致し方無い事である。">
+      <header>
+        <div><time datetime="2026-05-16">2026.5.16</time><span class="weekday">土曜日</span></div>
+        <p class="lead">初めての収穫は多分ベビーリーフになりそう。</p>
+      </header>
+      <p class="diary">初めての収穫は多分ベビーリーフになりそう。ミニトマトがそのあとに続く感じ。そもそも収穫を目的にしている訳ではないけれど、収穫はひとつの結果として嬉しいものに違いない。緑肥のヘアリーベッチが開花しはじめたので、近いうちに草刈り機で裁断の上、トラクターのロータリーで漉き込みを行う予定。井戸掘りの方は、本日スイコを引き上げて付着している土砂を見た結果、粘土質が強くなってきているようなので、目標値を深度5ｍジャストに変更する事とした。その時点でさや管をカットして手動ポンプをさや管の上部に設置する方法で考えている。さー、間もなく次の段階に入る。</p>
+      <div class="memo"><span>一言メモ</span><p>今日は田植え用の苗床に種まきをした。毎年家族で行っているが流石に母親は今年見学に回っている。哀しいことではあるが、致し方無い事である。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_093.jpg" target="_blank"><img loading="lazy" src="assets/images/img_093.jpg" alt="2026.5.16の畑写真"></a><a class="photo" href="assets/images/img_094.jpg" target="_blank"><img loading="lazy" src="assets/images/img_094.jpg" alt="2026.5.16の畑写真"></a><a class="photo" href="assets/images/img_095.jpg" target="_blank"><img loading="lazy" src="assets/images/img_095.jpg" alt="2026.5.16の畑写真"></a><a class="photo" href="assets/images/img_096.jpg" target="_blank"><img loading="lazy" src="assets/images/img_096.jpg" alt="2026.5.16の畑写真"></a><a class="photo" href="assets/images/img_097.jpg" target="_blank"><img loading="lazy" src="assets/images/img_097.jpg" alt="2026.5.16の畑写真"></a><a class="photo" href="assets/images/img_098.jpg" target="_blank"><img loading="lazy" src="assets/images/img_098.jpg" alt="2026.5.16の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="どの深さまで井戸を掘るかの目途が立った。現在５ｍ弱の深さだが、目標値を5.22ｍと算出した。これは現在6ｍあるさや管を5.5mで切断して、地上から28㎝突出した状態にて、その上に手動ポンプを真上に載せるという計画だ。さや管5.5mで吸出しホースが5ｍだから井戸の底から50cm上のところで給水するというイメージだ。あくまで概算だが、悪くない案だと思っている。畑の方は茄子、ミニトマト、ベビーリーフ、イチゴ、枝豆、アスパラガス、ネバリスターが元気に成長を見せてくれている。もう少ししたら自宅にあるピーマンを定植する予定だ。 井戸掘りのゴール地点が見えてきて嬉しいことは嬉しいのだが、反面井戸掘りが終わってしまう寂しさも感じる。不思議なものだ。">
+      <header>
+        <div><time datetime="2026-05-15">2026.5.15</time><span class="weekday">金曜日</span></div>
+        <p class="lead">どの深さまで井戸を掘るかの目途が立った。</p>
+      </header>
+      <p class="diary">どの深さまで井戸を掘るかの目途が立った。現在５ｍ弱の深さだが、目標値を5.22ｍと算出した。これは現在6ｍあるさや管を5.5mで切断して、地上から28㎝突出した状態にて、その上に手動ポンプを真上に載せるという計画だ。さや管5.5mで吸出しホースが5ｍだから井戸の底から50cm上のところで給水するというイメージだ。あくまで概算だが、悪くない案だと思っている。畑の方は茄子、ミニトマト、ベビーリーフ、イチゴ、枝豆、アスパラガス、ネバリスターが元気に成長を見せてくれている。もう少ししたら自宅にあるピーマンを定植する予定だ。</p>
+      <div class="memo"><span>一言メモ</span><p>井戸掘りのゴール地点が見えてきて嬉しいことは嬉しいのだが、反面井戸掘りが終わってしまう寂しさも感じる。不思議なものだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_088.jpg" target="_blank"><img loading="lazy" src="assets/images/img_088.jpg" alt="2026.5.15の畑写真"></a><a class="photo" href="assets/images/img_089.jpg" target="_blank"><img loading="lazy" src="assets/images/img_089.jpg" alt="2026.5.15の畑写真"></a><a class="photo" href="assets/images/img_090.jpg" target="_blank"><img loading="lazy" src="assets/images/img_090.jpg" alt="2026.5.15の畑写真"></a><a class="photo" href="assets/images/img_091.jpg" target="_blank"><img loading="lazy" src="assets/images/img_091.jpg" alt="2026.5.15の畑写真"></a><a class="photo" href="assets/images/img_092.jpg" target="_blank"><img loading="lazy" src="assets/images/img_092.jpg" alt="2026.5.15の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="手動ポンプの取り付け部にナットを追加して、ポンプを使いやすくした。昨晩久しぶりの雨があったので畑への水やりは必要ない。早速井戸掘りに取り掛かる。まずは手動ポンプで泥水を排出するのだが、今日は初めて泥水ではなく透明に近い水が出てきた。実質的に井戸洗いをしていることになっているのだろう。今日は特に写真は取らなかったが、井戸掘りのスピードは一日5cmくらいだと思う。間もなくさや管が５ｍ埋まるところまで来た。スイコの先端に異常が無いかをみるために、スイコを引き上げてみたが、堅牢に製作されていて大丈夫なようだ。ちなみにスイコに砂礫は入っていない。砂っぽい泥水が付着している感じ。 イチゴの苗が増えているが、最初のイチゴが元気がなかった。母親が多めに化成肥料を与えていたのが気になったが、どうやら肥料焼けという状態だと思われる。回復してくれるといいが。。。">
+      <header>
+        <div><time datetime="2026-05-14">2026.5.14</time><span class="weekday">木曜日</span></div>
+        <p class="lead">手動ポンプの取り付け部にナットを追加して、ポンプを使いやすくした。</p>
+      </header>
+      <p class="diary">手動ポンプの取り付け部にナットを追加して、ポンプを使いやすくした。昨晩久しぶりの雨があったので畑への水やりは必要ない。早速井戸掘りに取り掛かる。まずは手動ポンプで泥水を排出するのだが、今日は初めて泥水ではなく透明に近い水が出てきた。実質的に井戸洗いをしていることになっているのだろう。今日は特に写真は取らなかったが、井戸掘りのスピードは一日5cmくらいだと思う。間もなくさや管が５ｍ埋まるところまで来た。スイコの先端に異常が無いかをみるために、スイコを引き上げてみたが、堅牢に製作されていて大丈夫なようだ。ちなみにスイコに砂礫は入っていない。砂っぽい泥水が付着している感じ。</p>
+      <div class="memo"><span>一言メモ</span><p>イチゴの苗が増えているが、最初のイチゴが元気がなかった。母親が多めに化成肥料を与えていたのが気になったが、どうやら肥料焼けという状態だと思われる。回復してくれるといいが。。。</p></div>
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="井戸掘りの方は、根気よく毎日少しずつ前進するというスタンスだが、手動ポンプの導入により作業が効率化したと思う。具体的にはスイコは引き上げることなく底面を突いて削っていくことのためにだけ使用して、泥水のくみ出しは手動ポンプで行うという流れだ。これだと泥だらけになることもなく、スマートに作業ができる。おまけに汲み上げた泥水は植物に与えられる。深度5mが射程に入ってきた。深度5mから5.5mの間のどこかで掘るのを終了とする予定である。さて、畑の方は1か月前に植えたネバリスターの芽らしいものが出てきた。gptに聞いてみると、ネバリスターである可能性が高いということだ。でも、2つ植えたのに出てきたのは1個だけ。もうしばらく様子を見よう。 ヘアリーベッチの中から見つかったイチゴの苗は元気に成長している。それに加えて母親がどこからともなくイチゴの苗を持ってきて、そばに定植し始めた。もしかしてイチゴ畑になるのか？">
+      <header>
+        <div><time datetime="2026-05-13">2026.5.13</time><span class="weekday">水曜日</span></div>
+        <p class="lead">井戸掘りの方は、根気よく毎日少しずつ前進するというスタンスだが、手動ポンプの導入により作業が効率化したと思う。</p>
+      </header>
+      <p class="diary">井戸掘りの方は、根気よく毎日少しずつ前進するというスタンスだが、手動ポンプの導入により作業が効率化したと思う。具体的にはスイコは引き上げることなく底面を突いて削っていくことのためにだけ使用して、泥水のくみ出しは手動ポンプで行うという流れだ。これだと泥だらけになることもなく、スマートに作業ができる。おまけに汲み上げた泥水は植物に与えられる。深度5mが射程に入ってきた。深度5mから5.5mの間のどこかで掘るのを終了とする予定である。さて、畑の方は1か月前に植えたネバリスターの芽らしいものが出てきた。GPTに聞いてみると、ネバリスターである可能性が高いということだ。でも、2つ植えたのに出てきたのは1個だけ。もうしばらく様子を見よう。</p>
+      <div class="memo"><span>一言メモ</span><p>ヘアリーベッチの中から見つかったイチゴの苗は元気に成長している。それに加えて母親がどこからともなくイチゴの苗を持ってきて、そばに定植し始めた。もしかしてイチゴ畑になるのか？</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_083.jpg" target="_blank"><img loading="lazy" src="assets/images/img_083.jpg" alt="2026.5.13の畑写真"></a><a class="photo" href="assets/images/img_084.jpg" target="_blank"><img loading="lazy" src="assets/images/img_084.jpg" alt="2026.5.13の畑写真"></a><a class="photo" href="assets/images/img_085.jpg" target="_blank"><img loading="lazy" src="assets/images/img_085.jpg" alt="2026.5.13の畑写真"></a><a class="photo" href="assets/images/img_086.jpg" target="_blank"><img loading="lazy" src="assets/images/img_086.jpg" alt="2026.5.13の畑写真"></a><a class="photo" href="assets/images/img_087.jpg" target="_blank"><img loading="lazy" src="assets/images/img_087.jpg" alt="2026.5.13の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="昨日自宅に帰ると、だいぶ前に注文しておいた手動ポンプが到着していた。早速、開封、組み立て、動作テストを行って特に問題はが無いことを確認。本日実際の井戸で水をくみ出してみた。何とか泥水を排出できたが、一度水が切れて空気が入ると、復旧が大変そうだ。ま、今日のところはテストなのでokとしよう。日が高くなり暑さが増してきたので、今日は早めに終了とした。 とうとうポンプで水を汲み上げる段階に入った。あと1ｍ堀勧めたいと思っているので、今しばらく井戸掘りは続く予定。">
+      <header>
+        <div><time datetime="2026-05-12">2026.5.12</time><span class="weekday">火曜日</span></div>
+        <p class="lead">昨日自宅に帰ると、だいぶ前に注文しておいた手動ポンプが到着していた。</p>
+      </header>
+      <p class="diary">昨日自宅に帰ると、だいぶ前に注文しておいた手動ポンプが到着していた。早速、開封、組み立て、動作テストを行って特に問題はが無いことを確認。本日実際の井戸で水をくみ出してみた。何とか泥水を排出できたが、一度水が切れて空気が入ると、復旧が大変そうだ。ま、今日のところはテストなのでOKとしよう。日が高くなり暑さが増してきたので、今日は早めに終了とした。</p>
+      <div class="memo"><span>一言メモ</span><p>とうとうポンプで水を汲み上げる段階に入った。あと1ｍ堀勧めたいと思っているので、今しばらく井戸掘りは続く予定。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_079.jpg" target="_blank"><img loading="lazy" src="assets/images/img_079.jpg" alt="2026.5.12の畑写真"></a><a class="photo" href="assets/images/img_080.jpg" target="_blank"><img loading="lazy" src="assets/images/img_080.jpg" alt="2026.5.12の畑写真"></a><a class="photo" href="assets/images/img_081.jpg" target="_blank"><img loading="lazy" src="assets/images/img_081.jpg" alt="2026.5.12の畑写真"></a><a class="photo" href="assets/images/img_082.jpg" target="_blank"><img loading="lazy" src="assets/images/img_082.jpg" alt="2026.5.12の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="さや管を入れてからのスイコでの井戸掘りは今一つうまく行っていなかったが、今日ブレークスルーを感じた。要はスイコの先端のギザギザで井戸の底を根気よくほぐしていけば、さや管は確実に沈下でけいるということだ。そして今日、実際にさや管を回転させたところ10cm程度沈下した。これはひとえに昨日までスイコで井戸底を砕いていたことによる。つまりスイコを引き上げることなく、単に井戸底をつついて底を砕くことが重要だという事だ。これは素晴らしいことだ。なぜならスイコを引き上げなければ泥だらけになることがないからだ。毎回全身泥だらけになって洗濯が大変だったけど、もうそれ程泥だらけになることはなさそうだ。畑の方は特に作業はしていないが、引き続き自宅の庭からミニひまわりの苗を移転している。 最後の写真は、近所のプロ農家と思われる畑の風景だ。流石という言葉がピッタリで見るだけでも本気度が伝わってくる。そして美しい。今日、たまたま通りかかったときにオーナーと思われる方に許可を頂いて写真を取らせてもらった。今後もここの畑はチェックしておきたい。">
+      <header>
+        <div><time datetime="2026-05-11">2026.5.11</time><span class="weekday">月曜日</span></div>
+        <p class="lead">さや管を入れてからのスイコでの井戸掘りは今一つうまく行っていなかったが、今日ブレークスルーを感じた。</p>
+      </header>
+      <p class="diary">さや管を入れてからのスイコでの井戸掘りは今一つうまく行っていなかったが、今日ブレークスルーを感じた。要はスイコの先端のギザギザで井戸の底を根気よくほぐしていけば、さや管は確実に沈下でけいるということだ。そして今日、実際にさや管を回転させたところ10cm程度沈下した。これはひとえに昨日までスイコで井戸底を砕いていたことによる。つまりスイコを引き上げることなく、単に井戸底をつついて底を砕くことが重要だという事だ。これは素晴らしいことだ。なぜならスイコを引き上げなければ泥だらけになることがないからだ。毎回全身泥だらけになって洗濯が大変だったけど、もうそれ程泥だらけになることはなさそうだ。畑の方は特に作業はしていないが、引き続き自宅の庭からミニひまわりの苗を移転している。</p>
+      <div class="memo"><span>一言メモ</span><p>最後の写真は、近所のプロ農家と思われる畑の風景だ。流石という言葉がピッタリで見るだけでも本気度が伝わってくる。そして美しい。今日、たまたま通りかかったときにオーナーと思われる方に許可を頂いて写真を取らせてもらった。今後もここの畑はチェックしておきたい。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_076.jpg" target="_blank"><img loading="lazy" src="assets/images/img_076.jpg" alt="2026.5.11の畑写真"></a><a class="photo" href="assets/images/img_077.jpg" target="_blank"><img loading="lazy" src="assets/images/img_077.jpg" alt="2026.5.11の畑写真"></a><a class="photo" href="assets/images/img_078.jpg" target="_blank"><img loading="lazy" src="assets/images/img_078.jpg" alt="2026.5.11の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="井戸近辺に自生していた菜の花の種が出来てきたので、刈り取って西側の土手の部分に敷き詰めておいた。来年、西側の土手が菜の花で一杯になることを期待。井戸掘りの方は、機能加工した板を設置したことで、足元がスッキリした。また、4.5mまでの切削で活躍したオーガを片づけた。今後使用する機会があるかどうかは不明だが、ひとまずはガレージに収納。 今日は母の日だったので、母親を誘って寿司屋に行ってきた。年々年を取る母親を見るのは嬉しい事ではないが、こればかりは仕方ない。そういう自分も同じように年をとっていることを忘れずに。">
+      <header>
+        <div><time datetime="2026-05-10">2026.5.10</time><span class="weekday">日曜日</span></div>
+        <p class="lead">井戸近辺に自生していた菜の花の種が出来てきたので、刈り取って西側の土手の部分に敷き詰めておいた。</p>
+      </header>
+      <p class="diary">井戸近辺に自生していた菜の花の種が出来てきたので、刈り取って西側の土手の部分に敷き詰めておいた。来年、西側の土手が菜の花で一杯になることを期待。井戸掘りの方は、機能加工した板を設置したことで、足元がスッキリした。また、4.5mまでの切削で活躍したオーガを片づけた。今後使用する機会があるかどうかは不明だが、ひとまずはガレージに収納。</p>
+      <div class="memo"><span>一言メモ</span><p>今日は母の日だったので、母親を誘って寿司屋に行ってきた。年々年を取る母親を見るのは嬉しい事ではないが、こればかりは仕方ない。そういう自分も同じように年をとっていることを忘れずに。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_073.jpg" target="_blank"><img loading="lazy" src="assets/images/img_073.jpg" alt="2026.5.10の畑写真"></a><a class="photo" href="assets/images/img_074.jpg" target="_blank"><img loading="lazy" src="assets/images/img_074.jpg" alt="2026.5.10の畑写真"></a><a class="photo" href="assets/images/img_075.jpg" target="_blank"><img loading="lazy" src="assets/images/img_075.jpg" alt="2026.5.10の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="畑にちょっと寄って、色が変わっていたキュウリの下葉を切除した。井戸掘りは休みとしたが、自宅に戻ってからさや管の周りの空間に物が落ちるのを防ぐため、そしてさや管を垂直に保つために一枚の板を加工した。なお今回、円形に板をくり抜くための工具ジグソーをこのためにヤフオクで中古を入手した。 今回入手したジグソーを今後使う予定がある訳ではないが、価格も安いのでレンタルするよりいいかもしれないと思った。車のdiyである程度工具が揃っているので、ジグソーの追加でdiyの幅が広がることを期待している。">
+      <header>
+        <div><time datetime="2026-05-09">2026.5.9</time><span class="weekday">土曜日</span></div>
+        <p class="lead">畑にちょっと寄って、色が変わっていたキュウリの下葉を切除した。</p>
+      </header>
+      <p class="diary">畑にちょっと寄って、色が変わっていたキュウリの下葉を切除した。井戸掘りは休みとしたが、自宅に戻ってからさや管の周りの空間に物が落ちるのを防ぐため、そしてさや管を垂直に保つために一枚の板を加工した。なお今回、円形に板をくり抜くための工具ジグソーをこのためにヤフオクで中古を入手した。</p>
+      <div class="memo"><span>一言メモ</span><p>今回入手したジグソーを今後使う予定がある訳ではないが、価格も安いのでレンタルするよりいいかもしれないと思った。車のDIYである程度工具が揃っているので、ジグソーの追加でDIYの幅が広がることを期待している。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_071.jpg" target="_blank"><img loading="lazy" src="assets/images/img_071.jpg" alt="2026.5.9の畑写真"></a><a class="photo" href="assets/images/img_072.jpg" target="_blank"><img loading="lazy" src="assets/images/img_072.jpg" alt="2026.5.9の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="花の金曜日という言葉はあまり意味を成さなくなってしまったが、それでもなんとなく週の区切りが来た感じで嬉しい。今日は井戸掘り以外に特段の作業予定がないので少し遅めに畑にいって、作物の様子を確認した。茄子は花が咲いたので、脇芽を欠いた。ミニトマトは元気に成長しているので、つっかえ棒を追加しておいた。最近定植したキュウリも生長点辺りは元気だが、下の葉の様子がおかしい。gptに写真を見せたところ、まだ致命的でないようなので、後日下の葉を切り落として様子を見る事とした。井戸掘りの方は一日10cmの目標が高すぎることを実感した。強力な粘土層とはまた違った難しさを体験中。鉄槍で底を少しずつほぐしていく感じで進めようと思う。気長にね。 畑に取り組み始めて、約２か月が過ぎた。後片づけから始まって緑肥の播種、苗の定植など、すべて新鮮な体験だ。畑の景色もスッカリ変わった。これからもっと気に入る場所にしていきたい。">
+      <header>
+        <div><time datetime="2026-05-08">2026.5.8</time><span class="weekday">金曜日</span></div>
+        <p class="lead">花の金曜日という言葉はあまり意味を成さなくなってしまったが、それでもなんとなく週の区切りが来た感じで嬉しい。</p>
+      </header>
+      <p class="diary">花の金曜日という言葉はあまり意味を成さなくなってしまったが、それでもなんとなく週の区切りが来た感じで嬉しい。今日は井戸掘り以外に特段の作業予定がないので少し遅めに畑にいって、作物の様子を確認した。茄子は花が咲いたので、脇芽を欠いた。ミニトマトは元気に成長しているので、つっかえ棒を追加しておいた。最近定植したキュウリも生長点辺りは元気だが、下の葉の様子がおかしい。GPTに写真を見せたところ、まだ致命的でないようなので、後日下の葉を切り落として様子を見る事とした。井戸掘りの方は一日10cmの目標が高すぎることを実感した。強力な粘土層とはまた違った難しさを体験中。鉄槍で底を少しずつほぐしていく感じで進めようと思う。気長にね。</p>
+      <div class="memo"><span>一言メモ</span><p>畑に取り組み始めて、約２か月が過ぎた。後片づけから始まって緑肥の播種、苗の定植など、すべて新鮮な体験だ。畑の景色もスッカリ変わった。これからもっと気に入る場所にしていきたい。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_066.jpg" target="_blank"><img loading="lazy" src="assets/images/img_066.jpg" alt="2026.5.8の畑写真"></a><a class="photo" href="assets/images/img_067.jpg" target="_blank"><img loading="lazy" src="assets/images/img_067.jpg" alt="2026.5.8の畑写真"></a><a class="photo" href="assets/images/img_068.jpg" target="_blank"><img loading="lazy" src="assets/images/img_068.jpg" alt="2026.5.8の畑写真"></a><a class="photo" href="assets/images/img_069.jpg" target="_blank"><img loading="lazy" src="assets/images/img_069.jpg" alt="2026.5.8の畑写真"></a><a class="photo" href="assets/images/img_070.jpg" target="_blank"><img loading="lazy" src="assets/images/img_070.jpg" alt="2026.5.8の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="ゴールデンウィークも終わり、社会が平常運転に戻った。朝、犬の散歩をしていると小学生たちが近くの学校に続々と登校してきた。休日も良いが、日常の営みがやっぱり大切な気がする。さて、井戸掘りの方はさや管が入ったことで新しいステージに入った。現在深度4.4ｍに6mのさや管が入っている状態なので、脚立を使ってのスイコでの作業となる。ここから１m程度掘り進める予定だ。さや管を入れたことで井戸の壁の崩落のリスクは無くなった。気長に最後の井戸掘りに取り組むことになる。目標は一日10cm、つまり10日で1ｍ。頑張るぞー！ さや管は入ったけれど、土砂の埋め戻しはまだしていない。さや管回りのすき間に物が落ちないように、また作業しやすいように円形にくり抜いた板を作成予定。当初はジグソーという工具をレンタルしようと思ったがヤフオクで中古を入手することにした。無事落札できたので近日中に作業ができそうだ。">
+      <header>
+        <div><time datetime="2026-05-07">2026.5.7</time><span class="weekday">木曜日</span></div>
+        <p class="lead">ゴールデンウィークも終わり、社会が平常運転に戻った。</p>
+      </header>
+      <p class="diary">ゴールデンウィークも終わり、社会が平常運転に戻った。朝、犬の散歩をしていると小学生たちが近くの学校に続々と登校してきた。休日も良いが、日常の営みがやっぱり大切な気がする。さて、井戸掘りの方はさや管が入ったことで新しいステージに入った。現在深度4.4ｍに6mのさや管が入っている状態なので、脚立を使ってのスイコでの作業となる。ここから１m程度掘り進める予定だ。さや管を入れたことで井戸の壁の崩落のリスクは無くなった。気長に最後の井戸掘りに取り組むことになる。目標は一日10cm、つまり10日で1ｍ。頑張るぞー！</p>
+      <div class="memo"><span>一言メモ</span><p>さや管は入ったけれど、土砂の埋め戻しはまだしていない。さや管回りのすき間に物が落ちないように、また作業しやすいように円形にくり抜いた板を作成予定。当初はジグソーという工具をレンタルしようと思ったがヤフオクで中古を入手することにした。無事落札できたので近日中に作業ができそうだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_062.jpg" target="_blank"><img loading="lazy" src="assets/images/img_062.jpg" alt="2026.5.7の畑写真"></a><a class="photo" href="assets/images/img_063.jpg" target="_blank"><img loading="lazy" src="assets/images/img_063.jpg" alt="2026.5.7の畑写真"></a><a class="photo" href="assets/images/img_064.jpg" target="_blank"><img loading="lazy" src="assets/images/img_064.jpg" alt="2026.5.7の畑写真"></a><a class="photo" href="assets/images/img_065.jpg" target="_blank"><img loading="lazy" src="assets/images/img_065.jpg" alt="2026.5.7の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は水面の位置と、井戸の底までの深度を正確に計測しｔみた。水面は地下2.2ｍの位置で、井戸の底までの深度は4.4mだった。昨日まで大まかな見積りで4.6ｍ程度だと考えていたので、ちょっと後戻りした気分だ。もちろん実際には後戻りしている訳ではない。勘違いしていただけである。オーガでは地面への食い込みがなくなったし、重くなったのでスイコに切り替えて作業を進めている。しかし、あまり砂礫をキャッチ出来ている訳ではなく、泥水をくみ出しているだけな感じ。切削を進めるために、鉄の槍をロープに結んで自由落下で井戸の底をほぐすという方法も併用しているが、なかなか進まない。おまけにスイコの柄が長いので、上下に動かすときに井戸の壁を打ちつけて土砂が若干崩れる感じになった。掘っているのか埋めているのか分からなくなってしまうので、さや管を挿入することにした。本当は今度の日曜日に助手を手配していたのだが、一人でやることにした。幸いスムーズに4mの塩ビパイプが通り、それに2ｍの塩ビパイプを連結して、都合６ｍのさや管が刺さった。これで壁の崩落は心配しなくてよくなった。 見よう見まねで始めた井戸掘りだが、大きな石等にはほとんど遭遇せずにここまで来た。ゴールは近い。だが油断はできない。">
+      <header>
+        <div><time datetime="2026-05-06">2026.5.6</time><span class="weekday">水曜日</span></div>
+        <p class="lead">今日は水面の位置と、井戸の底までの深度を正確に計測しｔみた。</p>
+      </header>
+      <p class="diary">今日は水面の位置と、井戸の底までの深度を正確に計測しｔみた。水面は地下2.2ｍの位置で、井戸の底までの深度は4.4mだった。昨日まで大まかな見積りで4.6ｍ程度だと考えていたので、ちょっと後戻りした気分だ。もちろん実際には後戻りしている訳ではない。勘違いしていただけである。オーガでは地面への食い込みがなくなったし、重くなったのでスイコに切り替えて作業を進めている。しかし、あまり砂礫をキャッチ出来ている訳ではなく、泥水をくみ出しているだけな感じ。切削を進めるために、鉄の槍をロープに結んで自由落下で井戸の底をほぐすという方法も併用しているが、なかなか進まない。おまけにスイコの柄が長いので、上下に動かすときに井戸の壁を打ちつけて土砂が若干崩れる感じになった。掘っているのか埋めているのか分からなくなってしまうので、さや管を挿入することにした。本当は今度の日曜日に助手を手配していたのだが、一人でやることにした。幸いスムーズに4mの塩ビパイプが通り、それに2ｍの塩ビパイプを連結して、都合６ｍのさや管が刺さった。これで壁の崩落は心配しなくてよくなった。</p>
+      <div class="memo"><span>一言メモ</span><p>見よう見まねで始めた井戸掘りだが、大きな石等にはほとんど遭遇せずにここまで来た。ゴールは近い。だが油断はできない。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_057.jpg" target="_blank"><img loading="lazy" src="assets/images/img_057.jpg" alt="2026.5.6の畑写真"></a><a class="photo" href="assets/images/img_058.jpg" target="_blank"><img loading="lazy" src="assets/images/img_058.jpg" alt="2026.5.6の畑写真"></a><a class="photo" href="assets/images/img_059.jpg" target="_blank"><img loading="lazy" src="assets/images/img_059.jpg" alt="2026.5.6の畑写真"></a><a class="photo" href="assets/images/img_060.jpg" target="_blank"><img loading="lazy" src="assets/images/img_060.jpg" alt="2026.5.6の畑写真"></a><a class="photo" href="assets/images/img_061.jpg" target="_blank"><img loading="lazy" src="assets/images/img_061.jpg" alt="2026.5.6の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="ゴールデンウィーク真っ只中だが、朝起きて犬の散歩と軽い朝食の後は、畑に行きたくなる。井戸のさや管を今度の日曜日に挿入する予定だが、それまでに数十センチ掘り下げておきたい。一日一時間、10cm程度が惚れる感じだ。掘るというか、井戸の底をスイコでつついて、削れた土砂がとけこんだ水を引き上げるという感じだ。５月に入り陽気もだいぶ暖かくなったので、井戸掘り後は汗が滲む。幸いにも畑の隣はセブンイレブン。今日は井戸掘り後にセブンでガリガリ君をゲットしてクールダウン。有難いことだ。そういえば最近はセブンでダイソーの製品が買えるのはすばらしい。グローブを１点ついでに購入した。 そろそろ自分で畑を管理しようと思った時、最初のアイデアはドッグランとして使う事だった。しかし勝手に農地をドッグランにすることもできないらしい。でも今日は愛犬を畑に連れてきてみたら、ヘアリーベッチの上を喜んでウサギのように飛び跳ねながら走り回っていた。緑肥を植えておけばちょっとしたプライベートドッグランとして使えそうだ。">
+      <header>
+        <div><time datetime="2026-05-05">2026.5.5</time><span class="weekday">火曜日</span></div>
+        <p class="lead">ゴールデンウィーク真っ只中だが、朝起きて犬の散歩と軽い朝食の後は、畑に行きたくなる。</p>
+      </header>
+      <p class="diary">ゴールデンウィーク真っ只中だが、朝起きて犬の散歩と軽い朝食の後は、畑に行きたくなる。井戸のさや管を今度の日曜日に挿入する予定だが、それまでに数十センチ掘り下げておきたい。一日一時間、10cm程度が惚れる感じだ。掘るというか、井戸の底をスイコでつついて、削れた土砂がとけこんだ水を引き上げるという感じだ。５月に入り陽気もだいぶ暖かくなったので、井戸掘り後は汗が滲む。幸いにも畑の隣はセブンイレブン。今日は井戸掘り後にセブンでガリガリ君をゲットしてクールダウン。有難いことだ。そういえば最近はセブンでダイソーの製品が買えるのはすばらしい。グローブを１点ついでに購入した。</p>
+      <div class="memo"><span>一言メモ</span><p>そろそろ自分で畑を管理しようと思った時、最初のアイデアはドッグランとして使う事だった。しかし勝手に農地をドッグランにすることもできないらしい。でも今日は愛犬を畑に連れてきてみたら、ヘアリーベッチの上を喜んでウサギのように飛び跳ねながら走り回っていた。緑肥を植えておけばちょっとしたプライベートドッグランとして使えそうだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_054.jpg" target="_blank"><img loading="lazy" src="assets/images/img_054.jpg" alt="2026.5.5の畑写真"></a><a class="photo" href="assets/images/img_055.jpg" target="_blank"><img loading="lazy" src="assets/images/img_055.jpg" alt="2026.5.5の畑写真"></a><a class="photo" href="assets/images/img_056.jpg" target="_blank"><img loading="lazy" src="assets/images/img_056.jpg" alt="2026.5.5の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="自宅の庭に種を撒いておいたミニひまわりが発芽したが、種の撒き方が原因で密集して発芽していた。込み合い過ぎているので株分けして、畑に植える事にした。とりあえず今日は８本のミニひまわりを自宅の庭から畑に引っ越し。そういえば先日ヘアリーベッチの中から見つかったイチゴ苗は、移植してちゃんと根付きそうだ。井戸掘りの方は地層の変化に応じてオーガからスイコに道具を切り替えた。スイコにパイプを延長して現在は全長6.4ｍとなった。井戸の深さは現在4.6ｍといったところ。ここでさや管を入れると計算上は1.4m地上に出る計算になるが、あと20センチから30センチ掘ってからさや管を入れたい所だ。 今日は隣の畑の所有者に会った。隣の畑の所有者はいとこにあたる人物で、子供の頃はよく顔を合わせる機会があったが、ここ数十年は顔を合わせる機会がなかった。不思議なもので面影があるのですぐいとこであることは確信した。お互い年を取ったものだが、この年になって再会した感じだ。">
+      <header>
+        <div><time datetime="2026-05-04">2026.5.4</time><span class="weekday">月曜日</span></div>
+        <p class="lead">自宅の庭に種を撒いておいたミニひまわりが発芽したが、種の撒き方が原因で密集して発芽していた。</p>
+      </header>
+      <p class="diary">自宅の庭に種を撒いておいたミニひまわりが発芽したが、種の撒き方が原因で密集して発芽していた。込み合い過ぎているので株分けして、畑に植える事にした。とりあえず今日は８本のミニひまわりを自宅の庭から畑に引っ越し。そういえば先日ヘアリーベッチの中から見つかったイチゴ苗は、移植してちゃんと根付きそうだ。井戸掘りの方は地層の変化に応じてオーガからスイコに道具を切り替えた。スイコにパイプを延長して現在は全長6.4ｍとなった。井戸の深さは現在4.6ｍといったところ。ここでさや管を入れると計算上は1.4m地上に出る計算になるが、あと20センチから30センチ掘ってからさや管を入れたい所だ。</p>
+      <div class="memo"><span>一言メモ</span><p>今日は隣の畑の所有者に会った。隣の畑の所有者はいとこにあたる人物で、子供の頃はよく顔を合わせる機会があったが、ここ数十年は顔を合わせる機会がなかった。不思議なもので面影があるのですぐいとこであることは確信した。お互い年を取ったものだが、この年になって再会した感じだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_050.jpg" target="_blank"><img loading="lazy" src="assets/images/img_050.jpg" alt="2026.5.4の畑写真"></a><a class="photo" href="assets/images/img_051.jpg" target="_blank"><img loading="lazy" src="assets/images/img_051.jpg" alt="2026.5.4の畑写真"></a><a class="photo" href="assets/images/img_052.jpg" target="_blank"><img loading="lazy" src="assets/images/img_052.jpg" alt="2026.5.4の畑写真"></a><a class="photo" href="assets/images/img_053.jpg" target="_blank"><img loading="lazy" src="assets/images/img_053.jpg" alt="2026.5.4の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="試運転で判明した不具合を修正したスイコを畑に持ち込んでオーガに替えて切削を進める。ねっとり粘土の層は終わりを告げており感触からも砂礫層に移行していると考えられる。深度が4.3ｍでスイコの長さを延長する必要がある。vp20の塩ビパイプをvp13で1.8ｍ弱延長することとする。vp13にした理由、長さが1.8ｍなのは、それがガレージにあったからだ。兄貴に応援を頼んで近々に塩ビのさや管を挿入する予定。まずは4mを入れて様子を見ながら2ｍを連結する。地上に出る分が長すぎて作業性が落ちるようなら、一旦切断して短くする予定。さて、どうなるかは、やってみないとわからない。 がちがちの粘土層をいつ突破できるか気を揉んでいたが、あっさりと突破したようで少し肩透かしを食らった感じがしないでもない。いやいや安心は禁物、油断はできない。そして未来の不確定性こそが魅力なのかもしれないと感じる。もし未来が確実なら面白くはないだろう。">
+      <header>
+        <div><time datetime="2026-05-03">2026.5.3</time><span class="weekday">日曜日</span></div>
+        <p class="lead">試運転で判明した不具合を修正したスイコを畑に持ち込んでオーガに替えて切削を進める。</p>
+      </header>
+      <p class="diary">試運転で判明した不具合を修正したスイコを畑に持ち込んでオーガに替えて切削を進める。ねっとり粘土の層は終わりを告げており感触からも砂礫層に移行していると考えられる。深度が4.3ｍでスイコの長さを延長する必要がある。VP20の塩ビパイプをVP13で1.8ｍ弱延長することとする。VP13にした理由、長さが1.8ｍなのは、それがガレージにあったからだ。兄貴に応援を頼んで近々に塩ビのさや管を挿入する予定。まずは4mを入れて様子を見ながら2ｍを連結する。地上に出る分が長すぎて作業性が落ちるようなら、一旦切断して短くする予定。さて、どうなるかは、やってみないとわからない。</p>
+      <div class="memo"><span>一言メモ</span><p>がちがちの粘土層をいつ突破できるか気を揉んでいたが、あっさりと突破したようで少し肩透かしを食らった感じがしないでもない。いやいや安心は禁物、油断はできない。そして未来の不確定性こそが魅力なのかもしれないと感じる。もし未来が確実なら面白くはないだろう。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_047.jpg" target="_blank"><img loading="lazy" src="assets/images/img_047.jpg" alt="2026.5.3の畑写真"></a><a class="photo" href="assets/images/img_048.jpg" target="_blank"><img loading="lazy" src="assets/images/img_048.jpg" alt="2026.5.3の畑写真"></a><a class="photo" href="assets/images/img_049.jpg" target="_blank"><img loading="lazy" src="assets/images/img_049.jpg" alt="2026.5.3の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="緑肥として植えたヘアリーベッチの中に、イチゴの株を発見。母親が昨年栽培したものが雑草化したもののようだ。既に実も付けているので、掘り起こして畝の方に移植しておいた。そういえば畑には何本か木も植わっているが、梅の実がだいぶ大きくなってきたようだ。母親によるとこれは南高梅らしい。気がつけば畑にあるアヤメも満開となっている。井戸掘りの方は青灰色の粘土層が終わりになったようだ。オーガが粘土に食い込んでいく感触から、オーガを回転しても食い込まない、何か硬い層に入りかけている感じだ。この時点の深度は4.3ｍといったところ。井戸枠の挿入のタイミング化どうか、今少し様子を見ようと思う。畑仕事のあと、畑の近所を犬と散歩した。近くには沼がありその傍らに墓地がある。父親や親戚が埋葬されている墓地だが、そこにある墓石のほとんどは石田家と書かれている。随分と古い墓石もあってかなり前から石田一族がこのあたりで生活をしていた事がうかがわれる。自分のルーツを垣間見た気がした。 代々続いてきたであろう石田一族の一員として先祖が長い間してきたこと（農業）に自分が今取り組んでいるのが不思議だ。ゴールデンウイークに畑にいる自分がいるのもこれまた不思議だけれど。">
+      <header>
+        <div><time datetime="2026-05-02">2026.5.2</time><span class="weekday">土曜日</span></div>
+        <p class="lead">緑肥として植えたヘアリーベッチの中に、イチゴの株を発見。</p>
+      </header>
+      <p class="diary">緑肥として植えたヘアリーベッチの中に、イチゴの株を発見。母親が昨年栽培したものが雑草化したもののようだ。既に実も付けているので、掘り起こして畝の方に移植しておいた。そういえば畑には何本か木も植わっているが、梅の実がだいぶ大きくなってきたようだ。母親によるとこれは南高梅らしい。気がつけば畑にあるアヤメも満開となっている。井戸掘りの方は青灰色の粘土層が終わりになったようだ。オーガが粘土に食い込んでいく感触から、オーガを回転しても食い込まない、何か硬い層に入りかけている感じだ。この時点の深度は4.3ｍといったところ。井戸枠の挿入のタイミング化どうか、今少し様子を見ようと思う。畑仕事のあと、畑の近所を犬と散歩した。近くには沼がありその傍らに墓地がある。父親や親戚が埋葬されている墓地だが、そこにある墓石のほとんどは石田家と書かれている。随分と古い墓石もあってかなり前から石田一族がこのあたりで生活をしていた事がうかがわれる。自分のルーツを垣間見た気がした。</p>
+      <div class="memo"><span>一言メモ</span><p>代々続いてきたであろう石田一族の一員として先祖が長い間してきたこと（農業）に自分が今取り組んでいるのが不思議だ。ゴールデンウイークに畑にいる自分がいるのもこれまた不思議だけれど。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_042.jpg" target="_blank"><img loading="lazy" src="assets/images/img_042.jpg" alt="2026.5.2の畑写真"></a><a class="photo" href="assets/images/img_043.jpg" target="_blank"><img loading="lazy" src="assets/images/img_043.jpg" alt="2026.5.2の畑写真"></a><a class="photo" href="assets/images/img_044.jpg" target="_blank"><img loading="lazy" src="assets/images/img_044.jpg" alt="2026.5.2の畑写真"></a><a class="photo" href="assets/images/img_045.jpg" target="_blank"><img loading="lazy" src="assets/images/img_045.jpg" alt="2026.5.2の畑写真"></a><a class="photo" href="assets/images/img_046.jpg" target="_blank"><img loading="lazy" src="assets/images/img_046.jpg" alt="2026.5.2の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでgeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。aiは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。 chatgptやらgeminiやらは驚くべき進化を遂げていて、今後の社会のインフラに成長するのだろうと感じる。ソフトバンクの孫さんがaiに全振りしているのが分かる気がする。">
+      <header>
+        <div><time datetime="2026-05-01">2026.5.1</time><span class="weekday">金曜日</span></div>
+        <p class="lead">昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。</p>
+      </header>
+      <p class="diary">昨日はミニトマトを定植したが、一緒に購入したピーマンとキュウリはいつ定植してよいか検討がつかない。そこでGeminiに写真を見せたら、キュウリはすぐに定植可能、ピーマンは1週間程度このまま育ててちっちゃい蕾ができたら定植時期だとの事。AIは何でも知ってて頼もしい限り。ついでに井戸掘りの状況についても聞いてみると、粘土が青灰色になって来たのは、いい兆候らしい。ここを突破すれば、念願の帯水層にたどりつける可能性大。ちなみにさや管の挿入はこの粘土層を突破して砂礫が出てくるまで待った方が良いようだ。</p>
+      <div class="memo"><span>一言メモ</span><p>ChatGPTやらGeminiやらは驚くべき進化を遂げていて、今後の社会のインフラに成長するのだろうと感じる。ソフトバンクの孫さんがAIに全振りしているのが分かる気がする。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_041.jpg" target="_blank"><img loading="lazy" src="assets/images/img_041.jpg" alt="2026.5.1の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。 先日買ってきたミニトマトの苗を畑に定植した。すでに実が一部ついているので、ミニトマトの収穫が一番手になるかもしれない。緑肥として植えたヘアリーベッチ、エン麦、大麦はいずれもすくすくと成長していて畑の大半が緑一面になってきた。">
+      <header>
+        <div><time datetime="2026-04-30">2026.4.30</time><span class="weekday">木曜日</span></div>
+        <p class="lead">今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。</p>
+      </header>
+      <p class="diary">今日は母親から依頼があった畝建てとスイコの仕上げと試運転をした。畝建ては今年購入した管理機が活躍。本日スイコも井戸枠とともに完成した。スイコは早速畑に持ち込んで試してみた。まずまず期待通りの操作性で満足だが、一部改良の余地がある。オーガでの切削は重さがネックとなり始めているので、スイコでの切削に期待したいところ。4ｍ+の深度だが、強敵の粘土層はまだ終わりが見えない。</p>
+      <div class="memo"><span>一言メモ</span><p>先日買ってきたミニトマトの苗を畑に定植した。すでに実が一部ついているので、ミニトマトの収穫が一番手になるかもしれない。緑肥として植えたヘアリーベッチ、エン麦、大麦はいずれもすくすくと成長していて畑の大半が緑一面になってきた。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_037.jpg" target="_blank"><img loading="lazy" src="assets/images/img_037.jpg" alt="2026.4.30の畑写真"></a><a class="photo" href="assets/images/img_038.jpg" target="_blank"><img loading="lazy" src="assets/images/img_038.jpg" alt="2026.4.30の畑写真"></a><a class="photo" href="assets/images/img_039.jpg" target="_blank"><img loading="lazy" src="assets/images/img_039.jpg" alt="2026.4.30の畑写真"></a><a class="photo" href="assets/images/img_040.jpg" target="_blank"><img loading="lazy" src="assets/images/img_040.jpg" alt="2026.4.30の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。 井戸枠の穴あけ作業は大変だと聞いていたので心配だったが、親父が使ってたプロ用のドリルを使ったら、思ったより効率的に穴あけができた。流石プロ用という感じ。なんとなく親父が草葉の陰から応援してくれているような気がした。不思議な感じ。">
+      <header>
+        <div><time datetime="2026-04-29">2026.4.29</time><span class="weekday">水曜日</span></div>
+        <p class="lead">今日は世間ではいわゆるゴールデンウイークの初日。</p>
+      </header>
+      <p class="diary">今日は世間ではいわゆるゴールデンウイークの初日。私にとってゴールデンウイークはほぼ意味がなくなってしまったので、いつも通り畑に出勤。オーガ全長4.5mの節目を迎えつつある井戸掘りに取り組む。前日に続いて粘度の高い粘土層を掘り進むが相変わらず強敵である。それでも少しコツのようなものが分かったようにも思う。より効率的にオーガで粘土を引き上げることが出来るようになった。大変なのはその粘土をオーガから取り除くところかもしれない。今日は深度4ｍまで掘り進んだ。なお、水位は2ｍから2.5mあたりにあるが、これは水をくみ上げても変わらないようだ。いつもは午前中で畑仕事は終了だが、今日は休日なので午後はスイコ製作を行った。井戸枠に給水ように1,000個程度の穴をドリルで開けた。これでスイコも完成に近付いた。はやく試運転をしてみたい。</p>
+      <div class="memo"><span>一言メモ</span><p>井戸枠の穴あけ作業は大変だと聞いていたので心配だったが、親父が使ってたプロ用のドリルを使ったら、思ったより効率的に穴あけができた。流石プロ用という感じ。なんとなく親父が草葉の陰から応援してくれているような気がした。不思議な感じ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_033.jpg" target="_blank"><img loading="lazy" src="assets/images/img_033.jpg" alt="2026.4.29の畑写真"></a><a class="photo" href="assets/images/img_034.jpg" target="_blank"><img loading="lazy" src="assets/images/img_034.jpg" alt="2026.4.29の畑写真"></a><a class="photo" href="assets/images/img_035.jpg" target="_blank"><img loading="lazy" src="assets/images/img_035.jpg" alt="2026.4.29の畑写真"></a><a class="photo" href="assets/images/img_036.jpg" target="_blank"><img loading="lazy" src="assets/images/img_036.jpg" alt="2026.4.29の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。 この粘土層を突破するまで根気が必要になりそうだ。現在オーガの全長は4.5ｍだが、これ以上のジョイントを追加するのは重すぎて厳しそう。現在の粘土層は粘度が極めて高く、そのまま玩具として売れるレベルだ。オーガの先端にねっとりとくっついてくるので、除去するのは手を使う必要がある。">
+      <header>
+        <div><time datetime="2026-04-28">2026.4.28</time><span class="weekday">火曜日</span></div>
+        <p class="lead">今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。</p>
+      </header>
+      <p class="diary">今日は実家の庭木の伐採、畑の木の伐採の片づけを行うためにリサイクルセンターにいった。庭木の量は160Kg、処分費1,920円だった。その後、最後のジョイントを使ってオーガでの井戸掘り。深度3.5ｍからのスタートだが強い粘度の粘土層で中々進まない。</p>
+      <div class="memo"><span>一言メモ</span><p>この粘土層を突破するまで根気が必要になりそうだ。現在オーガの全長は4.5ｍだが、これ以上のジョイントを追加するのは重すぎて厳しそう。現在の粘土層は粘度が極めて高く、そのまま玩具として売れるレベルだ。オーガの先端にねっとりとくっついてくるので、除去するのは手を使う必要がある。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_031.jpg" target="_blank"><img loading="lazy" src="assets/images/img_031.jpg" alt="2026.4.28の畑写真"></a><a class="photo" href="assets/images/img_032.jpg" target="_blank"><img loading="lazy" src="assets/images/img_032.jpg" alt="2026.4.28の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。 最近はホームセンター（カインズ）へ毎日通うようになってしまった。今日はスイコの追加部品購入が目的なのだが、つい色々な苗が売っているの買いたくなってしまう。">
+      <header>
+        <div><time datetime="2026-04-27">2026.4.27</time><span class="weekday">月曜日</span></div>
+        <p class="lead">雨のため畑での作業は無し。</p>
+      </header>
+      <p class="diary">雨のため畑での作業は無し。スイコを使うようになるのはまだ先だけどいずれ必要となるハズなので製作を進めた。逆止弁もついて完成も近い。</p>
+      <div class="memo"><span>一言メモ</span><p>最近はホームセンター（カインズ）へ毎日通うようになってしまった。今日はスイコの追加部品購入が目的なのだが、つい色々な苗が売っているの買いたくなってしまう。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_030.jpg" target="_blank"><img loading="lazy" src="assets/images/img_030.jpg" alt="2026.4.27の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。 車いじりを始めた2020年から車いじりを始めたのでdiyに必要な工具はある程度揃っている。そんな背景もあり今回スムーズにスイコの製作に入ることができた。">
+      <header>
+        <div><time datetime="2026-04-26">2026.4.26</time><span class="weekday">日曜日</span></div>
+        <p class="lead">今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。</p>
+      </header>
+      <p class="diary">今日は日曜日で畑には行かなかったが、庭の木の伐採を依頼されていたので母親の家に行った。さて、井戸掘りではある段階でスイコという道具が必要となる。現時点では必要ないのでスイコを自作するか市販の物を使うかは決めていなかったのだが、ガレージから使える塩ビパイプが出てきたので自作する事とした。早速ホームセンターに行ってネジなどの部材を調達して早速製作開始。ユーチューブでの下調べのおかげで、そこそこ良いものが出来そうだ。</p>
+      <div class="memo"><span>一言メモ</span><p>車いじりを始めた2020年から車いじりを始めたのでDIYに必要な工具はある程度揃っている。そんな背景もあり今回スムーズにスイコの製作に入ることができた。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_028.jpg" target="_blank"><img loading="lazy" src="assets/images/img_028.jpg" alt="2026.4.26の畑写真"></a><a class="photo" href="assets/images/img_029.jpg" target="_blank"><img loading="lazy" src="assets/images/img_029.jpg" alt="2026.4.26の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。 ガレージには父親が悪戦苦闘したであろうことを想像させるいろいろな工具や資材が残っている。父親の死後から約10年、今回畑の管理をすることになって、父親の事を考える良い機会かもしれない。私自身も父親になって初めて自分の父親の気持ちや行動がよく理解できるようになったと思う。">
+      <header>
+        <div><time datetime="2026-04-25">2026.4.25</time><span class="weekday">土曜日</span></div>
+        <p class="lead">今日はソバの日。</p>
+      </header>
+      <p class="diary">今日はソバの日。かれこれ5年以上前から隔週でお気に入りのソバ屋で母親とソバを食べる日だ。畑仕事は休みだが、ソバ屋の帰りに母親の家に寄ってガレージに父親の残した道具や資材を確認した。その中でも井戸掘りで購入しようと思っていた径の4mの塩ビ管がある事に気付いてビックリ。まさか息子がこの塩ビ管を使うことになろうとは天国の父親も思ってなかっただろう。</p>
+      <div class="memo"><span>一言メモ</span><p>ガレージには父親が悪戦苦闘したであろうことを想像させるいろいろな工具や資材が残っている。父親の死後から約10年、今回畑の管理をすることになって、父親の事を考える良い機会かもしれない。私自身も父親になって初めて自分の父親の気持ちや行動がよく理解できるようになったと思う。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_027.jpg" target="_blank"><img loading="lazy" src="assets/images/img_027.jpg" alt="2026.4.25の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。 今年3月に責任者として畑の管理をきちんとしようと思い立ってから約2か月。はじめは伐採した木の後片付けや雑草の処理などが中心だったが、最近は緑肥などの成長が著しくて、畑が畑らしくなってきた。井戸掘りという未体験の経験を泥だらけになりながら楽しんでいる。新しいことをするのはいつも大変だ。しかしその体験こそが喜びの種なんだと今は思う。">
+      <header>
+        <div><time datetime="2026-04-24">2026.4.24</time><span class="weekday">金曜日</span><span class="badge well">井戸掘り</span></div>
+        <p class="lead">緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。</p>
+      </header>
+      <p class="diary">緑肥として植えたヘアリーベッチ、エン麦、大麦はすくすくと育っている。特に肥料を入れている訳ではないのに元気に育つのは素晴らしい。母親ちの庭から移植したアスパラも複数芽が出てきている。収穫は先送りして根を大きくさせる。長いもや枝豆、茄子、ベビーリーフなどが植わっている。長いも以外はすべて地上に現れている状態。井戸掘り３日目はジョイント１本を追加して3m50cmまで順調に掘り下げている。粘土質の土がさらに強度な粘土に変わってきた。ジョイントが長くなっているのと、粘土の粘度が上がっているのでオーガの先っぽの1周くらいに粘土をすくうのが精一杯。砂礫層が出てきてから１ｍくらいは掘りたいと思うのだが、果たして砂礫層にたどり着けるのか。。。3m50cmあたりで粘土の色が白っぽくなってきた。粘土層の最後なのかもしれない。その先に何があるかは、、、お楽しみ。</p>
+      <div class="memo"><span>一言メモ</span><p>今年3月に責任者として畑の管理をきちんとしようと思い立ってから約2か月。はじめは伐採した木の後片付けや雑草の処理などが中心だったが、最近は緑肥などの成長が著しくて、畑が畑らしくなってきた。井戸掘りという未体験の経験を泥だらけになりながら楽しんでいる。新しいことをするのはいつも大変だ。しかしその体験こそが喜びの種なんだと今は思う。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_020.jpg" target="_blank"><img loading="lazy" src="assets/images/img_020.jpg" alt="2026.4.24の畑写真"></a><a class="photo" href="assets/images/img_021.jpg" target="_blank"><img loading="lazy" src="assets/images/img_021.jpg" alt="2026.4.24の畑写真"></a><a class="photo" href="assets/images/img_022.jpg" target="_blank"><img loading="lazy" src="assets/images/img_022.jpg" alt="2026.4.24の畑写真"></a><a class="photo" href="assets/images/img_023.jpg" target="_blank"><img loading="lazy" src="assets/images/img_023.jpg" alt="2026.4.24の畑写真"></a><a class="photo" href="assets/images/img_024.jpg" target="_blank"><img loading="lazy" src="assets/images/img_024.jpg" alt="2026.4.24の畑写真"></a><a class="photo" href="assets/images/img_025.jpg" target="_blank"><img loading="lazy" src="assets/images/img_025.jpg" alt="2026.4.24の畑写真"></a><a class="photo" href="assets/images/img_026.jpg" target="_blank"><img loading="lazy" src="assets/images/img_026.jpg" alt="2026.4.24の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずok。スイコとやらが必要になる段階に入ったのかもしれない。 井戸掘りのアイデアはふと思い浮かんだものだが、この未体験ゾーンへの挑戦はワクワクする。水が欲しいから井戸を掘る訳だが、実際には水が欲しいのではなく、井戸掘りという新しい体験が欲しいのだと思う。山登りするひとは頂上を目指している訳だが、頂上に行きたい訳ではなく、山を登るという体験がしたいのと同じなのだろう。">
+      <header>
+        <div><time datetime="2026-04-23">2026.4.23</time><span class="weekday">木曜日</span><span class="badge well">井戸掘り</span></div>
+        <p class="lead">6時過ぎから作業開始。</p>
+      </header>
+      <p class="diary">6時過ぎから作業開始。ひとつ目は茄子の保護シールド。母親がやってくれたのを自分なりにやり直し。これで自分で作るものが３回目のバージョンになる。ふたつ目のタスクは待望の井戸掘り２回目。オーガが入荷したので早速使ってみたら、スイスイと掘り進んで約２ｍ50ｃｍ（刃先とジョイント計３本）で水面が見えた。昨日の雨もあるので、通常の水面の位置よりは上かもしれないが、ひとまずOK。スイコとやらが必要になる段階に入ったのかもしれない。</p>
+      <div class="memo"><span>一言メモ</span><p>井戸掘りのアイデアはふと思い浮かんだものだが、この未体験ゾーンへの挑戦はワクワクする。水が欲しいから井戸を掘る訳だが、実際には水が欲しいのではなく、井戸掘りという新しい体験が欲しいのだと思う。山登りするひとは頂上を目指している訳だが、頂上に行きたい訳ではなく、山を登るという体験がしたいのと同じなのだろう。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_014.jpg" target="_blank"><img loading="lazy" src="assets/images/img_014.jpg" alt="2026.4.23の畑写真"></a><a class="photo" href="assets/images/img_015.jpg" target="_blank"><img loading="lazy" src="assets/images/img_015.jpg" alt="2026.4.23の畑写真"></a><a class="photo" href="assets/images/img_016.jpg" target="_blank"><img loading="lazy" src="assets/images/img_016.jpg" alt="2026.4.23の畑写真"></a><a class="photo" href="assets/images/img_017.jpg" target="_blank"><img loading="lazy" src="assets/images/img_017.jpg" alt="2026.4.23の畑写真"></a><a class="photo" href="assets/images/img_018.jpg" target="_blank"><img loading="lazy" src="assets/images/img_018.jpg" alt="2026.4.23の畑写真"></a><a class="photo" href="assets/images/img_019.jpg" target="_blank"><img loading="lazy" src="assets/images/img_019.jpg" alt="2026.4.23の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。 母親の子供を思う気持ちはいくつになっても変らないのだとつくづく思う。耳も聞き取りにくいようだし、足腰も弱ってきて大変そうだが、私にできることは一緒に畑仕事をする事くらいか。">
+      <header>
+        <div><time datetime="2026-04-22">2026.4.22</time><span class="weekday">水曜日</span></div>
+        <p class="lead">昨日の強風で茄子のミニハウスが飛ばされたらしい。</p>
+      </header>
+      <p class="diary">昨日の強風で茄子のミニハウスが飛ばされたらしい。母親が代わりに肥料袋で新設してくれた。</p>
+      <div class="memo"><span>一言メモ</span><p>母親の子供を思う気持ちはいくつになっても変らないのだとつくづく思う。耳も聞き取りにくいようだし、足腰も弱ってきて大変そうだが、私にできることは一緒に畑仕事をする事くらいか。</p></div>
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。 兼業農家として生計を立てていた両親が色々と悪戦苦闘してきた歴史が想像される。父親は10年前に他界しているが、埃だらけの工具が何かを語りかけてくる感じがした。母親は今年91歳になるが、今でも畑で野菜を作る。元気と言えば元気なのだが、91歳というのは傍目にみて色々と大変そうだ。">
+      <header>
+        <div><time datetime="2026-04-21">2026.4.21</time><span class="weekday">火曜日</span></div>
+        <p class="lead">畑に行ったら雨だったので、ガレージでお宝さがし。</p>
+      </header>
+      <p class="diary">畑に行ったら雨だったので、ガレージでお宝さがし。父親の事が思い出される。畑作業用の日よけ帽子を購入しにカインズに行ったが、そこで3つの苗を衝動買い。そういえば、畑直播のレタスミックスの発芽を確認。</p>
+      <div class="memo"><span>一言メモ</span><p>兼業農家として生計を立てていた両親が色々と悪戦苦闘してきた歴史が想像される。父親は10年前に他界しているが、埃だらけの工具が何かを語りかけてくる感じがした。母親は今年91歳になるが、今でも畑で野菜を作る。元気と言えば元気なのだが、91歳というのは傍目にみて色々と大変そうだ。</p></div>
+      <div class="gallery"><a class="photo" href="assets/images/img_007.jpg" target="_blank"><img loading="lazy" src="assets/images/img_007.jpg" alt="2026.4.21の畑写真"></a><a class="photo" href="assets/images/img_008.jpg" target="_blank"><img loading="lazy" src="assets/images/img_008.jpg" alt="2026.4.21の畑写真"></a><a class="photo" href="assets/images/img_009.jpg" target="_blank"><img loading="lazy" src="assets/images/img_009.jpg" alt="2026.4.21の畑写真"></a><a class="photo" href="assets/images/img_010.jpg" target="_blank"><img loading="lazy" src="assets/images/img_010.jpg" alt="2026.4.21の畑写真"></a><a class="photo" href="assets/images/img_011.jpg" target="_blank"><img loading="lazy" src="assets/images/img_011.jpg" alt="2026.4.21の畑写真"></a><a class="photo" href="assets/images/img_012.jpg" target="_blank"><img loading="lazy" src="assets/images/img_012.jpg" alt="2026.4.21の畑写真"></a><a class="photo" href="assets/images/img_013.jpg" target="_blank"><img loading="lazy" src="assets/images/img_013.jpg" alt="2026.4.21の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="プチビニールハウス改良・トラクターローター替え刃入荷 ">
+      <header>
+        <div><time datetime="2026-04-20">2026.4.20</time><span class="weekday">月曜日</span></div>
+        <p class="lead">プチビニールハウス改良・トラクターローター替え刃入荷</p>
+      </header>
+      <p class="diary">プチビニールハウス改良・トラクターローター替え刃入荷</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。 ">
+      <header>
+        <div><time datetime="2026-04-19">2026.4.19</time><span class="weekday">日曜日</span></div>
+        <p class="lead">ながなすの苗を２本を畑に移植。</p>
+      </header>
+      <p class="diary">ながなすの苗を２本を畑に移植。リキダスも使って定植後、プチビニールハウスを設置。</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_004.jpg" target="_blank"><img loading="lazy" src="assets/images/img_004.jpg" alt="2026.4.19の畑写真"></a><a class="photo" href="assets/images/img_005.jpg" target="_blank"><img loading="lazy" src="assets/images/img_005.jpg" alt="2026.4.19の畑写真"></a><a class="photo" href="assets/images/img_006.jpg" target="_blank"><img loading="lazy" src="assets/images/img_006.jpg" alt="2026.4.19の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプvu100の２m購入。近接のボーリングデータを元にgptによる井戸案２点を作成。 ">
+      <header>
+        <div><time datetime="2026-04-17">2026.4.17</time><span class="weekday">金曜日</span><span class="badge well">井戸掘り</span></div>
+        <p class="lead">井戸掘り1日目。</p>
+      </header>
+      <p class="diary">井戸掘り1日目。場所を決めてスコップで１m程度掘りはじめ。オーガをアマゾンで注文済。塩ビパイプVU100の２m購入。近接のボーリングデータを元にGPTによる井戸案２点を作成。</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_002.jpg" target="_blank"><img loading="lazy" src="assets/images/img_002.jpg" alt="2026.4.17の畑写真"></a><a class="photo" href="assets/images/img_003.jpg" target="_blank"><img loading="lazy" src="assets/images/img_003.jpg" alt="2026.4.17の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="長いも（ネバリスター）２本植付 ">
+      <header>
+        <div><time datetime="2026-04-14">2026.4.14</time><span class="weekday">火曜日</span></div>
+        <p class="lead">長いも（ネバリスター）２本植付</p>
+      </header>
+      <p class="diary">長いも（ネバリスター）２本植付</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="えだまめ（湯上り娘）発芽 ">
+      <header>
+        <div><time datetime="2026-04-11">2026.4.11</time><span class="weekday"></span></div>
+        <p class="lead">えだまめ（湯上り娘）発芽</p>
+      </header>
+      <p class="diary">えだまめ（湯上り娘）発芽</p>
+      
+      <div class="gallery"><a class="photo" href="assets/images/img_001.jpg" target="_blank"><img loading="lazy" src="assets/images/img_001.jpg" alt="2026.4.11の畑写真"></a></div>
+    </article>
+    <article class="entry" data-text="リーフレタス播種 ">
+      <header>
+        <div><time datetime="2026-04-10">2026.4.10</time><span class="weekday"></span></div>
+        <p class="lead">リーフレタス播種</p>
+      </header>
+      <p class="diary">リーフレタス播種</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="大麦発芽 ">
+      <header>
+        <div><time datetime="2026-04-07">2026.4.7</time><span class="weekday"></span></div>
+        <p class="lead">大麦発芽</p>
+      </header>
+      <p class="diary">大麦発芽</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="アスパラガス２株追加移植 ">
+      <header>
+        <div><time datetime="2026-04-06">2026.4.6</time><span class="weekday"></span></div>
+        <p class="lead">アスパラガス２株追加移植</p>
+      </header>
+      <p class="diary">アスパラガス２株追加移植</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="アスパラガス２株移植 ">
+      <header>
+        <div><time datetime="2026-04-03">2026.4.3</time><span class="weekday"></span></div>
+        <p class="lead">アスパラガス２株移植</p>
+      </header>
+      <p class="diary">アスパラガス２株移植</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="エン麦発芽・大麦播種 ">
+      <header>
+        <div><time datetime="2026-04-01">2026.4.1</time><span class="weekday"></span></div>
+        <p class="lead">エン麦発芽・大麦播種</p>
+      </header>
+      <p class="diary">エン麦発芽・大麦播種</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="枝豆播種 ">
+      <header>
+        <div><time datetime="2026-03-31">2026.3.31</time><span class="weekday"></span></div>
+        <p class="lead">枝豆播種</p>
+      </header>
+      <p class="diary">枝豆播種</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="エン麦播種 ">
+      <header>
+        <div><time datetime="2026-03-25">2026.3.25</time><span class="weekday"></span></div>
+        <p class="lead">エン麦播種</p>
+      </header>
+      <p class="diary">エン麦播種</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="ヘアリーベッチ発芽 ">
+      <header>
+        <div><time datetime="2026-03-24">2026.3.24</time><span class="weekday"></span></div>
+        <p class="lead">ヘアリーベッチ発芽</p>
+      </header>
+      <p class="diary">ヘアリーベッチ発芽</p>
+      
+      <div class="gallery"></div>
+    </article>
+    <article class="entry" data-text="ヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。 ">
+      <header>
+        <div><time datetime="2026-03-09">2026.3.9</time><span class="weekday"></span></div>
+        <p class="lead">ヘアリーベッチ播種。</p>
+      </header>
+      <p class="diary">ヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。</p>
+      
+      <div class="gallery"></div>
+    </article></main>
+<footer class="footer">Generated from 畑日記_古い順_20260522(6).xlsx / Last update: 2026-06-19</footer><script src="assets/main.js"></script></body></html>
