@@ -1,11 +1,9 @@
-Bob’s Farm Diary update (2026-06-19)
+Bob's Farm Diary update
 
-使い方:
-1. このフォルダ内の全ファイルを GitHub Pages のリポジトリにコピーします。
-2. GitHub Desktop で Commit → Push してください。
-3. index.html が日本語版、index_en.html が英語UI版です。
+Entries: 73
+Photos: 220
+Period: 2026-03-09 -> 2026-06-26
 
-注意:
-- 画像はWeb用に軽量化済みです。
-- 表示順は新しい日付が上です。
-- Storyタブは含めていません。
+Upload/overwrite these files in your GitHub Pages repository.
+Images used by the site are only under assets/images/.
+Keep assets/style.css and assets/main.js.
