@@ -1,9 +1,7 @@
 Bob's Farm Diary update
+Generated from: 畑日記_古い順_20260522(8).xlsx
+Entries: 78
+Photos: 239
+Period: 2026-03-09 to 2026-07-03
 
-Entries: 73
-Photos: 220
-Period: 2026-03-09 -> 2026-06-26
-
-Upload/overwrite these files in your GitHub Pages repository.
-Images used by the site are only under assets/images/.
-Keep assets/style.css and assets/main.js.
+Upload/overwrite these files in the GitHub Pages repository, then Commit and Push with GitHub Desktop.

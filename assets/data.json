@@ -1,10 +1,100 @@
 {
-  "updated": "2026-06-26",
-  "count": 73,
-  "latest": "2026-06-26",
+  "updated": "2026-07-03",
+  "count": 78,
+  "latest": "2026-07-03",
   "earliest": "2026-03-09",
-  "photo_count": 220,
+  "photo_count": 239,
   "entries": [
+    {
+      "row": 79,
+      "date": "2026-07-03",
+      "dateLabel": "2026.7.3",
+      "weekday": "金曜日",
+      "diary": "畑に到着したら雨が降ってきたので、ザっと見回りをして帰ってきた。茄子はなんとか持ち直しそうだ。枝豆の実を触ってみるとかなり太ってきたので2株を試しに収穫した。キュウリやしし唐もゲット。",
+      "memo": "生命の不思議、その生産性には肌で驚きを感じる。枝豆を作っているのは私ではなく、まぎれもなく枝豆の苗だ。キュウリを生み出しているのも、私ではなく、キュウリの苗だ。凄いぞ、みんな！",
+      "flag": "",
+      "weekday_en": "Friday",
+      "diary_en": "When I arrived at the field, it started raining, so I just made a quick round and came home. The eggplants seem as though they may recover. When I touched the edamame pods, they felt quite plump, so I harvested two plants as a trial. I also got cucumbers and shishito peppers.",
+      "memo_en": "I feel a physical sense of wonder at the mystery of life and its productivity. I am not the one making edamame; it is unmistakably the edamame plants. I am not the one producing cucumbers either; it is the cucumber plants. Amazing work, everyone!",
+      "images": [
+        "assets/images/img_234.jpg",
+        "assets/images/img_235.jpg",
+        "assets/images/img_236.jpg",
+        "assets/images/img_237.jpg",
+        "assets/images/img_238.jpg",
+        "assets/images/img_239.jpg"
+      ]
+    },
+    {
+      "row": 78,
+      "date": "2026-07-01",
+      "dateLabel": "2026.7.1",
+      "weekday": "水曜日",
+      "diary": "種から育てた水ナスの葉っぱに穴が開いている。虫による食害と思われるので、殺虫スプレーで対応した。肥料焼けの茄子苗については傷んだ葉を処分して地表に残っていた化成肥料を除外した。しばらく回復まで様子を見る事とする。先日畑に定植した生姜が芽を出したようだ。遅い植付だが元気に育って欲しい。キュウリとミニトマトは共に超元気だ。アスパラやネバリスターも盛んに葉を広げている。みんな、凄いぞ！",
+      "memo": "",
+      "flag": "",
+      "weekday_en": "Wednesday",
+      "diary_en": "The leaves of the mizunasu eggplants I grew from seed had holes in them. It looked like insect damage, so I treated them with an insecticide spray. For the eggplant seedlings affected by fertilizer burn, I removed the damaged leaves and cleared away the chemical fertilizer left on the soil surface. I will watch for a while and see if they recover. The ginger I transplanted to the field the other day seems to have sprouted. It was planted late, but I hope it grows well. The cucumbers and cherry tomatoes are both extremely vigorous. The asparagus and Nebaristar yams are also spreading their leaves actively. Everyone is amazing!",
+      "memo_en": "",
+      "images": [
+        "assets/images/img_229.jpg",
+        "assets/images/img_230.jpg",
+        "assets/images/img_231.jpg",
+        "assets/images/img_232.jpg",
+        "assets/images/img_233.jpg"
+      ]
+    },
+    {
+      "row": 77,
+      "date": "2026-06-30",
+      "dateLabel": "2026.6.30",
+      "weekday": "火曜日",
+      "diary": "６月最終日。未明にワールドカップサッカーを見ていたのと、昨晩かなり降雨があったので畑には行かなかったが、母親からトウモロコシを貰ったので取りに来ないか？との誘いがあって帰りに畑の様子を見てきた。少し前まで元気だった茄子の苗に変化があった。Geminiに写真を見せるとマグネシウム不足の可能性が大きいということだ。実の方は害虫が原因となっている可能性があるそうだ。",
+      "memo": "よく考えたら昨日追肥をしたのが原因のような気がしてきた。いわゆる肥料焼けだ。Geminiのアドバイスに盲目的に従って先ほど葉面散布で液体肥料を追加してしまった訳だが、まー、少し様子を見よう。",
+      "flag": "",
+      "weekday_en": "Tuesday",
+      "diary_en": "The last day of June. I had watched World Cup soccer before dawn and it had rained quite heavily last night, so I did not go to the field in the morning. Later, my mother invited me to come pick up some corn she had for me, so I stopped by the field on the way back. I noticed a change in the eggplant seedlings that had looked healthy until recently. After showing photos to Gemini, it said a magnesium deficiency was likely. As for the fruit, pests may also be involved.",
+      "memo_en": "Thinking about it carefully, I started to suspect that yesterday’s additional fertilizer may be the cause. In other words, fertilizer burn. I blindly followed Gemini’s advice and had just applied liquid fertilizer as a foliar spray, but for now I will watch and see what happens.",
+      "images": [
+        "assets/images/img_226.jpg",
+        "assets/images/img_227.jpg",
+        "assets/images/img_228.jpg"
+      ]
+    },
+    {
+      "row": 76,
+      "date": "2026-06-29",
+      "dateLabel": "2026.6.29",
+      "weekday": "月曜日",
+      "diary": "雨続きで土を動かすことができないので、今日は柿の木の剪定を行った。頻繁な雨のせいか植物の成長が著しい。これは雑草も含むわけだが、とりわけイチゴとネバリスターの急成長が目に留まった。",
+      "memo": "キュウリ1本を収穫。",
+      "flag": "",
+      "weekday_en": "Monday",
+      "diary_en": "Because of the continuing rain, I could not work the soil today, so I pruned the persimmon tree instead. Perhaps because of the frequent rain, the plants are growing vigorously. That includes the weeds, of course, but the rapid growth of the strawberries and Nebaristar yams especially caught my eye.",
+      "memo_en": "I harvested one cucumber.",
+      "images": [
+        "assets/images/img_221.jpg",
+        "assets/images/img_222.jpg",
+        "assets/images/img_223.jpg",
+        "assets/images/img_224.jpg",
+        "assets/images/img_225.jpg"
+      ]
+    },
+    {
+      "row": 75,
+      "date": "2026-06-27",
+      "dateLabel": "2026.6.27",
+      "weekday": "土曜日",
+      "diary": "ダブル台風は幸いなことにここでは大事にはなっていない。いつもの蕎麦屋の帰りに畑に様子を見に行ったら那須とキュウリが収穫を待っていた。",
+      "memo": "",
+      "flag": "",
+      "weekday_en": "Saturday",
+      "diary_en": "Fortunately, the double typhoons did not cause any serious trouble here. On the way back from our usual soba restaurant, I stopped by the field and found eggplants and cucumbers waiting to be harvested.",
+      "memo_en": "",
+      "images": [
+        "assets/images/img_220.jpg"
+      ]
+    },
     {
       "row": 74,
       "date": "2026-06-26",
@@ -30,11 +120,11 @@
       "diary_en": "Whenever the cherry tomatoes turn red, the crows eat them, so I installed a protective net made of shade cloth. I will watch for a while and see how it works. The ginger was still in the middle of sprouting, but I transplanted it into the field. Since the rice fields were about to be planted, I helped carry seedlings. I also saw my cousin, who runs an agricultural corporation, for the first time in a while.",
       "memo_en": "",
       "images": [
+        "assets/images/img_215.jpg",
         "assets/images/img_216.jpg",
         "assets/images/img_217.jpg",
         "assets/images/img_218.jpg",
-        "assets/images/img_219.jpg",
-        "assets/images/img_220.jpg"
+        "assets/images/img_219.jpg"
       ]
     },
     {
@@ -62,13 +152,13 @@
       "diary_en": "We ended up transplanting something called water spinach into the field. It was the first time I had heard the name, but apparently it is easy to grow. Today was the first clear day in a while. I want to expand the work around the well, and I am considering whether it would be better to rent heavy machinery. Actually, it is almost decided. After taking a mini-excavator training course next month, I plan to rent a small excavator from Aktio. For some reason I want one of my own, but I cannot quite bring myself to buy one, even used, because usage frequency and storage space are issues. Still, who knows what will happen in the end. If a good one appears on Yahoo Auctions, I might buy it.",
       "memo_en": "",
       "images": [
+        "assets/images/img_208.jpg",
         "assets/images/img_209.jpg",
         "assets/images/img_210.jpg",
         "assets/images/img_211.jpg",
         "assets/images/img_212.jpg",
         "assets/images/img_213.jpg",
-        "assets/images/img_214.jpg",
-        "assets/images/img_215.jpg"
+        "assets/images/img_214.jpg"
       ]
     },
     {
@@ -83,8 +173,7 @@
       "diary_en": "I decided to try making rice-bran bokashi fertilizer. The ingredients are rice bran, oil cake, and yeast to help the fermentation along. I used ordinary bread-making yeast. Apparently this is aerobic fermentation, so it needs to be stirred every day. It is a bit like taking care of a nukadoko pickling bed.",
       "memo_en": "",
       "images": [
-        "assets/images/img_207.jpg",
-        "assets/images/img_208.jpg"
+        "assets/images/img_207.jpg"
       ]
     },
     {
@@ -1102,7 +1191,7 @@
       "row": 11,
       "date": "2026-04-11",
       "dateLabel": "2026.4.11",
-      "weekday": "土曜日",
+      "weekday": "",
       "diary": "えだまめ（湯上り娘）発芽",
       "memo": "",
       "flag": "",
@@ -1117,7 +1206,7 @@
       "row": 10,
       "date": "2026-04-10",
       "dateLabel": "2026.4.10",
-      "weekday": "金曜日",
+      "weekday": "",
       "diary": "リーフレタス播種",
       "memo": "",
       "flag": "",
@@ -1130,7 +1219,7 @@
       "row": 9,
       "date": "2026-04-07",
       "dateLabel": "2026.4.7",
-      "weekday": "火曜日",
+      "weekday": "",
       "diary": "大麦発芽",
       "memo": "",
       "flag": "",
@@ -1143,7 +1232,7 @@
       "row": 8,
       "date": "2026-04-06",
       "dateLabel": "2026.4.6",
-      "weekday": "月曜日",
+      "weekday": "",
       "diary": "アスパラガス２株追加移植",
       "memo": "",
       "flag": "",
@@ -1156,7 +1245,7 @@
       "row": 7,
       "date": "2026-04-03",
       "dateLabel": "2026.4.3",
-      "weekday": "金曜日",
+      "weekday": "",
       "diary": "アスパラガス２株移植",
       "memo": "",
       "flag": "",
@@ -1169,7 +1258,7 @@
       "row": 6,
       "date": "2026-04-01",
       "dateLabel": "2026.4.1",
-      "weekday": "水曜日",
+      "weekday": "",
       "diary": "エン麦発芽・大麦播種",
       "memo": "",
       "flag": "",
@@ -1182,7 +1271,7 @@
       "row": 5,
       "date": "2026-03-31",
       "dateLabel": "2026.3.31",
-      "weekday": "火曜日",
+      "weekday": "",
       "diary": "枝豆播種",
       "memo": "",
       "flag": "",
@@ -1195,7 +1284,7 @@
       "row": 4,
       "date": "2026-03-25",
       "dateLabel": "2026.3.25",
-      "weekday": "水曜日",
+      "weekday": "",
       "diary": "エン麦播種",
       "memo": "",
       "flag": "",
@@ -1208,7 +1297,7 @@
       "row": 3,
       "date": "2026-03-24",
       "dateLabel": "2026.3.24",
-      "weekday": "火曜日",
+      "weekday": "",
       "diary": "ヘアリーベッチ発芽",
       "memo": "",
       "flag": "",
@@ -1221,7 +1310,7 @@
       "row": 2,
       "date": "2026-03-09",
       "dateLabel": "2026.3.9",
-      "weekday": "月曜日",
+      "weekday": "",
       "diary": "ヘアリーベッチ播種。畑を管理していくことになったけど、何から始めていいか分からず、ひとまず収穫の必要がない緑肥を育ててみる事とした。",
       "memo": "",
       "flag": "",
@@ -1230,47 +1319,5 @@
       "memo_en": "",
       "images": []
     }
-  ],
-  "keywords": {
-    "井戸": 34,
-    "母親": 17,
-    "トマト": 12,
-    "麦": 11,
-    "ミニトマト": 11,
-    "緑肥": 10,
-    "茄子": 11,
-    "イチゴ": 9,
-    "トラクター": 8,
-    "レタス": 8,
-    "アスパラ": 7,
-    "キュウリ": 8,
-    "ピーマン": 7,
-    "カラス": 4,
-    "ユンボ": 2,
-    "ぼかし": 2,
-    "空芯菜": 1,
-    "生姜": 1,
-    "田んぼ": 4
-  },
-  "keywords_en": {
-    "Well": 34,
-    "Mother": 17,
-    "Tomato": 12,
-    "Wheat": 11,
-    "Cherry tomato": 11,
-    "Green manure": 10,
-    "Eggplant": 11,
-    "Strawberry": 9,
-    "Tractor": 8,
-    "Lettuce": 8,
-    "Asparagus": 7,
-    "Cucumber": 8,
-    "Bell pepper": 7,
-    "Crows": 4,
-    "Excavator": 2,
-    "Bokashi": 2,
-    "Water spinach": 1,
-    "Ginger": 1,
-    "Rice field": 4
-  }
+  ]
 }
