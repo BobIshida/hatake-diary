@@ -1,10 +1,105 @@
 {
-  "updated": "2026-07-10",
-  "count": 84,
-  "latest": "2026-07-10",
+  "updated": "2026-07-17",
+  "count": 89,
+  "latest": "2026-07-17",
   "earliest": "2026-03-09",
-  "photo_count": 268,
+  "photo_count": 293,
   "entries": [
+    {
+      "date": "2026-07-17",
+      "dateLabel": "2026/07/17",
+      "weekday": "金曜日",
+      "diary": "昨夜の雷雨で畑には十分な水が供給されたが、強風によりトマト苗やピーマンの苗が横倒しになっていた。生姜の土寄せと追肥を行った。肥料として自作のぼかし肥料をはじめて使った。",
+      "memo": "隣接する畑の購入を検討している。売主の方も私同様、相続で畑を所有することになったそうだ。",
+      "flag": "",
+      "row": 6,
+      "images": [
+        "assets/images/img_289.jpg",
+        "assets/images/img_290.jpg",
+        "assets/images/img_291.jpg",
+        "assets/images/img_292.jpg",
+        "assets/images/img_293.jpg"
+      ],
+      "weekday_en": "Friday",
+      "diary_en": "Last night’s thunderstorm supplied plenty of water to the field, but strong winds knocked over tomato and green pepper seedlings. I hilled and fertilized the ginger. For fertilizer, I used my homemade bokashi fertilizer for the first time.",
+      "memo_en": "I am considering purchasing the adjacent field. The seller apparently came to own the field through inheritance, just as I did."
+    },
+    {
+      "date": "2026-07-16",
+      "dateLabel": "2026/07/16",
+      "weekday": "木曜日",
+      "diary": "キュウリ苗を2つ購入して定植。種から育てたトマトも５つ定植。畑のごみ処理もまだまだ続く。昨日畝建てをした南側はさっぱりと気持ちいい。先行で定植したトマトの葉が縮れているので原因を調査しよう。後発の茄子の仕立てを行った。",
+      "memo": "「ハモグリバエ（通称：エカキムシ）」という害虫の幼虫による食害である可能性が非常に高いという事でした。",
+      "flag": "",
+      "row": 5,
+      "images": [
+        "assets/images/img_281.jpg",
+        "assets/images/img_282.jpg",
+        "assets/images/img_283.jpg",
+        "assets/images/img_284.jpg",
+        "assets/images/img_285.jpg",
+        "assets/images/img_286.jpg",
+        "assets/images/img_287.jpg",
+        "assets/images/img_288.jpg"
+      ],
+      "weekday_en": "Thursday",
+      "diary_en": "I bought two cucumber seedlings and transplanted them. I also transplanted five tomato seedlings grown from seed. Cleanup of trash in the field is still continuing. The south side, where I made ridges yesterday, looks neat and refreshing. The leaves of the earlier tomato plants are curling, so I need to investigate the cause. I trained the later eggplant plants.",
+      "memo_en": "It was very likely damage caused by the larvae of a pest called the leaf miner."
+    },
+    {
+      "date": "2026-07-15",
+      "dateLabel": "2026/07/15",
+      "weekday": "水曜日",
+      "diary": "今日はトラクター出動。畑の南側を耕うんして、管理機で畝を立てた。母親が晩生の枝豆を撒きたいらしい。枝豆は確かにもっと栽培してもよさそうだ。管理機を軽トラックで運ぶ際に草刈り機も念のため持って行ったのだが、結局草刈りもやったので、結構今日はヘビーな畑仕事となった。そういえば、元気のなかったキュウリの株を確認したら、どうやら根腐れしていたようだ。マルチが張ってあった株なので、水のやり過ぎということになりそうだ。もう一本のキュウリの株はそこそこ元気だ。キュウリも評判良いので、1株追加したいところだ。",
+      "memo": "作業に夢中で作業後の写真を撮るのを忘れてしまった。",
+      "flag": "",
+      "row": 4,
+      "images": [
+        "assets/images/img_280.jpg"
+      ],
+      "weekday_en": "Wednesday",
+      "diary_en": "Today the tractor went to work. I tilled the south side of the field and made ridges with the cultivator. My mother wants to sow a late-maturing variety of edamame. Edamame does seem worth growing more of. When I transported the cultivator by kei truck, I also brought the brush cutter just in case. In the end I did some mowing too, so today turned into fairly heavy fieldwork. I also checked the cucumber plant that had not been doing well, and it seems the roots had rotted. Since that plant had mulch on it, the cause was probably too much watering. The other cucumber plant is doing reasonably well. Cucumbers have been popular, so I would like to add one more plant.",
+      "memo_en": "I was so absorbed in the work that I forgot to take photos afterward."
+    },
+    {
+      "date": "2026-07-14",
+      "dateLabel": "2026/07/14",
+      "weekday": "火曜日",
+      "diary": "昨日と今日はユンボの講習で畑に行けなかったが、今日夕方行ってみるとキュウリが1株萎れていた。水を補給しておいたが、立ち直れるかどうか。。。明日はトラクターで畑の南側を耕うんの予定。母は枝豆を播種したいらしい。",
+      "memo": "念願の免許が取得できたので、ユンボをレンタルしたいと考えているが、真夏なので少し涼しくなってからにしようかなと。。。隣地の購入の話もあるし。。。",
+      "flag": "",
+      "row": 3,
+      "images": [
+        "assets/images/img_277.jpg",
+        "assets/images/img_278.jpg",
+        "assets/images/img_279.jpg"
+      ],
+      "weekday_en": "Tuesday",
+      "diary_en": "I could not go to the field yesterday or today because I was attending excavator training. When I went this evening, one cucumber plant had wilted. I gave it water, but I am not sure whether it will recover. Tomorrow I plan to till the south side of the field with the tractor. My mother seems to want to sow edamame.",
+      "memo_en": "I finally obtained the license I had wanted, so I am thinking about renting an excavator, but since it is midsummer I may wait until it gets a little cooler. There is also the matter of buying the neighboring field..."
+    },
+    {
+      "date": "2026-07-12",
+      "dateLabel": "2026/07/12",
+      "weekday": "日曜日",
+      "diary": "今日は曇りで畑日和。ミニトマトを収穫したものの、食害を発見。緑の芋虫が犯人のようだ。一旦食害のある房をすべて処分して殺虫スプレーをかけておいた。イチゴ苗には遮光ネット、生姜にも遮光を施した。育苗中のトマト苗用の畝を立てたり、敷き藁用にキープしていたエン麦の刈り取りを完了。あと少しで梅雨明けになりそうな雰囲気だ。",
+      "memo": "ミニトマトの食害の犯人の名前は、オオタバコガというらしい。",
+      "flag": "",
+      "row": 2,
+      "images": [
+        "assets/images/img_269.jpg",
+        "assets/images/img_270.jpg",
+        "assets/images/img_271.jpg",
+        "assets/images/img_272.jpg",
+        "assets/images/img_273.jpg",
+        "assets/images/img_274.jpg",
+        "assets/images/img_275.jpg",
+        "assets/images/img_276.jpg"
+      ],
+      "weekday_en": "Sunday",
+      "diary_en": "It was cloudy today, perfect weather for working in the field. I harvested cherry tomatoes but found insect damage. A green caterpillar seems to be the culprit. I removed all the damaged clusters for now and sprayed insecticide. I put shade netting over the strawberry seedlings and also shaded the ginger. I made a ridge for the tomato seedlings I am raising, and finished cutting the oats that I had kept for straw mulch. It feels like the rainy season is almost over.",
+      "memo_en": "The pest causing the cherry tomato damage seems to be called the cotton bollworm."
+    },
     {
       "row": 85,
       "date": "2026-07-10",
