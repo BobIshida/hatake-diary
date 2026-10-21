@@ -73,7 +73,6 @@ function initializeLanguageSwitch() {
     syncFrame = requestAnimationFrame(syncCurrentDate);
   }
 
-  languageLink.addEventListener('click', syncCurrentDate);
   window.addEventListener('wheel', markUserScrollIntent, { passive: true });
   window.addEventListener('touchstart', markUserScrollIntent, { passive: true });
   window.addEventListener('keydown', (event) => {
