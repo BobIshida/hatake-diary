@@ -5,6 +5,9 @@ function initializeLanguageSwitch() {
   const languageLink = document.querySelector('.lang a');
   if (!languageLink || !entries.length) return;
 
+  const toolbar = document.querySelector('.toolbar');
+  const entryScrollMargin = (toolbar?.offsetHeight || 0) + 16;
+
   entries.forEach((entry) => {
     const dateText = entry.querySelector('.date')?.textContent || '';
     const match = dateText.match(/(\d{4})\/(\d{2})\/(\d{2})/);
@@ -13,24 +16,35 @@ function initializeLanguageSwitch() {
     const date = `${match[1]}-${match[2]}-${match[3]}`;
     entry.dataset.date = date;
     entry.id = `entry-${date}`;
+    entry.style.scrollMarginTop = `${entryScrollMargin}px`;
   });
 
   languageLink.addEventListener('click', () => {
     const visibleEntries = entries.filter((entry) => !entry.classList.contains('hidden'));
     if (!visibleEntries.length) return;
 
-    const toolbarBottom = document.querySelector('.toolbar')?.getBoundingClientRect().bottom || 0;
-    const referenceY = Math.min(
-      Math.max(toolbarBottom + 16, window.innerHeight * 0.35),
-      window.innerHeight - 1,
-    );
-    const currentEntry = visibleEntries.reduce((closest, entry) => {
+    const toolbarBottom = toolbar?.getBoundingClientRect().bottom || 0;
+    const anchoredEntry = window.location.hash.startsWith('#entry-')
+      ? document.querySelector(window.location.hash)
+      : null;
+    const anchoredRect = anchoredEntry?.getBoundingClientRect();
+    const anchoredEntryIsVisible = anchoredEntry && !anchoredEntry.classList.contains('hidden')
+      && anchoredRect.bottom > toolbarBottom && anchoredRect.top < window.innerHeight;
+    const viewportCenter = (toolbarBottom + window.innerHeight) / 2;
+    const dominantEntry = visibleEntries.reduce((best, entry) => {
       const rect = entry.getBoundingClientRect();
-      const distance = rect.top <= referenceY && rect.bottom >= referenceY
-        ? 0
-        : Math.min(Math.abs(rect.top - referenceY), Math.abs(rect.bottom - referenceY));
-      return !closest || distance < closest.distance ? { entry, distance } : closest;
+      const visibleHeight = Math.max(
+        0,
+        Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, toolbarBottom),
+      );
+      const centerDistance = Math.abs((rect.top + rect.bottom) / 2 - viewportCenter);
+      if (!best || visibleHeight > best.visibleHeight
+        || (visibleHeight === best.visibleHeight && centerDistance < best.centerDistance)) {
+        return { entry, visibleHeight, centerDistance };
+      }
+      return best;
     }, null)?.entry;
+    const currentEntry = anchoredEntryIsVisible ? anchoredEntry : dominantEntry;
 
     if (!currentEntry?.id) return;
     const target = new URL(languageLink.href, window.location.href);
