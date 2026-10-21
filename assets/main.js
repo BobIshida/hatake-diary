@@ -67,6 +67,10 @@ function initializeLanguageSwitch() {
     userScrollIntent = true;
   }
 
+  function ensureAnchorScrollSpace() {
+    document.body.style.paddingBottom = `${window.innerHeight}px`;
+  }
+
   function scheduleSync() {
     if (!userScrollIntent) return;
     if (syncFrame !== null) return;
@@ -85,6 +89,7 @@ function initializeLanguageSwitch() {
   if (window.location.hash.startsWith('#entry-')) {
     const targetEntry = document.querySelector(window.location.hash);
     if (targetEntry) requestAnimationFrame(() => {
+      ensureAnchorScrollSpace();
       targetEntry.scrollIntoView();
       const target = new URL(targetPage, window.location.href);
       target.hash = targetEntry.id;
