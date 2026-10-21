@@ -88,13 +88,21 @@ function initializeLanguageSwitch() {
 
   if (window.location.hash.startsWith('#entry-')) {
     const targetEntry = document.querySelector(window.location.hash);
-    if (targetEntry) requestAnimationFrame(() => {
-      ensureAnchorScrollSpace();
-      targetEntry.scrollIntoView();
+    if (targetEntry) {
+      const alignTargetEntry = () => {
+        ensureAnchorScrollSpace();
+        targetEntry.scrollIntoView();
+      };
+      requestAnimationFrame(() => {
+        alignTargetEntry();
+        window.setTimeout(alignTargetEntry, 300);
+        window.setTimeout(alignTargetEntry, 1200);
+      });
+      window.addEventListener('load', alignTargetEntry, { once: true });
       const target = new URL(targetPage, window.location.href);
       target.hash = targetEntry.id;
       languageLink.href = target.href;
-    });
+    }
   } else {
     scheduleSync();
   }
