@@ -7,6 +7,8 @@ function initializeLanguageSwitch() {
 
   const toolbar = document.querySelector('.toolbar');
   const entryScrollMargin = (toolbar?.offsetHeight || 0) + 16;
+  const targetPage = languageLink.getAttribute('href');
+  let syncFrame = null;
 
   entries.forEach((entry) => {
     const dateText = entry.querySelector('.date')?.textContent || '';
@@ -19,9 +21,9 @@ function initializeLanguageSwitch() {
     entry.style.scrollMarginTop = `${entryScrollMargin}px`;
   });
 
-  languageLink.addEventListener('click', () => {
+  function findCurrentEntry() {
     const visibleEntries = entries.filter((entry) => !entry.classList.contains('hidden'));
-    if (!visibleEntries.length) return;
+    if (!visibleEntries.length) return null;
 
     const toolbarBottom = toolbar?.getBoundingClientRect().bottom || 0;
     const anchoredEntry = window.location.hash.startsWith('#entry-')
@@ -44,17 +46,38 @@ function initializeLanguageSwitch() {
       }
       return best;
     }, null)?.entry;
-    const currentEntry = anchoredEntryIsVisible ? anchoredEntry : dominantEntry;
+    return anchoredEntryIsVisible ? anchoredEntry : dominantEntry;
+  }
 
+  function syncCurrentDate() {
+    syncFrame = null;
+    const currentEntry = findCurrentEntry();
     if (!currentEntry?.id) return;
-    const target = new URL(languageLink.href, window.location.href);
+    const target = new URL(targetPage, window.location.href);
     target.hash = currentEntry.id;
     languageLink.href = target.href;
-  });
+
+    if (window.location.hash !== `#${currentEntry.id}`) {
+      window.history.replaceState(null, '', `#${currentEntry.id}`);
+    }
+  }
+
+  function scheduleSync() {
+    if (syncFrame !== null) return;
+    syncFrame = requestAnimationFrame(syncCurrentDate);
+  }
+
+  languageLink.addEventListener('click', syncCurrentDate);
+  window.addEventListener('scroll', scheduleSync, { passive: true });
 
   if (window.location.hash.startsWith('#entry-')) {
     const targetEntry = document.querySelector(window.location.hash);
-    if (targetEntry) requestAnimationFrame(() => targetEntry.scrollIntoView());
+    if (targetEntry) requestAnimationFrame(() => {
+      targetEntry.scrollIntoView();
+      scheduleSync();
+    });
+  } else {
+    scheduleSync();
   }
 }
 
