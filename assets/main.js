@@ -89,7 +89,10 @@ function initializeLanguageSwitch() {
   if (window.location.hash.startsWith('#entry-')) {
     const targetEntry = document.querySelector(window.location.hash);
     if (targetEntry) {
+      document.documentElement.style.overflowAnchor = 'none';
+      document.body.style.overflowAnchor = 'none';
       const alignTargetEntry = () => {
+        if (userScrollIntent) return;
         ensureAnchorScrollSpace();
         targetEntry.scrollIntoView();
       };
@@ -97,8 +100,13 @@ function initializeLanguageSwitch() {
         alignTargetEntry();
         window.setTimeout(alignTargetEntry, 300);
         window.setTimeout(alignTargetEntry, 1200);
+        window.setTimeout(alignTargetEntry, 3000);
       });
       window.addEventListener('load', alignTargetEntry, { once: true });
+      document.fonts?.ready.then(alignTargetEntry);
+      document.querySelectorAll('img').forEach((image) => {
+        if (!image.complete) image.addEventListener('load', alignTargetEntry, { once: true });
+      });
       const target = new URL(targetPage, window.location.href);
       target.hash = targetEntry.id;
       languageLink.href = target.href;
