@@ -9,6 +9,7 @@ function initializeLanguageSwitch() {
   const entryScrollMargin = (toolbar?.offsetHeight || 0) + 16;
   const targetPage = languageLink.getAttribute('href');
   let syncFrame = null;
+  let userScrollIntent = false;
 
   entries.forEach((entry) => {
     const dateText = entry.querySelector('.date')?.textContent || '';
@@ -62,19 +63,33 @@ function initializeLanguageSwitch() {
     }
   }
 
+  function markUserScrollIntent() {
+    userScrollIntent = true;
+  }
+
   function scheduleSync() {
+    if (!userScrollIntent) return;
     if (syncFrame !== null) return;
     syncFrame = requestAnimationFrame(syncCurrentDate);
   }
 
   languageLink.addEventListener('click', syncCurrentDate);
+  window.addEventListener('wheel', markUserScrollIntent, { passive: true });
+  window.addEventListener('touchstart', markUserScrollIntent, { passive: true });
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+      markUserScrollIntent();
+    }
+  });
   window.addEventListener('scroll', scheduleSync, { passive: true });
 
   if (window.location.hash.startsWith('#entry-')) {
     const targetEntry = document.querySelector(window.location.hash);
     if (targetEntry) requestAnimationFrame(() => {
       targetEntry.scrollIntoView();
-      scheduleSync();
+      const target = new URL(targetPage, window.location.href);
+      target.hash = targetEntry.id;
+      languageLink.href = target.href;
     });
   } else {
     scheduleSync();
