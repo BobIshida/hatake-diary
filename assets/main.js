@@ -1,6 +1,49 @@
 const q = document.querySelector('#search');
 const entries = [...document.querySelectorAll('.entry')];
 
+function initializeLanguageSwitch() {
+  const languageLink = document.querySelector('.lang a');
+  if (!languageLink || !entries.length) return;
+
+  entries.forEach((entry) => {
+    const dateText = entry.querySelector('.date')?.textContent || '';
+    const match = dateText.match(/(\d{4})\/(\d{2})\/(\d{2})/);
+    if (!match) return;
+
+    const date = `${match[1]}-${match[2]}-${match[3]}`;
+    entry.dataset.date = date;
+    entry.id = `entry-${date}`;
+  });
+
+  languageLink.addEventListener('click', () => {
+    const visibleEntries = entries.filter((entry) => !entry.classList.contains('hidden'));
+    if (!visibleEntries.length) return;
+
+    const toolbarBottom = document.querySelector('.toolbar')?.getBoundingClientRect().bottom || 0;
+    const referenceY = Math.min(
+      Math.max(toolbarBottom + 16, window.innerHeight * 0.35),
+      window.innerHeight - 1,
+    );
+    const currentEntry = visibleEntries.reduce((closest, entry) => {
+      const rect = entry.getBoundingClientRect();
+      const distance = rect.top <= referenceY && rect.bottom >= referenceY
+        ? 0
+        : Math.min(Math.abs(rect.top - referenceY), Math.abs(rect.bottom - referenceY));
+      return !closest || distance < closest.distance ? { entry, distance } : closest;
+    }, null)?.entry;
+
+    if (!currentEntry?.id) return;
+    const target = new URL(languageLink.href, window.location.href);
+    target.hash = currentEntry.id;
+    languageLink.href = target.href;
+  });
+
+  if (window.location.hash.startsWith('#entry-')) {
+    const targetEntry = document.querySelector(window.location.hash);
+    if (targetEntry) requestAnimationFrame(() => targetEntry.scrollIntoView());
+  }
+}
+
 function filter(term) {
   term = (term || '').toLowerCase().trim();
   entries.forEach((entry) => {
@@ -138,4 +181,5 @@ function initializeLightbox() {
   });
 }
 
+initializeLanguageSwitch();
 initializeLightbox();
