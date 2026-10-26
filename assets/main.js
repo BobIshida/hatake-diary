@@ -143,10 +143,13 @@ function filter(term) {
     const dateMatches = dateSearch && (dateSearch.year
       ? entry.dataset.date === `${dateSearch.year}-${dateSearch.month}-${dateSearch.day}`
       : entry.dataset.date?.endsWith(`-${dateSearch.month}-${dateSearch.day}`));
-    const textMatches = !dateSearch && entry.dataset.text.includes(term);
-    const matches = !term || dateMatches || textMatches;
-    entry.classList.toggle('hidden', !matches);
-    if (matches) matchingEntries.push(entry);
+    if (dateSearch) {
+      entry.classList.remove('hidden');
+      if (dateMatches) matchingEntries.push(entry);
+      return;
+    }
+
+    entry.classList.toggle('hidden', term && !entry.dataset.text.includes(term));
   });
 
   if (dateSearch && matchingEntries.length) {
