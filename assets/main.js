@@ -116,10 +116,34 @@ function initializeLanguageSwitch() {
   }
 }
 
+function parseDateSearch(term) {
+  const normalized = term.normalize('NFKC').trim();
+  const numericDate = normalized.match(/^(?:(\d{4})\s*[\/.\-]\s*)?(\d{1,2})\s*[\/.\-]\s*(\d{1,2})$/);
+  const japaneseDate = normalized.match(/^(?:(\d{4})\s*年\s*)?(\d{1,2})\s*月\s*(\d{1,2})\s*日?$/);
+  const match = numericDate || japaneseDate;
+  if (!match) return null;
+
+  const year = match[1] || null;
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+
+  return {
+    year,
+    month: String(month).padStart(2, '0'),
+    day: String(day).padStart(2, '0'),
+  };
+}
+
 function filter(term) {
   term = (term || '').toLowerCase().trim();
+  const dateSearch = parseDateSearch(term);
   entries.forEach((entry) => {
-    entry.classList.toggle('hidden', term && !entry.dataset.text.includes(term));
+    const dateMatches = dateSearch && (dateSearch.year
+      ? entry.dataset.date === `${dateSearch.year}-${dateSearch.month}-${dateSearch.day}`
+      : entry.dataset.date?.endsWith(`-${dateSearch.month}-${dateSearch.day}`));
+    const textMatches = !dateSearch && entry.dataset.text.includes(term);
+    entry.classList.toggle('hidden', term && !(dateMatches || textMatches));
   });
 }
 
