@@ -138,13 +138,22 @@ function parseDateSearch(term) {
 function filter(term) {
   term = (term || '').toLowerCase().trim();
   const dateSearch = parseDateSearch(term);
+  const matchingEntries = [];
   entries.forEach((entry) => {
     const dateMatches = dateSearch && (dateSearch.year
       ? entry.dataset.date === `${dateSearch.year}-${dateSearch.month}-${dateSearch.day}`
       : entry.dataset.date?.endsWith(`-${dateSearch.month}-${dateSearch.day}`));
     const textMatches = !dateSearch && entry.dataset.text.includes(term);
-    entry.classList.toggle('hidden', term && !(dateMatches || textMatches));
+    const matches = !term || dateMatches || textMatches;
+    entry.classList.toggle('hidden', !matches);
+    if (matches) matchingEntries.push(entry);
   });
+
+  if (dateSearch && matchingEntries.length) {
+    requestAnimationFrame(() => {
+      matchingEntries[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 }
 
 q?.addEventListener('input', (event) => filter(event.target.value));
