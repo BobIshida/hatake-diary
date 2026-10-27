@@ -289,5 +289,82 @@ function initializeLightbox() {
   });
 }
 
+function initializeReadAloud() {
+  if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
+
+  const isJapanese = document.documentElement.lang === 'ja';
+  const labels = isJapanese
+    ? { play: '読み上げ', stop: '停止', memo: '一言メモ。' }
+    : { play: 'Read aloud', stop: 'Stop', memo: 'Note. ' };
+  const datedEntries = entries
+    .filter((entry) => entry.dataset.date)
+    .sort((a, b) => b.dataset.date.localeCompare(a.dataset.date));
+  const latestDate = datedEntries[0]?.dataset.date;
+  if (!latestDate) return;
+
+  const weekStart = new Date(`${latestDate}T00:00:00`);
+  weekStart.setDate(weekStart.getDate() - 6);
+  let activeButton = null;
+
+  function resetActiveButton() {
+    if (!activeButton) return;
+    activeButton.textContent = `▶ ${labels.play}`;
+    activeButton.setAttribute('aria-pressed', 'false');
+    activeButton = null;
+  }
+
+  function stopReading() {
+    window.speechSynthesis.cancel();
+    resetActiveButton();
+  }
+
+  datedEntries.forEach((entry) => {
+    const entryDate = new Date(`${entry.dataset.date}T00:00:00`);
+    if (entryDate < weekStart) return;
+
+    const header = entry.querySelector('header');
+    const date = entry.querySelector('.date')?.textContent.trim() || '';
+    const weekday = entry.querySelector('.weekday')?.textContent.trim() || '';
+    const diary = entry.querySelector('.diary')?.textContent.trim() || '';
+    const memo = entry.querySelector('.memo')?.textContent
+      .replace(/^(一言メモ|Note)/, '')
+      .trim() || '';
+    if (!header || !diary) return;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'read-aloud';
+    button.textContent = `▶ ${labels.play}`;
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', `${date} ${labels.play}`);
+    header.append(button);
+
+    button.addEventListener('click', () => {
+      if (activeButton === button) {
+        stopReading();
+        return;
+      }
+
+      stopReading();
+      const text = [date, weekday, diary, memo ? `${labels.memo}${memo}` : '']
+        .filter(Boolean)
+        .join(isJapanese ? '。' : '. ');
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = isJapanese ? 'ja-JP' : 'en-US';
+      utterance.rate = 0.95;
+      utterance.onend = resetActiveButton;
+      utterance.onerror = resetActiveButton;
+      activeButton = button;
+      button.textContent = `■ ${labels.stop}`;
+      button.setAttribute('aria-pressed', 'true');
+      window.speechSynthesis.speak(utterance);
+    });
+  });
+
+  window.addEventListener('pagehide', stopReading);
+  document.querySelector('.lang a')?.addEventListener('click', stopReading);
+}
+
 initializeLanguageSwitch();
 initializeLightbox();
+initializeReadAloud();
