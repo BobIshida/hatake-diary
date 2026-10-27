@@ -296,19 +296,15 @@ function initializeReadAloud() {
   const labels = isJapanese
     ? { play: '読み上げ', stop: '停止', memo: '一言メモ。' }
     : { play: 'Read aloud', stop: 'Stop', memo: 'Note. ' };
-  const datedEntries = entries
-    .filter((entry) => entry.dataset.date)
-    .sort((a, b) => b.dataset.date.localeCompare(a.dataset.date));
-  const latestDate = datedEntries[0]?.dataset.date;
-  if (!latestDate) return;
-
-  const weekStart = new Date(`${latestDate}T00:00:00`);
-  weekStart.setDate(weekStart.getDate() - 6);
+  const datedEntries = entries.filter((entry) => entry.dataset.date);
+  if (!datedEntries.length) return;
   let activeButton = null;
 
   function resetActiveButton() {
     if (!activeButton) return;
-    activeButton.textContent = `▶ ${labels.play}`;
+    activeButton.textContent = '🔊';
+    activeButton.title = labels.play;
+    activeButton.setAttribute('aria-label', activeButton.dataset.playLabel);
     activeButton.setAttribute('aria-pressed', 'false');
     activeButton = null;
   }
@@ -319,9 +315,6 @@ function initializeReadAloud() {
   }
 
   datedEntries.forEach((entry) => {
-    const entryDate = new Date(`${entry.dataset.date}T00:00:00`);
-    if (entryDate < weekStart) return;
-
     const header = entry.querySelector('header');
     const date = entry.querySelector('.date')?.textContent.trim() || '';
     const weekday = entry.querySelector('.weekday')?.textContent.trim() || '';
@@ -334,9 +327,11 @@ function initializeReadAloud() {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'read-aloud';
-    button.textContent = `▶ ${labels.play}`;
+    button.textContent = '🔊';
+    button.title = labels.play;
+    button.dataset.playLabel = `${date} ${labels.play}`;
     button.setAttribute('aria-pressed', 'false');
-    button.setAttribute('aria-label', `${date} ${labels.play}`);
+    button.setAttribute('aria-label', button.dataset.playLabel);
     header.append(button);
 
     button.addEventListener('click', () => {
@@ -355,7 +350,9 @@ function initializeReadAloud() {
       utterance.onend = resetActiveButton;
       utterance.onerror = resetActiveButton;
       activeButton = button;
-      button.textContent = `■ ${labels.stop}`;
+      button.textContent = '⏹';
+      button.title = labels.stop;
+      button.setAttribute('aria-label', `${date} ${labels.stop}`);
       button.setAttribute('aria-pressed', 'true');
       window.speechSynthesis.speak(utterance);
     });

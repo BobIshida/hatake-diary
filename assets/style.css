@@ -7,4 +7,4 @@ body.lightbox-open{overflow:hidden}.lightbox[hidden]{display:none}.lightbox{posi
 
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 
-.read-aloud{margin-top:10px;border:1px solid #9bad82;background:#f7faef;color:#405d2d;border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;font-weight:700;line-height:1.2;cursor:pointer}.read-aloud:hover,.read-aloud:focus-visible{background:#e8f0dc;outline:3px solid rgba(95,127,59,.22);outline-offset:2px}.read-aloud[aria-pressed="true"]{background:#405d2d;color:#fff;border-color:#405d2d}
+.read-aloud{display:grid;place-items:center;width:42px;height:42px;margin-top:10px;border:1px solid #9bad82;background:#f7faef;color:#405d2d;border-radius:50%;padding:0;font-family:"Apple Color Emoji","Segoe UI Emoji",sans-serif;font-size:20px;line-height:1;cursor:pointer}.read-aloud:hover,.read-aloud:focus-visible{background:#e8f0dc;outline:3px solid rgba(95,127,59,.22);outline-offset:2px}.read-aloud[aria-pressed="true"]{background:#405d2d;color:#fff;border-color:#405d2d}
