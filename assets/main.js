@@ -334,6 +334,21 @@ function initializeReadAloud() {
     return scoredVoices.find((candidate) => candidate.isMale)?.voice || null;
   }
 
+  function formatSpokenDate(dateString) {
+    const match = dateString?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) return '';
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const day = Number(match[3]);
+    if (isJapanese) return `${year}年${month}月${day}日`;
+
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December',
+    ];
+    return `${monthNames[month - 1]} ${day}, ${year}`;
+  }
+
   function resetActiveButton() {
     if (!activeButton) return;
     activeButton.textContent = '🔊';
@@ -351,6 +366,7 @@ function initializeReadAloud() {
   datedEntries.forEach((entry) => {
     const header = entry.querySelector('header');
     const date = entry.querySelector('.date')?.textContent.trim() || '';
+    const spokenDate = formatSpokenDate(entry.dataset.date) || date;
     const weekday = entry.querySelector('.weekday')?.textContent.trim() || '';
     const diary = entry.querySelector('.diary')?.textContent.trim() || '';
     const memo = entry.querySelector('.memo')?.textContent
@@ -375,7 +391,7 @@ function initializeReadAloud() {
       }
 
       stopReading();
-      const text = [date, weekday, diary, memo ? `${labels.memo}${memo}` : '']
+      const text = [spokenDate, weekday, diary, memo ? `${labels.memo}${memo}` : '']
         .filter(Boolean)
         .join(isJapanese ? '。' : '. ');
       const utterance = new SpeechSynthesisUtterance(text);
