@@ -298,7 +298,41 @@ function initializeReadAloud() {
     : { play: 'Read aloud', stop: 'Stop', memo: 'Note. ' };
   const datedEntries = entries.filter((entry) => entry.dataset.date);
   if (!datedEntries.length) return;
+  const targetLanguage = isJapanese ? 'ja-JP' : 'en-US';
+  const maleVoiceNames = isJapanese
+    ? ['keita', 'ichiro', 'otoya', 'takumi', '男性', '男声', 'male']
+    : ['guy', 'david', 'daniel', 'george', 'james', 'mark', 'ryan', 'eric', 'christopher', 'male'];
+  const femaleVoiceNames = isJapanese
+    ? ['nanami', 'haruka', 'kyoko', 'sayaka', '女性', '女声', 'female']
+    : ['zira', 'samantha', 'victoria', 'hazel', 'susan', 'female'];
+  let availableVoices = window.speechSynthesis.getVoices();
   let activeButton = null;
+
+  window.speechSynthesis.addEventListener?.('voiceschanged', () => {
+    availableVoices = window.speechSynthesis.getVoices();
+  });
+
+  function selectPreferredVoice() {
+    if (!availableVoices.length) availableVoices = window.speechSynthesis.getVoices();
+    const languagePrefix = targetLanguage.slice(0, 2).toLowerCase();
+    const matchingVoices = availableVoices.filter((voice) => (
+      voice.lang.toLowerCase().startsWith(languagePrefix)
+    ));
+    const scoredVoices = matchingVoices.map((voice) => {
+      const name = `${voice.name} ${voice.voiceURI}`.toLowerCase();
+      const isMale = maleVoiceNames.some((candidate) => name.includes(candidate));
+      const isFemale = femaleVoiceNames.some((candidate) => name.includes(candidate));
+      const isHighQuality = /(natural|premium|enhanced|online)/.test(name);
+      const isExactLanguage = voice.lang.toLowerCase() === targetLanguage.toLowerCase();
+      return {
+        voice,
+        isMale,
+        score: (isMale ? 100 : 0) - (isFemale ? 100 : 0)
+          + (isHighQuality ? 20 : 0) + (isExactLanguage ? 10 : 0),
+      };
+    }).sort((a, b) => b.score - a.score);
+    return scoredVoices.find((candidate) => candidate.isMale)?.voice || null;
+  }
 
   function resetActiveButton() {
     if (!activeButton) return;
@@ -345,8 +379,11 @@ function initializeReadAloud() {
         .filter(Boolean)
         .join(isJapanese ? '。' : '. ');
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = isJapanese ? 'ja-JP' : 'en-US';
+      const preferredVoice = selectPreferredVoice();
+      utterance.lang = targetLanguage;
+      if (preferredVoice) utterance.voice = preferredVoice;
       utterance.rate = 0.95;
+      utterance.pitch = preferredVoice ? 0.95 : 0.78;
       utterance.onend = resetActiveButton;
       utterance.onerror = resetActiveButton;
       activeButton = button;
